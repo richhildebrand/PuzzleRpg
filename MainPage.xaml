@@ -35,12 +35,12 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Image Grid.Row="0" Height="76" Width="76" Name="image1" Stretch="Fill" Source="Assets/Orbs/FireOrb.png">
+            <Image Grid.Row="0" Name="image1"  Stretch="Fill" ManipulationCompleted="OnDragEnd" MouseMove="MouseMoving" Source="Assets/Orbs/FireOrb.png">
                 <i:Interaction.Behaviors>
                     <el:MouseDragElementBehavior ConstrainToParentBounds="True"/>
                 </i:Interaction.Behaviors>
             </Image>
-            <Image Grid.Row="1" Height="76" Width="76" Name="image2" Stretch="Fill" Source="Assets/Orbs/FireOrb.png">
+            <Image Grid.Row="1" Height="76" Width="76" Name="image2"  ManipulationCompleted="OnDragEnd"  MouseMove="MouseMoving" Stretch="Fill" Source="Assets/Orbs/WaterOrb.png">
                 <i:Interaction.Behaviors>
                     <el:MouseDragElementBehavior ConstrainToParentBounds="True"/>
                 </i:Interaction.Behaviors>
