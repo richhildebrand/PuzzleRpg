@@ -19,31 +19,29 @@ namespace PuzzleRpg
 
         private void InitPuzzleGrid(Grid puzzleGrid, int rows, int columns)
         {
-            AddRowsToGrid(puzzleGrid, rows);
-            AddColumnsToGrid(puzzleGrid, columns);
+            puzzleGrid = AddRowsToGrid(puzzleGrid, rows);
+            puzzleGrid = AddColumnsToGrid(puzzleGrid, columns);
+            puzzleGrid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
+        }
 
-            Brush defaultBrush = new SolidColorBrush(Colors.Yellow);
-            Brush alternateBrush = new SolidColorBrush(Colors.Black);
-
+        public Grid CreateCheckerBoardOnGrid(Grid grid, int rows, int columns) 
+        {
             for (int row = 0; row < rows; ++row)
             {
                 for (int column = 0; column < columns; ++column)
                 {
                     var image = GetImageForGridLocation(row, column);
-                    puzzleGrid.Children.Add(image);
+                    grid.Children.Add(image);
                     image.SetValue(Grid.ColumnProperty, column);
                     image.SetValue(Grid.RowProperty, row);
 
                     Grid.SetColumn(image, column);
                     Grid.SetRow(image, row);
-                    //Grid.SetColumn(
-                    //cell.Background = (y + x) % 2 == 0 ? defaultBrush : alternateBrush;
-                    //puzzleGrid.Children.Add(cell);
                 }
             }
-
-            puzzleGrid.ShowGridLines = true;
+            return grid;
         }
+
 
         public Image GetImageForGridLocation(int row, int column) 
         {
@@ -60,20 +58,22 @@ namespace PuzzleRpg
             return image;
         }
 
-        public void AddRowsToGrid(Grid grid, int rowsToAdd)
+        public Grid AddRowsToGrid(Grid grid, int rowsToAdd)
         {
             for (int i = 0; i < rowsToAdd; i++)
             {
                 grid.RowDefinitions.Add(new RowDefinition());
             }
+            return grid;
         }
 
-        public void AddColumnsToGrid(Grid grid, int columnsToAdd)
+        public Grid AddColumnsToGrid(Grid grid, int columnsToAdd)
         {
             for (int i = 0; i < columnsToAdd; i++)
             {
                 grid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+            return grid;
         }
 
         private void MouseMoving(object sender, MouseEventArgs e)
