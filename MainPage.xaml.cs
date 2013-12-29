@@ -10,11 +10,13 @@ namespace PuzzleRpg
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        PuzzleGrid _puzzleGrid;
 
         public MainPage()
         {
             InitializeComponent();
-            new PuzzleGrid(PuzzleGrid, 5, 6);
+            _puzzleGrid = new PuzzleGrid(PuzzleGrid, 5, 6);
+            _puzzleGrid.AddOrbs();
         }
 
         private void MouseMoving(object sender, MouseEventArgs e)

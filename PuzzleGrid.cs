@@ -1,18 +1,36 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Input;
+using System.Windows.Media;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
     public class PuzzleGrid
     {
+        int _rows;
+        int _columns;
+        Grid _grid;
+
+
         public PuzzleGrid(Grid puzzleGrid, int rows, int columns)
         {
-            puzzleGrid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
-            puzzleGrid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
-            puzzleGrid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
+            _rows = rows;
+            _columns = columns;
+            _grid = puzzleGrid;
+
+            _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
+            _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
+            _grid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
         }
+
+        public void AddOrbs()
+        {
+            var orb = new PuzzlePiece();
+            _grid.Children.Add(orb.Element);
+        }
+
 
         private Grid CreateCheckerBoardOnGrid(Grid grid, int rows, int columns)
         {
