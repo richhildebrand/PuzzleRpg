@@ -14,7 +14,7 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
-            new PuzzleGrid(ContentPanel, 5, 6);
+            new PuzzleGrid(PuzzleGrid, 5, 6);
         }
 
         private void MouseMoving(object sender, MouseEventArgs e)
