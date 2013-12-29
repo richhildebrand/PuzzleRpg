@@ -3,7 +3,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Media;
+using Microsoft.Expression.Interactivity.Layout;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
@@ -41,10 +43,15 @@ namespace PuzzleRpg
 
         private Image AddTouchEvents(Image orb)
         {
+            //BehaviorCollection behaviors = Interaction.GetBehaviors(orb);
+            //var mouseDragBehavior = new MouseDragElementBehavior();
+            //mouseDragBehavior.ConstrainToParentBounds = true;
+            //behaviors.Add(mouseDragBehavior);
+
             orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(MovePuzzlePiece);
             orb.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(DropPuzzlePiece);
             orb.RenderTransform = this._dragTranslation;
-            //orb.SetValue(MouseDragElementBehavior.ConstrainToParentBoundsProperty, true);
+
             return orb;
         }
   
