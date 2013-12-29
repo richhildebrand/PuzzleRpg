@@ -20,8 +20,9 @@ namespace PuzzleRpg
         public PuzzlePiece(int row, int column)
         {
             _dragTranslation = new TranslateTransform();
-            Element = new Image();
             SetGridPosition(row, column);
+
+            Element = new Image();
             Element = StyleOrb(Element);
             Element = AddTouchEvents(Element);
         }
@@ -51,55 +52,69 @@ namespace PuzzleRpg
         private void DropPuzzlePiece(object sender, ManipulationCompletedEventArgs e)
         {
             var image = sender as Image;
-            _dragTranslation.Y += GetNearestRowEdge(_dragTranslation.Y, image) - _dragTranslation.Y;
-            _dragTranslation.X += GetNearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
-
-            // probably need to keep track of correct grid location
-            //image.SetValue(Grid.ColumnProperty, GetDropRow(_yLocation));
-            //image.SetValue(Grid.RowProperty, GetDropColumn(_xLocation));
+            _dragTranslation.Y += NearestRowEdge(image) - _dragTranslation.Y;
+            _dragTranslation.X += NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
         }
 
-        private double GetNearestRowEdge(double droppedAt, Image image)
+        private double NearestRowEdge(Image image)
         {
-            var screenHeight = Application.Current.Host.Content.ActualHeight;
+            var rowSize = image.ActualHeight;
+            var nearestRow = GetNearestRow(image);
+            var nearestEdge = nearestRow * rowSize;
+            return nearestEdge;
+        }
+
+        private int GetNearestRow(Image image) 
+        {
+            var grid = image.Parent as Grid;
             var rowSize = image.ActualHeight;
 
-            var grid = image.Parent as Grid;
             var pointInRelationToGrid = grid.TransformToVisual(image).Transform(new Point(0, 0));
             var nearestRow = Math.Abs(Math.Round(pointInRelationToGrid.Y / rowSize));
-            var distanceToNearestEdge = nearestRow * rowSize;
-
-            return distanceToNearestEdge;
+            return Convert.ToInt32(nearestRow);
         }
 
-        private double GetNearestColumnEdge(double droppedAt, double itemWidth)
+        private double NearestColumnEdge(double droppedAt, double itemWidth)
         {
             var columnSize = itemWidth;
             var nearestColumn = Math.Round(droppedAt / columnSize);
-            var distanceToNearestEdge = nearestColumn * columnSize;
-            return distanceToNearestEdge;
+            var nearestEdge = nearestColumn * columnSize;
+
+            return nearestEdge;
         }
 
         void Drag_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            //UpdateCurrentColumn(e.DeltaManipulation.Translation.X);
-            //UpdateCurrentRow(_dragTranslation.Y += e.DeltaManipulation.Translation.Y);
-
             _dragTranslation.X += e.DeltaManipulation.Translation.X;
             _dragTranslation.Y += e.DeltaManipulation.Translation.Y;
 
+            var image = sender as Image;
+            _column = GetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, _column);
+            _row = GetCurrentRowAfterMove(image, _row);
         }
-  
-        private void UpdateCurrentRow(double y)
+
+        private int GetCurrentRowAfterMove(Image image, int currentRow)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            var nearestRow = GetNearestRow(image);
+            if (nearestRow != currentRow)
+            {
+                //TODO: Move orb from new row to old row
+                //Debug.WriteLine("nearestRow: " + nearestRow + " currentRow: " + currentRow);
+                currentRow = Convert.ToInt32(nearestRow);
+            }
+            return currentRow;
         }
-  
-        private void UpdateCurrentColumn(double x)
+
+        private int GetCurrentColumnAfterMove(double movedTo, double columnSize, int currentColumn)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            var nearestColumn = Math.Round(movedTo / columnSize);
+            if (nearestColumn != currentColumn)
+            {
+                //TODO: Move orb from new column to old column
+                //Debug.WriteLine("nearestColumn: " + nearestColumn + " currentColumn: " + currentColumn);
+                currentColumn = Convert.ToInt32(nearestColumn);
+            }
+            return currentColumn;
         }
     }
 }
