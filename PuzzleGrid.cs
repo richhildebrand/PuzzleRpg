@@ -17,7 +17,6 @@ namespace PuzzleRpg
             _columns = columns;
             _grid = puzzleGrid;
 
-
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
             _grid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
@@ -28,7 +27,6 @@ namespace PuzzleRpg
             var orb = new PuzzlePiece(0, 0);
             _grid.Children.Add(orb.Element);
         }
-
 
         private Grid CreateCheckerBoardOnGrid(Grid grid, int rows, int columns)
         {
