@@ -17,6 +17,7 @@ namespace PuzzleRpg
             _columns = columns;
             _grid = puzzleGrid;
 
+
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
             _grid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
@@ -39,6 +40,7 @@ namespace PuzzleRpg
                     grid.Children.Add(image);
                     image.SetValue(Grid.ColumnProperty, column);
                     image.SetValue(Grid.RowProperty, row);
+                    image.IsHitTestVisible = true;
                 }
             }
             return grid;
