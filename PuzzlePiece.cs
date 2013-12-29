@@ -12,25 +12,24 @@ namespace PuzzleRpg
     public class PuzzlePiece
     {
         private readonly TranslateTransform _dragTranslation;
-        private double _xLocation;
-        private double _yLocation;
+        private int _row;
+        private int _column;
 
         public Image Element { get; set; }
 
-        public PuzzlePiece()
+        public PuzzlePiece(int row, int column)
         {
             _dragTranslation = new TranslateTransform();
-            SetPosition(0, 0);
-
             Element = new Image();
+            SetGridPosition(row, column);
             Element = StyleOrb(Element);
             Element = AddTouchEvents(Element);
         }
 
-        private void SetPosition(int x, int y) 
+        private void SetGridPosition(int row, int column) 
         {
-            _xLocation = x;
-            _yLocation = y;
+            _row = row;
+            _column = column;
         }
 
         private Image StyleOrb(Image orb)
@@ -52,43 +51,55 @@ namespace PuzzleRpg
         private void DropPuzzlePiece(object sender, ManipulationCompletedEventArgs e)
         {
             var image = sender as Image;
-            GetDropRow(_yLocation,  image.ActualHeight);
-            SetCorrectDropX(_xLocation, image.ActualWidth);
+            _dragTranslation.Y += GetNearestRowEdge(_dragTranslation.Y, image) - _dragTranslation.Y;
+            _dragTranslation.X += GetNearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
 
             // probably need to keep track of correct grid location
             //image.SetValue(Grid.ColumnProperty, GetDropRow(_yLocation));
             //image.SetValue(Grid.RowProperty, GetDropColumn(_xLocation));
         }
 
-        private int GetDropRow(double y, double height)
+        private double GetNearestRowEdge(double droppedAt, Image image)
         {
-            string ScreenHeight = Application.Current.Host.Content.ActualHeight.ToString();
-            return 0;
+            var screenHeight = Application.Current.Host.Content.ActualHeight;
+            var rowSize = image.ActualHeight;
+
+            var grid = image.Parent as Grid;
+            var pointInRelationToGrid = grid.TransformToVisual(image).Transform(new Point(0, 0));
+            var nearestRow = Math.Abs(Math.Round(pointInRelationToGrid.Y / rowSize));
+            var distanceToNearestEdge = nearestRow * rowSize;
+
+            return distanceToNearestEdge;
         }
 
-        private void SetCorrectDropX(double x, double itemWidth)
+        private double GetNearestColumnEdge(double droppedAt, double itemWidth)
         {
-            var screenWidth  = Application.Current.Host.Content.ActualWidth;
-            Debug.WriteLine(screenWidth);
-            var numberOfRows = 6;
-            var rowSize = screenWidth / numberOfRows;
-            var nearestRow = Math.Round(x / rowSize);
-            var nearestCorner = (nearestRow * rowSize);
-            _dragTranslation.X += nearestCorner - x;
-            _xLocation = _dragTranslation.X;
-            Debug.WriteLine(_xLocation.ToString() + "x location");
-            Debug.WriteLine(_dragTranslation.X.ToString() + "dragTranslation.X");
+            var columnSize = itemWidth;
+            var nearestColumn = Math.Round(droppedAt / columnSize);
+            var distanceToNearestEdge = nearestColumn * columnSize;
+            return distanceToNearestEdge;
         }
 
         void Drag_ManipulationDelta(object sender, ManipulationDeltaEventArgs e)
         {
-            Debug.WriteLine(e.DeltaManipulation.Translation.X);
-            _xLocation += e.DeltaManipulation.Translation.X;
-            _yLocation += e.DeltaManipulation.Translation.Y;
-            Debug.WriteLine(_xLocation);
+            //UpdateCurrentColumn(e.DeltaManipulation.Translation.X);
+            //UpdateCurrentRow(_dragTranslation.Y += e.DeltaManipulation.Translation.Y);
 
             _dragTranslation.X += e.DeltaManipulation.Translation.X;
             _dragTranslation.Y += e.DeltaManipulation.Translation.Y;
+
+        }
+  
+        private void UpdateCurrentRow(double y)
+        {
+            // TODO: Implement this method
+            throw new NotImplementedException();
+        }
+  
+        private void UpdateCurrentColumn(double x)
+        {
+            // TODO: Implement this method
+            throw new NotImplementedException();
         }
     }
 }

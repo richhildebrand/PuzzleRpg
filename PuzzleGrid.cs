@@ -25,7 +25,7 @@ namespace PuzzleRpg
 
         public void AddOrbs()
         {
-            var orb = new PuzzlePiece();
+            var orb = new PuzzlePiece(0, 0);
             _grid.Children.Add(orb.Element);
         }
 
