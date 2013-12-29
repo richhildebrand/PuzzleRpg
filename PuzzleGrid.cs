@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Controls;
-using System.Windows.Input;
-using System.Windows.Media;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
     public class PuzzleGrid
     {
-        int _rows;
-        int _columns;
-        Grid _grid;
-
+        private readonly int _rows;
+        private readonly int _columns;
+        private readonly Grid _grid;
 
         public PuzzleGrid(Grid puzzleGrid, int rows, int columns)
         {
@@ -42,9 +39,6 @@ namespace PuzzleRpg
                     grid.Children.Add(image);
                     image.SetValue(Grid.ColumnProperty, column);
                     image.SetValue(Grid.RowProperty, row);
-
-                    Grid.SetColumn(image, column);
-                    Grid.SetRow(image, row);
                 }
             }
             return grid;

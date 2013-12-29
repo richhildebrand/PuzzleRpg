@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using Microsoft.Expression.Interactivity.Layout;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
@@ -33,6 +34,7 @@ namespace PuzzleRpg
         {
             orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(Drag_ManipulationDelta);
             orb.RenderTransform = this._dragTranslation;
+            //orb.SetValue(MouseDragElementBehavior.ConstrainToParentBoundsProperty, true);
             return orb;
         }
 
