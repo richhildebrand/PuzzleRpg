@@ -2,33 +2,37 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.Utils
 {
     public static class PositionCalculator
     {
-        public static int GetCurrentRowAfterMove(Image image, int currentRow)
+        public static int GetCurrentRowAfterMove(Image image, Node origin)
         {
-            var nearestRow = GetNearestRow(image);
-            if (nearestRow != currentRow)
+            var nearestRow = Convert.ToInt32(GetNearestRow(image));
+            if (nearestRow != origin.Row)
             {
                 //TODO: Move orb from new row to old row
                 //Debug.WriteLine("nearestRow: " + nearestRow + " currentRow: " + currentRow);
-                currentRow = Convert.ToInt32(nearestRow);
+                origin.Row = nearestRow;
             }
-            return currentRow;
+            return origin.Row;
         }
 
-        public static int GetCurrentColumnAfterMove(double movedTo, double columnSize, int currentColumn)
+        public static int GetCurrentColumnAfterMove(double movedTo, double columnSize, Node origin)
         {
-            var nearestColumn = Math.Round(movedTo / columnSize);
-            if (nearestColumn != currentColumn)
+            var nearestColumn = Convert.ToInt32(Math.Round(movedTo / columnSize));
+            if (nearestColumn != origin.Column)
             {
                 //TODO: Move orb from new column to old column
+                var destination = new Node(origin.Row, nearestColumn);
+                var orbMove = new OrbMove(origin, destination);
+                MessageBus.Default.Notify("DrugOrbToNewColumn", orbMove, new NotificationEventArgs());
                 //Debug.WriteLine("nearestColumn: " + nearestColumn + " currentColumn: " + currentColumn);
-                currentColumn = Convert.ToInt32(nearestColumn);
+                origin.Column = nearestColumn;
             }
-            return currentColumn;
+            return origin.Column;
         }
 
         public static double NearestRowEdge(Image image)

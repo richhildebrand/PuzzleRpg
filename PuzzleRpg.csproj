@@ -97,6 +97,8 @@
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Node.cs" />
+    <Compile Include="OrbMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuzzleGrid.cs" />
     <Compile Include="PuzzlePiece.cs" />
@@ -159,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Expression.Interactions, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="SimpleMvvm">
+      <HintPath>libs\SimpleMvvm.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleMvvmToolkit">
+      <HintPath>libs\SimpleMvvmToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=3.9.5.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup />

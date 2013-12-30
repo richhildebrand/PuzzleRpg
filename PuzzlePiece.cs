@@ -13,8 +13,7 @@ namespace PuzzleRpg
     public class PuzzlePiece
     {
         private readonly TranslateTransform _dragTranslation;
-        private int _row;
-        private int _column;
+        private Node _location;
 
         public Image Element { get; set; }
 
@@ -30,8 +29,7 @@ namespace PuzzleRpg
 
         private void SetGridPosition(int row, int column) 
         {
-            _row = row;
-            _column = column;
+            _location = new Node(row, column);
         }
 
         private Image StyleOrb(Image orb)
@@ -68,8 +66,8 @@ namespace PuzzleRpg
             _dragTranslation.Y += e.DeltaManipulation.Translation.Y;
 
             var image = sender as Image;
-            _column = PositionCalculator.GetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, _column);
-            _row = PositionCalculator.GetCurrentRowAfterMove(image, _row);
+            _location.Column = PositionCalculator.GetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, _location);
+            _location.Row = PositionCalculator.GetCurrentRowAfterMove(image, _location);
         }
     }
 }
