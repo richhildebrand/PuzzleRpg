@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -10,21 +12,49 @@ namespace PuzzleRpg
         private readonly int _rows;
         private readonly int _columns;
         private readonly Grid _grid;
+        private List<PuzzlePiece> _puzzlePieces; 
 
         public PuzzleGrid(Grid puzzleGrid, int rows, int columns)
         {
             _rows = rows;
             _columns = columns;
             _grid = puzzleGrid;
+            _puzzlePieces = new List<PuzzlePiece>();
+            MessageBus.Default.Register("SwapOrbs", SwapPuzzlePieces);
 
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
             _grid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
         }
 
+        public void SwapPuzzlePieces(object sender, NotificationEventArgs e)
+        {
+            var orbMove = sender as OrbMove;
+            var movingPiece = _puzzlePieces.SingleOrDefault(pp => pp.Location.Row == orbMove.Origin.Row
+                                                               && pp.Location.Column == orbMove.Origin.Column);
+
+            var pieceToSwap = _puzzlePieces.SingleOrDefault(pp => pp.Location.Row == orbMove.Destination.Row
+                                                               && pp.Location.Column == orbMove.Destination.Column);
+
+            if (pieceToSwap != null)
+            {
+                pieceToSwap.SetPosition(orbMove.Origin.Row, orbMove.Origin.Column);
+            }
+
+            movingPiece.Location.Row = orbMove.Destination.Row;
+            movingPiece.Location.Column = orbMove.Destination.Column;
+        }
+
         public void AddOrbs()
         {
-            var orb = new PuzzlePiece(0, 0);
+            AddOrb(0, 0);
+            AddOrb(2, 2);
+        }
+
+        private void AddOrb(int row, int column)
+        {
+            var orb = new PuzzlePiece(row, column);
+            _puzzlePieces.Add(orb);
             _grid.Children.Add(orb.Element);
         }
 

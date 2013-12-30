@@ -13,23 +13,25 @@ namespace PuzzleRpg
     public class PuzzlePiece
     {
         private readonly TranslateTransform _dragTranslation;
-        private Node _location;
 
+        public Node Location { get; set; }
         public Image Element { get; set; }
 
         public PuzzlePiece(int row, int column)
         {
             _dragTranslation = new TranslateTransform();
-            SetGridPosition(row, column);
 
             Element = new Image();
             Element = StyleOrb(Element);
             Element = AddTouchEvents(Element);
+            SetPosition(row, column);
         }
 
-        private void SetGridPosition(int row, int column) 
+        public void SetPosition(int row, int column) 
         {
-            _location = new Node(row, column);
+            Location = new Node(row, column);
+            _dragTranslation.Y = row * 80;// Element.ActualHeight;
+            _dragTranslation.X = column * 80;//Element.ActualWidth;
         }
 
         private Image StyleOrb(Image orb)
@@ -46,7 +48,7 @@ namespace PuzzleRpg
             //mouseDragBehavior.ConstrainToParentBounds = true;
             //behaviors.Add(mouseDragBehavior);
 
-            orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(MovePuzzlePiece);
+            orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(MovingPuzzlePiece);
             orb.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(DropPuzzlePiece);
             orb.RenderTransform = this._dragTranslation;
 
@@ -60,14 +62,14 @@ namespace PuzzleRpg
             _dragTranslation.X += PositionCalculator.NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
         }
 
-        void MovePuzzlePiece(object sender, ManipulationDeltaEventArgs e)
+        private void MovingPuzzlePiece(object sender, ManipulationDeltaEventArgs e)
         {
             _dragTranslation.X += e.DeltaManipulation.Translation.X;
             _dragTranslation.Y += e.DeltaManipulation.Translation.Y;
 
             var image = sender as Image;
-            _location.Column = PositionCalculator.GetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, _location);
-            _location.Row = PositionCalculator.GetCurrentRowAfterMove(image, _location);
+            PositionCalculator.SetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, Location);
+            PositionCalculator.SetCurrentRowAfterMove(image, Location);
         }
     }
 }

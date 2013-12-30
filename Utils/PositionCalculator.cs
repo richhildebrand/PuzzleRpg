@@ -8,31 +8,27 @@ namespace PuzzleRpg.Utils
 {
     public static class PositionCalculator
     {
-        public static int GetCurrentRowAfterMove(Image image, Node origin)
+        public static void SetCurrentRowAfterMove(Image image, Node origin)
         {
             var nearestRow = Convert.ToInt32(GetNearestRow(image));
             if (nearestRow != origin.Row)
             {
-                //TODO: Move orb from new row to old row
-                //Debug.WriteLine("nearestRow: " + nearestRow + " currentRow: " + currentRow);
+                var destination = new Node(nearestRow, origin.Column);
+                var orbMove = new OrbMove(origin, destination);
+                MessageBus.Default.Notify("SwapOrbs", orbMove, new NotificationEventArgs());
                 origin.Row = nearestRow;
             }
-            return origin.Row;
         }
 
-        public static int GetCurrentColumnAfterMove(double movedTo, double columnSize, Node origin)
+        public static void SetCurrentColumnAfterMove(double movedTo, double columnSize, Node origin)
         {
             var nearestColumn = Convert.ToInt32(Math.Round(movedTo / columnSize));
             if (nearestColumn != origin.Column)
             {
-                //TODO: Move orb from new column to old column
                 var destination = new Node(origin.Row, nearestColumn);
                 var orbMove = new OrbMove(origin, destination);
-                MessageBus.Default.Notify("DrugOrbToNewColumn", orbMove, new NotificationEventArgs());
-                //Debug.WriteLine("nearestColumn: " + nearestColumn + " currentColumn: " + currentColumn);
-                origin.Column = nearestColumn;
+                MessageBus.Default.Notify("SwapOrbs", orbMove, new NotificationEventArgs());
             }
-            return origin.Column;
         }
 
         public static double NearestRowEdge(Image image)
