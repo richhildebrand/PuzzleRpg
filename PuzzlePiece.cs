@@ -65,6 +65,7 @@ namespace PuzzleRpg
         private void DropPuzzlePiece(object sender, ManipulationCompletedEventArgs e)
         {
             var image = sender as Image;
+            Canvas.SetZIndex(image, 0);
             _dragTranslation.Y += PositionCalculator.NearestRowEdge(image) - _dragTranslation.Y;
             _dragTranslation.X += PositionCalculator.NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
         }
@@ -75,6 +76,7 @@ namespace PuzzleRpg
             _dragTranslation.Y += e.DeltaManipulation.Translation.Y;
 
             var image = sender as Image;
+            Canvas.SetZIndex(image, 1);
             PositionCalculator.SetCurrentColumnAfterMove(_dragTranslation.X, image.ActualWidth, Location);
             PositionCalculator.SetCurrentRowAfterMove(image, Location);
         }
