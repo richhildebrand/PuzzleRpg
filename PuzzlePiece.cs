@@ -44,8 +44,16 @@ namespace PuzzleRpg
 
         private string GetOrbType()
         {
-            var randomNumber = MathUtils.GetRandomInteger(0, 2);
-            return (randomNumber == 0) ? "Assets/Orbs/WaterOrb.png" : "Assets/Orbs/FireOrb.png";
+            string orbType;
+            var randomNumber = MathUtils.GetRandomInteger(0, 4);
+            switch (randomNumber)
+            {
+                case 1: orbType = "Assets/Orbs/WaterOrb.png"; break;
+                case 2: orbType = "Assets/Orbs/FireOrb.png"; break;
+                case 3: orbType = "Assets/Orbs/HealOrb.png"; break;
+                default: orbType = "Assets/Orbs/WoodOrb.png"; break;
+            }
+            return orbType;
         }
 
         private Image AddTouchEvents(Image orb)
