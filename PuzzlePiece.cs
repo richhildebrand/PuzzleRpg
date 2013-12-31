@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Interactivity;
 using System.Windows.Media;
-using Microsoft.Expression.Interactivity.Layout;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -16,9 +14,12 @@ namespace PuzzleRpg
 
         public Node Location { get; set; }
         public Image Element { get; set; }
+        public bool Matched { get; set; }
+        public string Type { get; set; }
 
         public PuzzlePiece(int row, int column)
         {
+            Matched = false;
             _dragTranslation = new TranslateTransform();
 
             Element = new Image();
@@ -48,10 +49,10 @@ namespace PuzzleRpg
             var randomNumber = MathUtils.GetRandomInteger(0, 4);
             switch (randomNumber)
             {
-                case 1: orbType = "Assets/Orbs/WaterOrb.png"; break;
-                case 2: orbType = "Assets/Orbs/FireOrb.png"; break;
-                case 3: orbType = "Assets/Orbs/HealOrb.png"; break;
-                default: orbType = "Assets/Orbs/WoodOrb.png"; break;
+                case 1: orbType = "Assets/Orbs/WaterOrb.png"; Type = "Water"; break;
+                case 2: orbType = "Assets/Orbs/FireOrb.png"; Type = "Fire"; break;
+                case 3: orbType = "Assets/Orbs/HealOrb.png"; Type = "Heal"; break;
+                default: orbType = "Assets/Orbs/WoodOrb.png"; Type = "Wood"; break;
             }
             return orbType;
         }
@@ -76,6 +77,7 @@ namespace PuzzleRpg
             Canvas.SetZIndex(image, 0);
             _dragTranslation.Y += PositionCalculator.NearestRowEdge(image) - _dragTranslation.Y;
             _dragTranslation.X += PositionCalculator.NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
+            MessageBus.Default.Notify("RemoveMatchingOrbs", this, new NotificationEventArgs());
         }
 
         private void MovingPuzzlePiece(object sender, ManipulationDeltaEventArgs e)

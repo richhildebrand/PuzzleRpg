@@ -21,6 +21,7 @@ namespace PuzzleRpg
             _grid = puzzleGrid;
             _puzzlePieces = new List<PuzzlePiece>();
             MessageBus.Default.Register("SwapOrbs", SwapPuzzlePieces);
+            MessageBus.Default.Register("RemoveMatchingOrbs", RemoveMatchingOrbs);
 
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
@@ -43,6 +44,25 @@ namespace PuzzleRpg
 
             movingPiece.Location.Row = orbMove.Destination.Row;
             movingPiece.Location.Column = orbMove.Destination.Column;
+        }
+
+        public void RemoveMatchingOrbs(object sender, NotificationEventArgs e)
+        {
+            _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
+            _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
+        }
+
+        private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
+        {
+            var matchedPieces = puzzlePieces.Where(pp => pp.Matched == true);
+
+            foreach (var piece in matchedPieces)
+            {
+                grid.Children.Remove(piece.Element);
+            }
+
+            puzzlePieces = puzzlePieces.Except(matchedPieces).ToList();
+            return puzzlePieces;
         }
 
         public void AddOrbs()
