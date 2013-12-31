@@ -47,8 +47,13 @@ namespace PuzzleRpg
 
         public void AddOrbs()
         {
-            AddOrb(0, 0);
-            AddOrb(2, 2);
+            for (int row = 0; row < _rows; ++row)
+            {
+                for (int column = 0; column < _columns; ++column)
+                {
+                    AddOrb(row, column);
+                }
+            }
         }
 
         private void AddOrb(int row, int column)

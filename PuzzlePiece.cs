@@ -30,15 +30,22 @@ namespace PuzzleRpg
         public void SetPosition(int row, int column) 
         {
             Location = new Node(row, column);
-            _dragTranslation.Y = row * 80;// Element.ActualHeight;
+            _dragTranslation.Y = row * 83;// Element.ActualHeight;
             _dragTranslation.X = column * 80;//Element.ActualWidth;
         }
 
         private Image StyleOrb(Image orb)
         {
-            orb = ImageUtils.GetImageFromPath("Assets/Orbs/FireOrb.png");
+
+            orb = ImageUtils.GetImageFromPath(GetOrbType());
             orb.Stretch = System.Windows.Media.Stretch.Fill;
             return orb;
+        }
+
+        private string GetOrbType()
+        {
+            var randomNumber = MathUtils.GetRandomInteger(0, 2);
+            return (randomNumber == 0) ? "Assets/Orbs/WaterOrb.png" : "Assets/Orbs/FireOrb.png";
         }
 
         private Image AddTouchEvents(Image orb)
