@@ -93,6 +93,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AppGlobals.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -110,6 +111,7 @@
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
     <Compile Include="Utils\MathUtils.cs" />
+    <Compile Include="Utils\OrbDropper.cs" />
     <Compile Include="Utils\OrbMatcher.cs" />
     <Compile Include="Utils\PositionCalculator.cs" />
   </ItemGroup>

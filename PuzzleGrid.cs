@@ -50,6 +50,7 @@ namespace PuzzleRpg
         {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
+            _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
         }
 
         private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
