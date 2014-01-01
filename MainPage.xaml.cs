@@ -6,6 +6,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
@@ -23,6 +24,7 @@ namespace PuzzleRpg
         {
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, 5, 6);
             _puzzleGrid.AddOrbs();
+            AnimatedMove.MoveImage(bossPic);
         }
 
         private void MouseMoving(object sender, MouseEventArgs e)
