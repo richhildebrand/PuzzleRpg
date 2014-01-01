@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -15,6 +16,11 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
+            Loaded += initPuzzleGrid;
+        }
+
+        private void initPuzzleGrid(object sender, RoutedEventArgs e)
+        {
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, 5, 6);
             _puzzleGrid.AddOrbs();
         }

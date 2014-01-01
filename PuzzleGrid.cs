@@ -26,6 +26,7 @@ namespace PuzzleRpg
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
             _grid = CreateCheckerBoardOnGrid(puzzleGrid, rows, columns);
+            AppGlobals.PuzzleGridActualHeight = _grid.ActualHeight;
         }
 
         public void SwapPuzzlePieces(object sender, NotificationEventArgs e)
@@ -94,7 +95,7 @@ namespace PuzzleRpg
                     grid.Children.Add(image);
                     image.SetValue(Grid.ColumnProperty, column);
                     image.SetValue(Grid.RowProperty, row);
-                    image.IsHitTestVisible = true;
+                    image.Stretch = System.Windows.Media.Stretch.Fill;
                 }
             }
             return grid;

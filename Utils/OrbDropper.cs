@@ -15,7 +15,7 @@ namespace PuzzleRpg.Utils
             do
             {
                 _orbMoved = false;
-                for (int row = 0; row < AppGlobals.RowsInPuzzleGrid; row++)
+                for (int row = 0; row < AppGlobals.PuzzleGridRowCount; row++)
                 {
                     var piecesInRow = puzzlePieces.Where(pp => pp.Location.Row == row).ToList();
                     for (int i = 0; i < piecesInRow.Count(); i++)

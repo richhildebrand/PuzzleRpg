@@ -5,7 +5,8 @@ namespace PuzzleRpg
 {
     public static class AppGlobals
     {
-        public static readonly int RowsInPuzzleGrid = 5;
-        public static readonly int ColumnsInPuzzleGrid = 6;
+        public static readonly int PuzzleGridRowCount = 5;
+        public static readonly int PuzzleGridColumnCount = 6;
+        public static double PuzzleGridActualHeight { get; set; }
     }
 }

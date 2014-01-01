@@ -1,8 +1,11 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Interactivity;
 using System.Windows.Media;
+using Microsoft.Expression.Interactivity.Layout;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
@@ -31,8 +34,13 @@ namespace PuzzleRpg
         public void SetPosition(int row, int column) 
         {
             Location = new Node(row, column);
-            _dragTranslation.Y = row * 83;// Element.ActualHeight;
-            _dragTranslation.X = column * 80;//Element.ActualWidth;
+            var gridHeight = AppGlobals.PuzzleGridActualHeight;
+            var rowSize = gridHeight / AppGlobals.PuzzleGridRowCount;
+            _dragTranslation.Y = row * rowSize;
+
+            var screenWidth = Application.Current.Host.Content.ActualWidth;
+            var columnSize = screenWidth / AppGlobals.PuzzleGridColumnCount;
+            _dragTranslation.X = column * columnSize;
         }
 
         private Image StyleOrb(Image orb)
