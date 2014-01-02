@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Shapes;
 
 namespace PuzzleRpg.Utils
 {
@@ -29,9 +26,8 @@ namespace PuzzleRpg.Utils
             AppGlobals.PuzzleStoryBoard.Stop();
             AppGlobals.PuzzleStoryBoard = new Storyboard();
             RestoreTouchEvents(_puzzlePieces);
-            //TODO: reactivate touch 
         }
-  
+
         private static void RestoreTouchEvents(List<PuzzlePiece> puzzlePieces)
         {
             foreach (var piece in puzzlePieces)
@@ -43,7 +39,6 @@ namespace PuzzleRpg.Utils
         private static void MovePiece(PuzzlePiece piece)
         {
             var image = piece.Element;
-            //image.RenderTransformOrigin = new Point(0.5, 0.5);
             image.RenderTransform = piece._dragTranslation;
 
             DoubleAnimation moveAnim = new DoubleAnimation();
