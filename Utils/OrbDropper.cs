@@ -32,7 +32,7 @@ namespace PuzzleRpg.Utils
             var orbBelow = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == pieceToDrop.Location.Column
                                                            && pp.Location.Row == pieceToDrop.Location.Row + 1);
 
-            if (orbBelow == null)
+            if (orbBelow == null && pieceToDrop.Location.Row != AppGlobals.PuzzleGridRowCount -1)
             {
                 _orbMoved = true;
                 pieceToDrop.Location.Row += 1;
