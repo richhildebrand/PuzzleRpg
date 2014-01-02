@@ -22,6 +22,7 @@ namespace PuzzleRpg
             _puzzlePieces = new List<PuzzlePiece>();
             MessageBus.Default.Register("SwapOrbs", SwapPuzzlePieces);
             MessageBus.Default.Register("RemoveMatchingOrbs", RemoveMatchingOrbs);
+            MessageBus.Default.Register("AddNewOrbs", AddOrbs);
 
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
@@ -53,6 +54,7 @@ namespace PuzzleRpg
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
             _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
             AnimatedMoves.DropOrbs(_puzzlePieces);
+            //AddOrbs(); would like to use await for animation end.
         }
 
         private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
@@ -68,21 +70,32 @@ namespace PuzzleRpg
             return puzzlePieces;
         }
 
-        public void AddOrbs()
+        private void AddOrbs(object sender, NotificationEventArgs e)
         {
             for (int row = 0; row < _rows; ++row)
             {
                 for (int column = 0; column < _columns; ++column)
                 {
-                    AddOrb(row, column);
+                    var orbAtLocation = _puzzlePieces.SingleOrDefault(pp => pp.Location.Row == row
+                                                                         && pp.Location.Column == column);
+                    if (orbAtLocation == null)
+                    {
+                        AddOrb(row, column, _puzzlePieces);
+                    }
                 }
             }
         }
 
-        private void AddOrb(int row, int column)
+
+        public void AddOrbs()
+        {
+            AddOrbs(_puzzlePieces, new NotificationEventArgs());
+        }
+
+        private void AddOrb(int row, int column, List<PuzzlePiece> puzzlePieces)
         {
             var orb = new PuzzlePiece(row, column);
-            _puzzlePieces.Add(orb);
+            puzzlePieces.Add(orb);
             _grid.Children.Add(orb.Element);
         }
 

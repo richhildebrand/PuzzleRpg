@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media.Animation;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.Utils
 {
@@ -26,6 +27,7 @@ namespace PuzzleRpg.Utils
             AppGlobals.PuzzleStoryBoard.Stop();
             AppGlobals.PuzzleStoryBoard = new Storyboard();
             RestoreTouchEvents(_puzzlePieces);
+            MessageBus.Default.Notify("AddNewOrbs", _puzzlePieces, new NotificationEventArgs());
         }
 
         private static void RestoreTouchEvents(List<PuzzlePiece> puzzlePieces)
