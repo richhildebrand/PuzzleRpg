@@ -65,15 +65,20 @@ namespace PuzzleRpg
             return orbType;
         }
 
-        private Image AddTouchEvents(Image orb)
+        public Image AddTouchEvents(Image orb)
         {
             //BehaviorCollection behaviors = Interaction.GetBehaviors(orb);
             //var mouseDragBehavior = new MouseDragElementBehavior();
             //mouseDragBehavior.ConstrainToParentBounds = true;
             //behaviors.Add(mouseDragBehavior);
 
+            orb.ManipulationDelta -= MovingPuzzlePiece;
             orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(MovingPuzzlePiece);
+
+            orb.ManipulationCompleted -= DropPuzzlePiece;
             orb.ManipulationCompleted += new EventHandler<ManipulationCompletedEventArgs>(DropPuzzlePiece);
+
+            orb.RenderTransform = null;
             orb.RenderTransform = this._dragTranslation;
 
             return orb;

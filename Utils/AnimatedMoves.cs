@@ -11,28 +11,39 @@ namespace PuzzleRpg.Utils
 {
     public static class AnimatedMoves
     {
+        private static List<PuzzlePiece> _puzzlePieces;
+
         public static void DropOrbs(List<PuzzlePiece> puzzlePieces)
         {
+            _puzzlePieces = puzzlePieces;
             foreach (var piece in puzzlePieces)
             {
                 MovePiece(piece);
             }
-            AppGlobals.PuzzleStoryBoard.Completed += EndAnimation; // += new System.EventHandler(storyboard_Completed);
+            AppGlobals.PuzzleStoryBoard.Completed += EndAnimation;
             AppGlobals.PuzzleStoryBoard.Begin();
         }
   
         private static void EndAnimation(object sender, EventArgs e)
         {
             AppGlobals.PuzzleStoryBoard.Stop();
-            //empty storyboard?
             AppGlobals.PuzzleStoryBoard = new Storyboard();
+            RestoreTouchEvents(_puzzlePieces);
             //TODO: reactivate touch 
+        }
+  
+        private static void RestoreTouchEvents(List<PuzzlePiece> puzzlePieces)
+        {
+            foreach (var piece in puzzlePieces)
+            {
+                piece.AddTouchEvents(piece.Element);
+            }
         }
 
         private static void MovePiece(PuzzlePiece piece)
         {
             var image = piece.Element;
-            image.RenderTransformOrigin = new Point(0.5, 0.5);
+            //image.RenderTransformOrigin = new Point(0.5, 0.5);
             image.RenderTransform = piece._dragTranslation;
 
             DoubleAnimation moveAnim = new DoubleAnimation();
