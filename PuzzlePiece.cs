@@ -13,7 +13,7 @@ namespace PuzzleRpg
 {
     public class PuzzlePiece
     {
-        private readonly TranslateTransform _dragTranslation;
+        public readonly TranslateTransform _dragTranslation;
 
         public Node Location { get; set; }
         public Image Element { get; set; }

@@ -35,7 +35,8 @@ namespace PuzzleRpg.Utils
             if (orbBelow == null)
             {
                 _orbMoved = true;
-                pieceToDrop.SetPosition(pieceToDrop.Location.Row + 1, pieceToDrop.Location.Column);
+                pieceToDrop.Location.Row += 1;
+                //pieceToDrop.SetPosition(pieceToDrop.Location.Row + 1, pieceToDrop.Location.Column);
             }
         }
     }
