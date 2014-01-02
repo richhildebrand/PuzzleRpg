@@ -29,6 +29,11 @@ namespace PuzzleRpg
             Element = StyleOrb(Element);
             Element = AddTouchEvents(Element);
             SetPosition(row, column);
+
+            BehaviorCollection behaviors = Interaction.GetBehaviors(Element);
+            var mouseDragBehavior = new MouseDragElementBehavior();
+            mouseDragBehavior.ConstrainToParentBounds = true;
+            behaviors.Add(mouseDragBehavior);
         }
 
         public void SetPosition(int row, int column) 
@@ -67,11 +72,6 @@ namespace PuzzleRpg
 
         public Image AddTouchEvents(Image orb)
         {
-            //BehaviorCollection behaviors = Interaction.GetBehaviors(orb);
-            //var mouseDragBehavior = new MouseDragElementBehavior();
-            //mouseDragBehavior.ConstrainToParentBounds = true;
-            //behaviors.Add(mouseDragBehavior);
-
             orb.ManipulationDelta -= MovingPuzzlePiece;
             orb.ManipulationDelta += new EventHandler<ManipulationDeltaEventArgs>(MovingPuzzlePiece);
 
