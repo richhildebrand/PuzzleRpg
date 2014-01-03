@@ -10,5 +10,6 @@ namespace PuzzleRpg
         public static readonly int PuzzleGridColumnCount = 6;
         public static double PuzzleGridActualHeight { get; set; }
         public static Storyboard PuzzleStoryBoard = new Storyboard();
+        public static readonly int MaxHeroesOnATeam = 6;
     }
 }

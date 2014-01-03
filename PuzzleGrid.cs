@@ -94,7 +94,6 @@ namespace PuzzleRpg
             }
         }
 
-
         public void AddOrbs()
         {
             AddOrbs(_puzzlePieces, new NotificationEventArgs());
@@ -117,7 +116,7 @@ namespace PuzzleRpg
                     grid.Children.Add(image);
                     image.SetValue(Grid.ColumnProperty, column);
                     image.SetValue(Grid.RowProperty, row);
-                    image.Stretch = System.Windows.Media.Stretch.Fill;
+                    image.Stretch = System.Windows.Media.Stretch.UniformToFill;
                 }
             }
             return grid;

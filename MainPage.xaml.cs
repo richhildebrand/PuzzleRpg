@@ -3,9 +3,8 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.Heroes;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
@@ -17,12 +16,26 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
-            Loaded += initPuzzleGrid;
+            Loaded += LoadGraphics;
         }
 
-        private void initPuzzleGrid(object sender, RoutedEventArgs e)
+        private void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            _puzzleGrid = new PuzzleGrid(PuzzleGrid, 5, 6);
+            InitHeroGrid();
+            InitPuzzleGrid();
+        }
+
+        private void InitHeroGrid()
+        {
+            var heroGrid = new HeroGrid(HeroGrid);
+
+            var activeTeam = new Team();
+            heroGrid.AddHeroes(activeTeam);
+        }
+
+        private void InitPuzzleGrid()
+        {
+            _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
             _puzzleGrid.AddOrbs();
         }
 
