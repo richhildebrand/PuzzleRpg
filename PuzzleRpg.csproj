@@ -142,13 +142,19 @@
     </Content>
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
-    <Content Include="Assets\Monsters\ArrowCat.jpg" />
-    <Content Include="Assets\Monsters\BearCat.jpg" />
+    <Content Include="Assets\Monsters\ArrowCat\ArrowCatFull.png" />
+    <Content Include="Assets\Monsters\ArrowCat\ArrowCatProfile.png" />
+    <Content Include="Assets\Monsters\BearCat\BearCatFull.png" />
+    <Content Include="Assets\Monsters\BearCat\BearCatProfile.png" />
     <Content Include="Assets\Monsters\Hydra.jpg" />
-    <Content Include="Assets\Monsters\MoonCat.jpg" />
-    <Content Include="Assets\Monsters\SamuriCat.jpg" />
-    <Content Include="Assets\Monsters\StackCat.jpg" />
-    <Content Include="Assets\Monsters\UltraCat.jpg" />
+    <Content Include="Assets\Monsters\MoonCat\MoonCatFull.png" />
+    <Content Include="Assets\Monsters\MoonCat\MoonCatProfile.png" />
+    <Content Include="Assets\Monsters\SamuriCat\SamuriCatFull.png" />
+    <Content Include="Assets\Monsters\SamuriCat\SamuriCatProfile.png" />
+    <Content Include="Assets\Monsters\StackCat\StackCatFull.png" />
+    <Content Include="Assets\Monsters\StackCat\StackCatProfile.png" />
+    <Content Include="Assets\Monsters\UltraCat\UltraCatFull.png" />
+    <Content Include="Assets\Monsters\UltraCat\UltraCatProfile.png" />
     <Content Include="Assets\Orbs\FireOrb.png" />
     <Content Include="Assets\Orbs\HealOrb.png" />
     <Content Include="Assets\Orbs\WaterOrb.png" />
