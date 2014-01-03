@@ -29,6 +29,7 @@ namespace PuzzleRpg
             Element = StyleOrb(Element);
             Element = AddTouchEvents(Element);
             SetPosition(row, column);
+            _dragTranslation.Y -= AppGlobals.PuzzleGridActualHeight;
 
             BehaviorCollection behaviors = Interaction.GetBehaviors(Element);
             var mouseDragBehavior = new MouseDragElementBehavior();

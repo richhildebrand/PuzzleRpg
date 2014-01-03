@@ -72,6 +72,7 @@ namespace PuzzleRpg
 
         private void AddOrbs(object sender, NotificationEventArgs e)
         {
+            var addedOrbs = false;
             for (int row = 0; row < _rows; ++row)
             {
                 for (int column = 0; column < _columns; ++column)
@@ -80,9 +81,14 @@ namespace PuzzleRpg
                                                                          && pp.Location.Column == column);
                     if (orbAtLocation == null)
                     {
+                        addedOrbs = true;
                         AddOrb(row, column, _puzzlePieces);
                     }
                 }
+            }
+            if (addedOrbs)
+            {
+                AnimatedMoves.DropOrbs(_puzzlePieces);
             }
         }
 
