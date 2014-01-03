@@ -48,13 +48,13 @@ namespace PuzzleRpg
             movingPiece.Location.Column = orbMove.Destination.Column;
         }
 
-        public void RemoveMatchingOrbs(object sender, NotificationEventArgs e)
+        public async void RemoveMatchingOrbs(object sender, NotificationEventArgs e)
         {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
             _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
-            AnimatedMoves.DropOrbs(_puzzlePieces);
-            //AddOrbs(); would like to use await for animation end.
+            await AnimatedMoves.DropOrbs(_puzzlePieces);
+            AddOrbs();
         }
 
         private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
@@ -70,7 +70,7 @@ namespace PuzzleRpg
             return puzzlePieces;
         }
 
-        private void AddOrbs(object sender, NotificationEventArgs e)
+        private async void AddOrbs(object sender, NotificationEventArgs e)
         {
             var addedOrbs = false;
             for (int row = 0; row < _rows; ++row)
@@ -88,7 +88,8 @@ namespace PuzzleRpg
             }
             if (addedOrbs)
             {
-                AnimatedMoves.DropOrbs(_puzzlePieces);
+                await AnimatedMoves.DropOrbs(_puzzlePieces);
+                RemoveMatchingOrbs(new Object(), new NotificationEventArgs());
             }
         }
 

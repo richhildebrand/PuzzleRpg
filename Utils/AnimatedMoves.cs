@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media.Animation;
 using SimpleMvvmToolkit;
@@ -10,9 +11,12 @@ namespace PuzzleRpg.Utils
     public static class AnimatedMoves
     {
         private static List<PuzzlePiece> _puzzlePieces;
+        private static TaskCompletionSource<bool> _taskSource;
 
-        public static void DropOrbs(List<PuzzlePiece> puzzlePieces)
+        public static Task DropOrbs(List<PuzzlePiece> puzzlePieces)
         {
+            _taskSource = new TaskCompletionSource<bool>();
+
             _puzzlePieces = puzzlePieces;
             foreach (var piece in puzzlePieces)
             {
@@ -20,6 +24,7 @@ namespace PuzzleRpg.Utils
             }
             AppGlobals.PuzzleStoryBoard.Completed += EndAnimation;
             AppGlobals.PuzzleStoryBoard.Begin();
+            return _taskSource.Task;
         }
   
         private static void EndAnimation(object sender, EventArgs e)
@@ -27,7 +32,7 @@ namespace PuzzleRpg.Utils
             AppGlobals.PuzzleStoryBoard.Stop();
             AppGlobals.PuzzleStoryBoard = new Storyboard();
             RestoreTouchEvents(_puzzlePieces);
-            MessageBus.Default.Notify("AddNewOrbs", _puzzlePieces, new NotificationEventArgs());
+            _taskSource.SetResult(true);
         }
 
         private static void RestoreTouchEvents(List<PuzzlePiece> puzzlePieces)
