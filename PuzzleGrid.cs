@@ -51,6 +51,7 @@ namespace PuzzleRpg
         public async void RemoveMatchingOrbs(object sender, NotificationEventArgs e)
         {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
+            _puzzlePieces = OrbMatcher.MatchVerticalOrbs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
             _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
             await AnimatedMoves.DropOrbs(_puzzlePieces);

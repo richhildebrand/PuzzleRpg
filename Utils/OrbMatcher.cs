@@ -19,6 +19,19 @@ namespace PuzzleRpg.Utils
             return puzzlePieces;
         }
 
+        public static List<PuzzlePiece> MatchVerticalOrbs(List<PuzzlePiece> puzzlePieces)
+        {
+            for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
+            {
+                var matchingNeighbors = GetMatchingColumnNeighbors(puzzlePieces[pieceIndex], puzzlePieces);
+                if (matchingNeighbors.Count >= 3)
+                {
+                    MarkAllOrbs(matchingNeighbors);
+                }
+            }
+            return puzzlePieces;
+        }
+
         private static void MarkAllOrbs(List<PuzzlePiece> puzzlePiecesToMark)
         {
             foreach (var piece in puzzlePiecesToMark)
@@ -37,9 +50,25 @@ namespace PuzzleRpg.Utils
             AddPieceIfTypeMatches(piece, rightNeighbor, matchingPieces);
 
 
-            var leftNeightbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
+            var leftNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
                                                                 && pp.Location.Row == piece.Location.Row);
-            AddPieceIfTypeMatches(piece, leftNeightbor, matchingPieces);
+            AddPieceIfTypeMatches(piece, leftNeighbor, matchingPieces);
+
+            return matchingPieces;
+        }
+
+        private static List<PuzzlePiece> GetMatchingColumnNeighbors(PuzzlePiece piece, List<PuzzlePiece> puzzlePieces)
+        {
+            var matchingPieces = new List<PuzzlePiece>();
+            matchingPieces.Add(piece);
+
+            var upperNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Row == piece.Location.Row + 1
+                                                                && pp.Location.Column == piece.Location.Column);
+            AddPieceIfTypeMatches(piece, upperNeighbor, matchingPieces);
+
+            var lowerNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Row == piece.Location.Row - 1
+                                                                && pp.Location.Column == piece.Location.Column);
+            AddPieceIfTypeMatches(piece, lowerNeighbor, matchingPieces);
 
             return matchingPieces;
         }
