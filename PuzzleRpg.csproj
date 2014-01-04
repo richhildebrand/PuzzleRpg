@@ -118,6 +118,7 @@
     <Compile Include="Utils\MathUtils.cs" />
     <Compile Include="Utils\OrbDropper.cs" />
     <Compile Include="Utils\OrbMatcher.cs" />
+    <Compile Include="Utils\PopupUtils.cs" />
     <Compile Include="Utils\PositionCalculator.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -25,6 +25,7 @@ namespace PuzzleRpg.Heroes
 
         public void Show()
         {
+            PopupUtils.CoverScreen(65);
             _modal.HorizontalOffset = (Application.Current.Host.Content.ActualWidth - _modalContent.Width) / 2;
             _modal.VerticalOffset = (Application.Current.Host.Content.ActualHeight - _modalContent.Height) / 2;
             _modal.IsOpen = true;
@@ -54,6 +55,7 @@ namespace PuzzleRpg.Heroes
         private void CloseWindow(object sender, RoutedEventArgs e)
         {
             _modal.IsOpen = false;
+            PopupUtils.UncoverScreen();
         }
   
         private Grid SizeGrid(double width, double height, Grid grid)
