@@ -89,6 +89,10 @@ namespace PuzzleRpg
         {
             var image = sender as Image;
             Canvas.SetZIndex(image, 0);
+
+            image.RenderTransform = null; // Hack for less move range than activates
+            image.RenderTransform = this._dragTranslation;// ManipulationDeltaEventArgs
+
             _dragTranslation.Y += PositionCalculator.NearestRowEdge(image) - _dragTranslation.Y;
             _dragTranslation.X += PositionCalculator.NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
             MessageBus.Default.Notify("EndTurn", this, new NotificationEventArgs());
