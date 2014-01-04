@@ -91,7 +91,7 @@ namespace PuzzleRpg
             Canvas.SetZIndex(image, 0);
             _dragTranslation.Y += PositionCalculator.NearestRowEdge(image) - _dragTranslation.Y;
             _dragTranslation.X += PositionCalculator.NearestColumnEdge(_dragTranslation.X, image.ActualWidth) - _dragTranslation.X;
-            MessageBus.Default.Notify("RemoveMatchingOrbs", this, new NotificationEventArgs());
+            MessageBus.Default.Notify("EndTurn", this, new NotificationEventArgs());
         }
 
         private void MovingPuzzlePiece(object sender, ManipulationDeltaEventArgs e)

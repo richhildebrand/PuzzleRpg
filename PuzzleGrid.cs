@@ -21,8 +21,7 @@ namespace PuzzleRpg
             _grid = puzzleGrid;
             _puzzlePieces = new List<PuzzlePiece>();
             MessageBus.Default.Register("SwapOrbs", SwapPuzzlePieces);
-            MessageBus.Default.Register("RemoveMatchingOrbs", RemoveMatchingOrbs);
-            MessageBus.Default.Register("AddNewOrbs", AddOrbs);
+            MessageBus.Default.Register("EndTurn", EndTurn);
 
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
@@ -48,14 +47,31 @@ namespace PuzzleRpg
             movingPiece.Location.Column = orbMove.Destination.Column;
         }
 
-        public async void RemoveMatchingOrbs(object sender, NotificationEventArgs e)
+        public void EndTurn(object sender, NotificationEventArgs e)
         {
+            PopupUtils.CoverScreen(0);
+            EndingTurn();
+        }
+
+        private async void EndingTurn() {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
             _puzzlePieces = OrbMatcher.MatchVerticalOrbs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
-            _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
-            await AnimatedMoves.DropOrbs(_puzzlePieces);
-            AddOrbs();
+            if (NeedToAddOrbs(_puzzlePieces))
+            {
+                _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
+                await AnimatedMoves.DropOrbs(_puzzlePieces);
+                AddOrbs(); //And call ending turn
+            } 
+            else 
+            {
+                StartTurn();
+            }
+        }
+
+        private bool NeedToAddOrbs(List<PuzzlePiece> _puzzlePieces) 
+        {
+            return _puzzlePieces.Count < (AppGlobals.PuzzleGridRowCount * AppGlobals.PuzzleGridColumnCount);
         }
 
         private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
@@ -71,7 +87,7 @@ namespace PuzzleRpg
             return puzzlePieces;
         }
 
-        private async void AddOrbs(object sender, NotificationEventArgs e)
+        public async void AddOrbs()
         {
             var addedOrbs = false;
             for (int row = 0; row < _rows; ++row)
@@ -90,13 +106,13 @@ namespace PuzzleRpg
             if (addedOrbs)
             {
                 await AnimatedMoves.DropOrbs(_puzzlePieces);
-                RemoveMatchingOrbs(new Object(), new NotificationEventArgs());
             }
+            EndingTurn();
         }
 
-        public void AddOrbs()
+        private void StartTurn() 
         {
-            AddOrbs(_puzzlePieces, new NotificationEventArgs());
+            PopupUtils.UncoverScreen();
         }
 
         private void AddOrb(int row, int column, List<PuzzlePiece> puzzlePieces)
