@@ -32,17 +32,21 @@ namespace PuzzleRpg.Heroes
         {
             if (hero != null)
             {
-                grid.Children.Add(hero.Element);
-                hero.Element.SetValue(Grid.ColumnProperty, column);
-                hero.Element.SetValue(Grid.RowProperty, 0);
-                hero.Element.Stretch = System.Windows.Media.Stretch.Fill;
-                hero.Element.Tap += OnSelectHero;
+                var heroIcon = ImageUtils.GetImageFromPath(hero.ProfileImagePath);
+                heroIcon.Tag = hero;
+                grid.Children.Add(heroIcon);
+                heroIcon.SetValue(Grid.ColumnProperty, column);
+                heroIcon.SetValue(Grid.RowProperty, 0);
+                heroIcon.Stretch = System.Windows.Media.Stretch.Fill;
+                heroIcon.Tap += OnSelectHero;
             }
         }
   
         private void OnSelectHero(object sender, GestureEventArgs e)
         {
-            var castSpellModal = new CastSpellModal();
+            var clickedIcon = sender as Image;
+            var selectedHero = clickedIcon.Tag as Hero;
+            var castSpellModal = new CastSpellModal(selectedHero);
             castSpellModal.Show();
         }
     }

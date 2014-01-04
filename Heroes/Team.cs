@@ -11,12 +11,12 @@ namespace PuzzleRpg.Heroes
         public Team()
         {
             Heroes = new Hero[AppGlobals.MaxHeroesOnATeam];
-            AddHero(0, new Hero("Assets/Monsters/ArrowCat/ArrowCatProfile.png"));
-            AddHero(1, new Hero("Assets/Monsters/BearCat/BearCatProfile.png"));
-            AddHero(2, new Hero("Assets/Monsters/MoonCat/MoonCatProfile.png"));
-            AddHero(3, new Hero("Assets/Monsters/SamuriCat/SamuriCatProfile.png"));
-            AddHero(4, new Hero("Assets/Monsters/StackCat/StackCatProfile.png"));
-            AddHero(5, new Hero("Assets/Monsters/UltraCat/UltraCatProfile.png"));
+            AddHero(0, new Hero("ArrowCat"));
+            AddHero(1, new Hero("BearCat"));
+            AddHero(2, new Hero("MoonCat"));
+            AddHero(3, new Hero("SamuriCat"));
+            AddHero(4, new Hero("StackCat"));
+            AddHero(5, new Hero("UltraCat"));
         }
 
         public void AddHero(int slot, Hero hero) 

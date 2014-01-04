@@ -1,21 +1,17 @@
 ﻿using System;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
-using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.Heroes
 {
     public class Hero
     {
-        public Image Element { get; set; }
+        public string FullImagePath { get; set; }
+        public string ProfileImagePath { get; set; }
 
-        public Hero(string heroImagePath)
+        public Hero(string heroName)
         {
-            Element = new Image();
-            Element = ImageUtils.GetImageFromPath(heroImagePath);
-            Element.Stretch = System.Windows.Media.Stretch.Fill;
+            FullImagePath = AppGlobals.HeroImagePathPrefix + heroName + "/" + heroName + "Full.png";
+            ProfileImagePath = AppGlobals.HeroImagePathPrefix + heroName + "/" + heroName + "Profile.png";
         }
     }
 }
