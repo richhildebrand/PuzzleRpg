@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
@@ -42,12 +43,21 @@ namespace PuzzleRpg.Heroes
         private void OnSelectHero(object sender, GestureEventArgs e)
         {
             var myPopup = new Popup();
+            var popupWidth = 100;
+            var popupHeight = 100;
 
             Grid grid = new Grid();
             grid.Background = new SolidColorBrush(Colors.Blue);
-            grid.Width = 100;
-            grid.Height = 100;
+            myPopup.HorizontalAlignment = HorizontalAlignment.Center;
+            grid.Width = popupWidth;
+            grid.Height = popupHeight;
+
             myPopup.Child = grid;
+            myPopup.HorizontalAlignment = HorizontalAlignment.Center;
+            myPopup.HorizontalOffset = (Application.Current.Host.Content.ActualWidth - popupWidth) / 2;
+            myPopup.VerticalAlignment = VerticalAlignment.Bottom;
+            myPopup.VerticalOffset = (Application.Current.Host.Content.ActualHeight - popupHeight) /2;
+
             myPopup.IsOpen = true;
         }
     }
