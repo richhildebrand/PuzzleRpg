@@ -37,7 +37,7 @@ namespace PuzzleRpg
         {
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
             PopupUtils.CoverScreen(100); //lol loading mask...
-            _puzzleGrid.AddOrbs();
+            _puzzleGrid.EndingTurn();
         }
 
         private void MouseMoving(object sender, MouseEventArgs e)

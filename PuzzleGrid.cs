@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
@@ -47,13 +48,13 @@ namespace PuzzleRpg
             movingPiece.Location.Column = orbMove.Destination.Column;
         }
 
-        public void EndTurn(object sender, NotificationEventArgs e)
+        private void EndTurn(object sender, NotificationEventArgs e)
         {
             PopupUtils.CoverScreen(0);
             EndingTurn();
         }
 
-        private async void EndingTurn() {
+        public async void EndingTurn() {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
             _puzzlePieces = OrbMatcher.MatchVerticalOrbs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
@@ -61,7 +62,8 @@ namespace PuzzleRpg
             {
                 _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
                 await AnimatedMoves.DropOrbs(_puzzlePieces);
-                AddOrbs(); //And call ending turn
+                await AddOrbs();
+                EndingTurn();
             } 
             else 
             {
@@ -87,7 +89,7 @@ namespace PuzzleRpg
             return puzzlePieces;
         }
 
-        public async void AddOrbs()
+        private Task AddOrbs()
         {
             var addedOrbs = false;
             for (int row = 0; row < _rows; ++row)
@@ -103,11 +105,7 @@ namespace PuzzleRpg
                     }
                 }
             }
-            if (addedOrbs)
-            {
-                await AnimatedMoves.DropOrbs(_puzzlePieces);
-            }
-            EndingTurn();
+            return Task.WhenAll(AnimatedMoves.DropOrbs(_puzzlePieces));
         }
 
         private void StartTurn() 
