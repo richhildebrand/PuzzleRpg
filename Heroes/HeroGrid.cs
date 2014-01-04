@@ -42,23 +42,8 @@ namespace PuzzleRpg.Heroes
   
         private void OnSelectHero(object sender, GestureEventArgs e)
         {
-            var myPopup = new Popup();
-            var popupWidth = 100;
-            var popupHeight = 100;
-
-            Grid grid = new Grid();
-            grid.Background = new SolidColorBrush(Colors.Blue);
-            myPopup.HorizontalAlignment = HorizontalAlignment.Center;
-            grid.Width = popupWidth;
-            grid.Height = popupHeight;
-
-            myPopup.Child = grid;
-            myPopup.HorizontalAlignment = HorizontalAlignment.Center;
-            myPopup.HorizontalOffset = (Application.Current.Host.Content.ActualWidth - popupWidth) / 2;
-            myPopup.VerticalAlignment = VerticalAlignment.Bottom;
-            myPopup.VerticalOffset = (Application.Current.Host.Content.ActualHeight - popupHeight) /2;
-
-            myPopup.IsOpen = true;
+            var castSpellModal = new CastSpellModal();
+            castSpellModal.Show();
         }
     }
 }

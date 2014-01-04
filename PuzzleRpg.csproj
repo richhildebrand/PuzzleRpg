@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppGlobals.cs" />
+    <Compile Include="Heroes\CastSpellModal.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroGrid.cs" />
     <Compile Include="Heroes\Team.cs" />
