@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
+using System.Windows.Media;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.Heroes
@@ -8,6 +11,7 @@ namespace PuzzleRpg.Heroes
     public class HeroGrid
     {
         private Grid _grid;
+        private Team _activeTeam;
 
         public HeroGrid (Grid heroGrid)
         {
@@ -16,6 +20,7 @@ namespace PuzzleRpg.Heroes
 
         public void AddHeroes(Team activeTeam)
         {
+            _activeTeam = activeTeam;
             for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
             {
                 AddHero(i, activeTeam.Heroes[i], _grid);
@@ -30,7 +35,20 @@ namespace PuzzleRpg.Heroes
                 hero.Element.SetValue(Grid.ColumnProperty, column);
                 hero.Element.SetValue(Grid.RowProperty, 0);
                 hero.Element.Stretch = System.Windows.Media.Stretch.Fill;
+                hero.Element.Tap += OnSelectHero;
             }
+        }
+  
+        private void OnSelectHero(object sender, GestureEventArgs e)
+        {
+            var myPopup = new Popup();
+
+            Grid grid = new Grid();
+            grid.Background = new SolidColorBrush(Colors.Blue);
+            grid.Width = 100;
+            grid.Height = 100;
+            myPopup.Child = grid;
+            myPopup.IsOpen = true;
         }
     }
 }
