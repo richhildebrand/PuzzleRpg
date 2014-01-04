@@ -35,8 +35,25 @@ namespace PuzzleRpg.Heroes
             var grid = InitGrid(2);
             grid = StyleGrid(grid);
             grid = PopulateTopRow(0, grid, heroCastingSpell);
+            grid = PopulateBottomRow(1, grid);
             grid = SizeGrid(width, height, grid); //must come last
             return grid;
+        }
+  
+        private Grid PopulateBottomRow(int row, Grid grid)
+        {
+            var cancelButton = new Button();
+            cancelButton.Content = "Cancel";
+            cancelButton.Click += CloseWindow;
+
+            grid.Children.Add(cancelButton);
+            cancelButton.SetValue(Grid.RowProperty, row);
+            return grid;
+        }
+  
+        private void CloseWindow(object sender, RoutedEventArgs e)
+        {
+            _modal.IsOpen = false;
         }
   
         private Grid SizeGrid(double width, double height, Grid grid)
