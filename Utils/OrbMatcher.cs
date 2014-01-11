@@ -49,7 +49,6 @@ namespace PuzzleRpg.Utils
                                                                 && pp.Location.Row == piece.Location.Row);
             AddPieceIfTypeMatches(piece, rightNeighbor, matchingPieces);
 
-
             var leftNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
                                                                 && pp.Location.Row == piece.Location.Row);
             AddPieceIfTypeMatches(piece, leftNeighbor, matchingPieces);

@@ -65,7 +65,7 @@ namespace PuzzleRpg
                 await AddOrbs();
                 EndingTurn();
             } 
-            else 
+            else
             {
                 StartTurn();
             }
@@ -138,6 +138,7 @@ namespace PuzzleRpg
 
         private Image GetImageForGridLocation(int row, int column)
         {
+            //Clever - I like it! :D
             return (row + column) % 2 == 0 ? ImageUtils.GetImageFromPath("Assests/Backgrounds/PrimaryTile.png")
                                            : ImageUtils.GetImageFromPath("Assets/Backgrounds/SecondaryTile.png");
         }

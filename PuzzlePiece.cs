@@ -13,6 +13,7 @@ namespace PuzzleRpg
 {
     public class PuzzlePiece
     {
+        //if this is really supposed to be public, we should drop the underscore to follow convention.
         public readonly TranslateTransform _dragTranslation;
 
         public Node Location { get; set; }
