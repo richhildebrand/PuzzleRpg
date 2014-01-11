@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Heroes;
+using PuzzleRpg.Monsters;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
@@ -21,8 +22,17 @@ namespace PuzzleRpg
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
+            InitMonsterGrid();
             InitHeroGrid();
             InitPuzzleGrid();
+        }
+
+        private void InitMonsterGrid()
+        {
+            var monsterGrid = new MonsterGrid(MonsterGrid);
+
+            var activeLevel = new Level();
+            monsterGrid.AddLevel(activeLevel);
         }
 
         private void InitHeroGrid()
@@ -38,18 +48,6 @@ namespace PuzzleRpg
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
             PopupUtils.CoverScreen(100); //lol loading mask...
             _puzzleGrid.EndingTurn();
-        }
-
-        private void MouseMoving(object sender, MouseEventArgs e)
-        {
-            var image = (System.Windows.Controls.Image)sender;
-            Canvas.SetZIndex(image, 1);
-        }
-        
-        public void OnDragEnd(object sender, ManipulationCompletedEventArgs e)
-        {
-            var image = (System.Windows.Controls.Image)sender;
-            Canvas.SetZIndex(image, 0);
         }
     }
 }

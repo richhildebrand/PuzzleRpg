@@ -98,10 +98,13 @@
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroGrid.cs" />
     <Compile Include="Heroes\Team.cs" />
+    <Compile Include="Monsters\Level.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Monsters\Monster.cs" />
+    <Compile Include="Monsters\MonsterGrid.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="OrbMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -148,7 +151,7 @@
     <Content Include="Assets\Monsters\ArrowCat\ArrowCatProfile.png" />
     <Content Include="Assets\Monsters\BearCat\BearCatFull.png" />
     <Content Include="Assets\Monsters\BearCat\BearCatProfile.png" />
-    <Content Include="Assets\Monsters\Hydra.jpg" />
+    <Content Include="Assets\Monsters\Hydra\HydraFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatProfile.png" />
     <Content Include="Assets\Monsters\SamuriCat\SamuriCatFull.png" />

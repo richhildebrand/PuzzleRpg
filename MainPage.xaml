@@ -19,16 +19,13 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"/>
-            <RowDefinition Height="1.27*"/>
+            <RowDefinition Height="1.25*"/>
             <RowDefinition Height="5.75*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="0, 0, 0, 0">
-            <Image Name="bossPic"  Stretch="Fill" Source="Assets/Monsters/Hydra.jpg" />
-        </StackPanel>
+        <Grid x:Name="MonsterGrid" Grid.Row="0" Margin="0, 0, 0, 0"></Grid>
 
-        <Grid x:Name="HeroGrid" Grid.Row="1" Margin="0, 0, 0, 0">
-        </Grid>
+        <Grid x:Name="HeroGrid" Grid.Row="1" Margin="0, 0, 0, 0"></Grid>
 
         <Grid x:Name="PuzzleGrid" Grid.Row="2" Margin="0,0, 0, 0"></Grid>
 
