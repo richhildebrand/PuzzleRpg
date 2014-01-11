@@ -103,6 +103,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Node.cs" />
+    <Compile Include="MatchCounter\MatchCounter.cs" />
     <Compile Include="OrbMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuzzleGrid.cs" />
