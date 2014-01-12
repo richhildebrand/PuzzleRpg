@@ -94,6 +94,12 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppGlobals.cs" />
+    <Compile Include="CustomControls\HealthBar.xaml.cs">
+      <DependentUpon>HealthBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\MonsterWithHealthBar.xaml.cs">
+      <DependentUpon>MonsterWithHealthBar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Heroes\CastSpellModal.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroGrid.cs" />
@@ -130,6 +136,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="CustomControls\HealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\MonsterWithHealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

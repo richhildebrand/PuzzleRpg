@@ -22,7 +22,7 @@ namespace PuzzleRpg
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            InitMonsterGrid();
+            //InitMonsterGrid();
             InitHeroGrid();
             InitPuzzleGrid();
         }

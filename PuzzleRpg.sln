@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpg", "PuzzleRpg.csproj", "{EA47488F-D832-4913-B91D-3507CEF2291D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpgTests", "PuzzleRpgTests\PuzzleRpgTests.csproj", "{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}"
@@ -25,9 +23,9 @@ Global
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|ARM.ActiveCfg = Debug|ARM
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|ARM.Build.0 = Debug|ARM
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|ARM.Deploy.0 = Debug|ARM
-		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
-		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.Build.0 = Debug|ARM
-		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.Deploy.0 = Debug|ARM
+		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|x86.ActiveCfg = Debug|x86
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|x86.Build.0 = Debug|x86
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Debug|x86.Deploy.0 = Debug|x86
@@ -47,9 +45,9 @@ Global
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.ActiveCfg = Debug|ARM
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.Build.0 = Debug|ARM
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.Deploy.0 = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Build.0 = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Deploy.0 = Debug|ARM
+		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.ActiveCfg = Debug|x86
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.Build.0 = Debug|x86
 		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.Deploy.0 = Debug|x86

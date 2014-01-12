@@ -8,7 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:el="clr-namespace:Microsoft.Expression.Interactivity.Layout;assembly=Microsoft.Expression.Interactions"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    xmlns:local="clr-namespace:PuzzleRpg"
+    xmlns:local="clr-namespace:PuzzleRpg.CustomControls"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
@@ -23,7 +23,9 @@
             <RowDefinition Height="5.75*"/>
         </Grid.RowDefinitions>
 
-        <Grid x:Name="MonsterGrid" Grid.Row="0" Margin="0, 0, 0, 0"></Grid>
+        <Grid x:Name="MonsterGrid" Grid.Row="0" Margin="0, 0, 0, 0">
+            <local:MonsterWithHealthBar />
+        </Grid>
 
         <Grid x:Name="HeroGrid" Grid.Row="1" Margin="0, 0, 0, 0"></Grid>
 
