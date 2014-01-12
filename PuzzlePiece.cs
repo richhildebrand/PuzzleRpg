@@ -20,10 +20,14 @@ namespace PuzzleRpg
         public Image Element { get; set; }
         public bool Matched { get; set; }
         public string Type { get; set; }
+        public bool MatchedHorizontally { get; set; }
+        public bool MatchedVertically { get; set; }
 
         public PuzzlePiece(int row, int column)
         {
             Matched = false;
+            MatchedHorizontally = false;
+            MatchedVertically = false;
             _dragTranslation = new TranslateTransform();
 
             Element = new Image();
