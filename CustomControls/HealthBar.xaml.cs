@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace PuzzleRpg.CustomControls
 {
@@ -15,6 +9,12 @@ namespace PuzzleRpg.CustomControls
         public HealthBar()
         {
             InitializeComponent();
+            SetHealthPercentage(70);
+        }
+
+        public void SetHealthPercentage(int healthPercentage) {
+            HealthPercentage.ColumnDefinitions[0].Width = new System.Windows.GridLength(healthPercentage, System.Windows.GridUnitType.Star);
+            HealthPercentage.ColumnDefinitions[1].Width = new System.Windows.GridLength(100 - healthPercentage, System.Windows.GridUnitType.Star);
         }
     }
 }
