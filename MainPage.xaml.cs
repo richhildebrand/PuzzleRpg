@@ -11,7 +11,7 @@ namespace PuzzleRpg
     public partial class MainPage : PhoneApplicationPage
     {
         PuzzleGrid _puzzleGrid;
-        PuzzleGameEvents _puzzleGame;
+        PuzzleGame _puzzleGame;
 
         public MainPage()
         {
@@ -23,10 +23,13 @@ namespace PuzzleRpg
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
             InitMonsterGrid();
-            InitHeroGrid();
+
+            var activeTeam = new Team();
+            InitHeroGrid(activeTeam);
+
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
-            _puzzleGame = new PuzzleGameEvents(_puzzleGrid);
+            _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam);
             _puzzleGame.StartGame();
         }
 
@@ -38,11 +41,9 @@ namespace PuzzleRpg
             //monsterGrid.AddLevel(activeLevel);
         }
 
-        private void InitHeroGrid()
+        private void InitHeroGrid(Team activeTeam)
         {
             var heroGrid = new HeroGrid(HeroGrid);
-
-            var activeTeam = new Team();
             heroGrid.AddHeroes(activeTeam);
         }
     }

@@ -7,6 +7,8 @@ namespace PuzzleRpg.Heroes
     public class Team
     {
         public Hero[] Heroes { get; set; }
+        public int TotalHealth { get; set; }
+        public int CurrentHealth { get; set; }
 
         public Team()
         {
@@ -17,6 +19,20 @@ namespace PuzzleRpg.Heroes
             AddHero(3, new Hero("SamuriCat"));
             AddHero(4, new Hero("StackCat"));
             AddHero(5, new Hero("UltraCat"));
+
+            CurrentHealth = 100;
+            TotalHealth = 100;
+        }
+
+        public int GetPercentageOfRemainingHealth()
+        {
+            var percentage = (double)CurrentHealth / (double)TotalHealth * 100;
+            return Convert.ToInt32(percentage);
+        }
+
+        public void TakeDamage(int monsterAttackDamage)
+        {
+            CurrentHealth -= monsterAttackDamage;
         }
 
         public void AddHero(int slot, Hero hero) 

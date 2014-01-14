@@ -115,7 +115,7 @@
     <Compile Include="MatchCounter\MatchCounter.cs" />
     <Compile Include="OrbMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PuzzleGameEvents.cs" />
+    <Compile Include="PuzzleGame.cs" />
     <Compile Include="PuzzleGrid.cs" />
     <Compile Include="PuzzlePiece.cs" />
     <Compile Include="Resources\AppResources.Designer.cs">
