@@ -12,11 +12,23 @@
     
     <Grid x:Name="LayoutRoot">
         <Grid.RowDefinitions>
-            <RowDefinition Height="9*" />
-            <RowDefinition Height="1*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="83*" />
+            <RowDefinition Height="7*" />
+            <RowDefinition Height="5*" />
         </Grid.RowDefinitions>
 
-        <Image x:Name="MonsterImage"  Grid.Row="0" Stretch="Fill" />
-        <local:HealthBar Grid.Row="1"/>
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="15*" />
+            <ColumnDefinition Width="60*" />
+            <ColumnDefinition Width="15*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="/Assets/Backdrops/City.png"/>
+        </Grid.Background>
+
+        <Image x:Name="MonsterImage"  Grid.Row="1" Grid.Column="1" Stretch="Fill" />
+        <local:HealthBar Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </UserControl>

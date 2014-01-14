@@ -161,6 +161,10 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\Backdrops\BlueGradiantBackdrop.png" />
+    <Content Include="Assets\Backdrops\City.png" />
+    <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
+    <Content Include="Assets\Backdrops\ParchmentBackdrop.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
     <Content Include="Assets\Monsters\ArrowCat\ArrowCatFull.png" />
