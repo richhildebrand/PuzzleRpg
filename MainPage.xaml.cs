@@ -18,6 +18,7 @@ namespace PuzzleRpg
         {
             InitializeComponent();
             Loaded += LoadGraphics;
+            PopupUtils.CoverScreen(100); //lol loading mask...
         }
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
@@ -46,7 +47,6 @@ namespace PuzzleRpg
         private void InitPuzzleGrid()
         {
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
-            PopupUtils.CoverScreen(100); //lol loading mask...
             _puzzleGrid.EndingTurn();
         }
     }
