@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Heroes;
 using PuzzleRpg.Monsters;
@@ -13,19 +11,21 @@ namespace PuzzleRpg
     public partial class MainPage : PhoneApplicationPage
     {
         PuzzleGrid _puzzleGrid;
+        PuzzleGameEvents _puzzleGame;
 
         public MainPage()
         {
             InitializeComponent();
-            Loaded += LoadGraphics;
             PopupUtils.CoverScreen(100); //lol loading mask...
+            Loaded += LoadGraphics;
         }
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
             InitMonsterGrid();
             InitHeroGrid();
-            InitPuzzleGrid();
+            _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
+            InitPuzzleGame(_puzzleGrid);
         }
 
         private void InitMonsterGrid()
@@ -44,10 +44,11 @@ namespace PuzzleRpg
             heroGrid.AddHeroes(activeTeam);
         }
 
-        private void InitPuzzleGrid()
+        private async void InitPuzzleGame(PuzzleGrid puzzleGrid)
         {
-            _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
-            _puzzleGrid.EndingTurn();
+            _puzzleGame = new PuzzleGameEvents(puzzleGrid);
+            await puzzleGrid.MatchAndReplacePuzzlePieces();
+            PopupUtils.UncoverScreen();
         }
     }
 }

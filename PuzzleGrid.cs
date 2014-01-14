@@ -22,7 +22,6 @@ namespace PuzzleRpg
             _grid = puzzleGrid;
             _puzzlePieces = new List<PuzzlePiece>();
             MessageBus.Default.Register("SwapOrbs", SwapPuzzlePieces);
-            MessageBus.Default.Register("EndTurn", EndTurn);
 
             _grid = GridUtils.AddRowsToGrid(puzzleGrid, rows);
             _grid = GridUtils.AddColumnsToGrid(puzzleGrid, columns);
@@ -48,13 +47,14 @@ namespace PuzzleRpg
             movingPiece.Location.Column = orbMove.Destination.Column;
         }
 
-        private void EndTurn(object sender, NotificationEventArgs e)
+        public Task MatchAndReplacePuzzlePieces()
         {
-            PopupUtils.CoverScreen(0);
-            EndingTurn();
+            var taskSource = new TaskCompletionSource<bool>();
+            MatchingAndReplacingPuzzlePieces(taskSource);
+            return taskSource.Task;
         }
 
-        public async void EndingTurn() {
+        private async void MatchingAndReplacingPuzzlePieces(TaskCompletionSource<bool> taskSource) {
             _puzzlePieces = OrbMatcher.MatchHorizontalOrbrs(_puzzlePieces);
             _puzzlePieces = OrbMatcher.MatchVerticalOrbs(_puzzlePieces);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
@@ -63,17 +63,17 @@ namespace PuzzleRpg
                 _puzzlePieces = OrbDropper.DropExistingOrbs(_puzzlePieces);
                 await AnimatedMoves.DropOrbs(_puzzlePieces);
                 await AddOrbs();
-                EndingTurn();
-            } 
+                MatchingAndReplacingPuzzlePieces(taskSource);
+            }
             else
             {
-                StartTurn();
+                taskSource.SetResult(true);
             }
         }
 
-        private bool NeedToAddOrbs(List<PuzzlePiece> _puzzlePieces) 
+        private bool NeedToAddOrbs(List<PuzzlePiece> puzzlePieces) 
         {
-            return _puzzlePieces.Count < (AppGlobals.PuzzleGridRowCount * AppGlobals.PuzzleGridColumnCount);
+            return puzzlePieces.Count < (AppGlobals.PuzzleGridRowCount * AppGlobals.PuzzleGridColumnCount);
         }
 
         private List<PuzzlePiece> RemoveMatchedOrbs(List<PuzzlePiece> puzzlePieces, Grid grid)
@@ -91,7 +91,6 @@ namespace PuzzleRpg
 
         private Task AddOrbs()
         {
-            var addedOrbs = false;
             for (int row = 0; row < _rows; ++row)
             {
                 for (int column = 0; column < _columns; ++column)
@@ -100,17 +99,11 @@ namespace PuzzleRpg
                                                                          && pp.Location.Column == column);
                     if (orbAtLocation == null)
                     {
-                        addedOrbs = true;
                         AddOrb(row, column, _puzzlePieces);
                     }
                 }
             }
             return Task.WhenAll(AnimatedMoves.DropOrbs(_puzzlePieces));
-        }
-
-        private void StartTurn() 
-        {
-            PopupUtils.UncoverScreen();
         }
 
         private void AddOrb(int row, int column, List<PuzzlePiece> puzzlePieces)
