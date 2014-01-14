@@ -16,7 +16,7 @@
             <RowDefinition Height="1*" />
         </Grid.RowDefinitions>
 
-        <Image Grid.Row="0" Source="/Assets/Monsters/Hydra/HydraFull.png" Stretch="Fill" />
+        <Image x:Name="MonsterImage"  Grid.Row="0" Stretch="Fill" />
         <local:HealthBar Grid.Row="1"/>
     </Grid>
 </UserControl>

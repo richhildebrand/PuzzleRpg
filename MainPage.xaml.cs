@@ -22,23 +22,15 @@ namespace PuzzleRpg
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            InitMonsterGrid();
+            var monsterGrid = new MonsterGrid(MonsterGrid);
 
             var activeTeam = new Team();
             InitHeroGrid(activeTeam);
 
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
-            _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam);
+            _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
             _puzzleGame.StartGame();
-        }
-
-        private void InitMonsterGrid()
-        {
-            //var monsterGrid = new MonsterGrid(MonsterGrid);
-
-            //var activeLevel = new Level();
-            //monsterGrid.AddLevel(activeLevel);
         }
 
         private void InitHeroGrid(Team activeTeam)
