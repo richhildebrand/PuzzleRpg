@@ -22,17 +22,17 @@ namespace PuzzleRpg
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            //InitMonsterGrid();
+            InitMonsterGrid();
             InitHeroGrid();
             InitPuzzleGrid();
         }
 
         private void InitMonsterGrid()
         {
-            var monsterGrid = new MonsterGrid(MonsterGrid);
+            //var monsterGrid = new MonsterGrid(MonsterGrid);
 
-            var activeLevel = new Level();
-            monsterGrid.AddLevel(activeLevel);
+            //var activeLevel = new Level();
+            //monsterGrid.AddLevel(activeLevel);
         }
 
         private void InitHeroGrid()

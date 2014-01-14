@@ -9,7 +9,7 @@ namespace PuzzleRpg.CustomControls
         public HealthBar()
         {
             InitializeComponent();
-            SetHealthPercentage(70);
+            SetHealthPercentage(100);
         }
 
         public void SetHealthPercentage(int healthPercentage) {
