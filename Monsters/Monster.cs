@@ -7,10 +7,12 @@ namespace PuzzleRpg.Monsters
     {
         public string FullImagePath { get; set; }
         public int HitPoints { get; private set; }
+        public int AttackDamage { get; private set; }
 
-        public Monster(string name, int hitPoints)
+        public Monster(string name, int hitPoints, int attackDamage)
         {
             HitPoints = hitPoints;
+            AttackDamage = attackDamage;
             FullImagePath = AppGlobals.HeroImagePathPrefix + name + "/" + name + "Full.png";
         }
     }

@@ -2,6 +2,7 @@
 using System.Linq;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Heroes;
+using PuzzleRpg.Monsters;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
@@ -12,9 +13,11 @@ namespace PuzzleRpg
         private readonly PuzzleGrid _puzzleGrid;
         private readonly HealthBar _playerHealth;
         private readonly Team _activeTeam;
+        private readonly MonsterGrid _monsterGrid;
 
-        public PuzzleGame(PuzzleGrid puzzleGrid, HealthBar playerHealth, Team activeTeam)
+        public PuzzleGame(PuzzleGrid puzzleGrid, HealthBar playerHealth, Team activeTeam, MonsterGrid monsterGrid)
         {
+            this._monsterGrid = monsterGrid;
             this._activeTeam = activeTeam;
             this._playerHealth = playerHealth;
             this._puzzleGrid = puzzleGrid;
@@ -40,7 +43,7 @@ namespace PuzzleRpg
             //MonsterTakesDamage
 
             //MonsterAttacks
-            var monsterAttackDamage = 10;
+            var monsterAttackDamage = _monsterGrid.ActiveMonster.AttackDamage;
             _activeTeam.TakeDamage(monsterAttackDamage);
             _playerHealth.SetHealthPercentage(_activeTeam.GetPercentageOfRemainingHealth());
 

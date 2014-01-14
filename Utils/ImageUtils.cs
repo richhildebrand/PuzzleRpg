@@ -9,12 +9,18 @@ namespace PuzzleRpg.Utils
     {
         public static Image GetImageFromPath(String path)
         {
-            BitmapImage bitmapImage = new BitmapImage();
-            bitmapImage.UriSource = new Uri(path, UriKind.Relative);
+            
 
             Image image = new Image();
-            image.Source = bitmapImage;
+            image.Source = GetImageSourceFromPath(path);
             return image;
+        }
+
+        public static BitmapImage GetImageSourceFromPath(String path)
+        {
+            BitmapImage bitmapImage = new BitmapImage();
+            bitmapImage.UriSource = new Uri(path, UriKind.Relative);
+            return bitmapImage;
         }
     }
 }
