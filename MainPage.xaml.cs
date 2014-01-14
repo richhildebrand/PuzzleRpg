@@ -25,7 +25,9 @@ namespace PuzzleRpg
             InitMonsterGrid();
             InitHeroGrid();
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
-            InitPuzzleGame(_puzzleGrid);
+
+            _puzzleGame = new PuzzleGameEvents(_puzzleGrid);
+            _puzzleGame.StartGame();
         }
 
         private void InitMonsterGrid()
@@ -42,13 +44,6 @@ namespace PuzzleRpg
 
             var activeTeam = new Team();
             heroGrid.AddHeroes(activeTeam);
-        }
-
-        private async void InitPuzzleGame(PuzzleGrid puzzleGrid)
-        {
-            _puzzleGame = new PuzzleGameEvents(puzzleGrid);
-            await puzzleGrid.MatchAndReplacePuzzlePieces();
-            PopupUtils.UncoverScreen();
         }
     }
 }

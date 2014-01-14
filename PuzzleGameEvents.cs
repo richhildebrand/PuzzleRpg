@@ -15,6 +15,12 @@ namespace PuzzleRpg
             MessageBus.Default.Register("EndTurn", OnEndTurn);
         }
 
+        public async void StartGame()
+        {
+            await _puzzleGrid.MatchAndReplacePuzzlePieces();
+            StartTurn();
+        }
+
         private void StartTurn()
         {
             PopupUtils.UncoverScreen();
