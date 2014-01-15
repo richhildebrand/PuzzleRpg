@@ -84,7 +84,7 @@ namespace PuzzleRpg.Utils
                 return null; 
             }
 
-            if (origionalPiece.Type == possibleMatch.Type)
+            if (origionalPiece.Type == possibleMatch.Type && !possibleMatch.Matched)
             {
                 puzzlePieces.Add(possibleMatch);
                 return possibleMatch;
