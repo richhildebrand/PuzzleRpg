@@ -25,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <local:MonsterWithHealthBar Name="MonsterGrid" Grid.Row="0" />
-        <Grid x:Name="HeroGrid" Grid.Row="1" />
+        <local:HeroesOnPuzzleGameBoard x:Name="HeroGrid" Grid.Row="1" />
         <local:HealthBar x:Name="PlayerHealth" Grid.Row="2" />
         <Grid x:Name="PuzzleGrid" Grid.Row="3" />
 

@@ -97,6 +97,9 @@
     <Compile Include="CustomControls\HealthBar.xaml.cs">
       <DependentUpon>HealthBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\HeroesOnPuzzleGameBoard.xaml.cs">
+      <DependentUpon>HeroesOnPuzzleGameBoard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\HeroProfile.xaml.cs">
       <DependentUpon>HeroProfile.xaml</DependentUpon>
     </Compile>
@@ -141,6 +144,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="CustomControls\HealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\HeroesOnPuzzleGameBoard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

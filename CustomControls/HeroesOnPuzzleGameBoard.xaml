@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="PuzzleRpg.CustomControls.HeroesOnPuzzleGameBoard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PuzzleRpg.CustomControls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot">
+        <Grid.ColumnDefinitions >
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="10*" />
+        </Grid.ColumnDefinitions>
+
+        <local:HeroProfile Grid.Column="0"/>
+        <local:HeroProfile Grid.Column="2"/>
+        <local:HeroProfile Grid.Column="4"/>
+        <local:HeroProfile Grid.Column="6"/>
+        <local:HeroProfile Grid.Column="8"/>
+    </Grid>
+</UserControl>

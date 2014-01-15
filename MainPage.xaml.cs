@@ -25,18 +25,12 @@ namespace PuzzleRpg
             var monsterGrid = new MonsterGrid(MonsterGrid);
 
             var activeTeam = new Team();
-            InitHeroGrid(activeTeam);
+            HeroGrid.AddHeroes(activeTeam);
 
             _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
             _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
             _puzzleGame.StartGame();
-        }
-
-        private void InitHeroGrid(Team activeTeam)
-        {
-            var heroGrid = new HeroGrid(HeroGrid);
-            heroGrid.AddHeroes(activeTeam);
         }
     }
 }

@@ -11,10 +11,14 @@ namespace PuzzleRpg.CustomControls
     {
         public Hero ThisHero { get; set; }
 
-        public HeroProfile(Hero hero)
+        public HeroProfile()
+        {
+            InitializeComponent();
+        }
+
+        public void DrawHeroProfile(Hero hero)
         {
             ThisHero = hero;
-            InitializeComponent();
             DrawProfile(ThisHero);
         }
 

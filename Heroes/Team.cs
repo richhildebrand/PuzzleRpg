@@ -18,7 +18,7 @@ namespace PuzzleRpg.Heroes
             AddHero(2, new Hero("MoonCat", AppGlobals.Types.Wood));
             AddHero(3, new Hero("SamuriCat", AppGlobals.Types.Wood));
             AddHero(4, new Hero("StackCat", AppGlobals.Types.Fire));
-            AddHero(5, new Hero("UltraCat", AppGlobals.Types.Water));
+            //AddHero(5, new Hero("UltraCat", AppGlobals.Types.Water));
 
             CurrentHealth = 100;
             TotalHealth = 100;
