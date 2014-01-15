@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace PuzzleRpg.Utils
@@ -14,6 +15,7 @@ namespace PuzzleRpg.Utils
                 if (matchingNeighbors.Count >= 3)
                 {
                     MarkAllOrbs(matchingNeighbors);
+                    Debug.WriteLine(matchingNeighbors[0].Type.ToString() + matchingNeighbors.Count.ToString());
                 }
             }
             return puzzlePieces;
@@ -45,13 +47,16 @@ namespace PuzzleRpg.Utils
             var matchingPieces = new List<PuzzlePiece>();
             matchingPieces.Add(piece);
 
-            var rightNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column + 1
-                                                                && pp.Location.Row == piece.Location.Row);
-            AddPieceIfTypeMatches(piece, rightNeighbor, matchingPieces);
+            PuzzlePiece nextPiece = piece;
+            do {
+                nextPiece = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == nextPiece.Location.Column + 1
+                                                                    && pp.Location.Row == nextPiece.Location.Row);
+                nextPiece = AddPieceIfTypeMatches(piece, nextPiece, matchingPieces);
+            } while (nextPiece != null);
 
-            var leftNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
-                                                                && pp.Location.Row == piece.Location.Row);
-            AddPieceIfTypeMatches(piece, leftNeighbor, matchingPieces);
+            //var leftNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
+            //                                                    && pp.Location.Row == piece.Location.Row);
+            //AddPieceIfTypeMatches(piece, leftNeighbor, matchingPieces);
 
             return matchingPieces;
         }
@@ -72,17 +77,20 @@ namespace PuzzleRpg.Utils
             return matchingPieces;
         }
 
-        private static void AddPieceIfTypeMatches(PuzzlePiece origionalPiece, PuzzlePiece possibleMatch, List<PuzzlePiece> puzzlePieces)
+        private static PuzzlePiece AddPieceIfTypeMatches(PuzzlePiece origionalPiece, PuzzlePiece possibleMatch, List<PuzzlePiece> puzzlePieces)
         {
             if (possibleMatch == null)
             {
-                return; 
+                return null; 
             }
 
             if (origionalPiece.Type == possibleMatch.Type)
             {
                 puzzlePieces.Add(possibleMatch);
+                return possibleMatch;
             }
+
+            return null;
         }
     }
 }
