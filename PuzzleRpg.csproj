@@ -191,6 +191,9 @@
     <Content Include="Assets\Orbs\HealOrb.png" />
     <Content Include="Assets\Orbs\WaterOrb.png" />
     <Content Include="Assets\Orbs\WoodOrb.png" />
+    <Content Include="Assets\ProfileBorders\Fire.png" />
+    <Content Include="Assets\ProfileBorders\Water.png" />
+    <Content Include="Assets\ProfileBorders\Wood.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

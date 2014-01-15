@@ -23,10 +23,16 @@ namespace PuzzleRpg.Utils
             return bitmapImage;
         }
 
-        public static String GetOrbImageFromType(AppGlobals.Types orbType) 
+        public static String GetOrbImagePathFromType(AppGlobals.Types orbType) 
         {
             var type = orbType.ToString();
             return "Assets/Orbs/" + type + "Orb.png";
+        }
+
+        public static String GetProfileBorderImagePathFromType(AppGlobals.Types profileType)
+        {
+            var type = profileType.ToString();
+            return "Assets/ProfileBorders/" + type + ".png";
         }
     }
 }

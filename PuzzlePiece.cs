@@ -67,7 +67,7 @@ namespace PuzzleRpg
             var randomNumber = MathUtils.GetRandomInteger(0, 4);
 
             Type = (AppGlobals.Types)randomNumber;
-            return ImageUtils.GetOrbImageFromType(Type);
+            return ImageUtils.GetOrbImagePathFromType(Type);
         }
 
         public Image AddTouchEvents(Image orb)

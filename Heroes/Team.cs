@@ -13,12 +13,12 @@ namespace PuzzleRpg.Heroes
         public Team()
         {
             Heroes = new Hero[AppGlobals.MaxHeroesOnATeam];
-            AddHero(0, new Hero("ArrowCat"));
-            AddHero(1, new Hero("BearCat"));
-            AddHero(2, new Hero("MoonCat"));
-            AddHero(3, new Hero("SamuriCat"));
-            AddHero(4, new Hero("StackCat"));
-            AddHero(5, new Hero("UltraCat"));
+            AddHero(0, new Hero("ArrowCat", AppGlobals.Types.Fire));
+            AddHero(1, new Hero("BearCat", AppGlobals.Types.Water));
+            AddHero(2, new Hero("MoonCat", AppGlobals.Types.Wood));
+            AddHero(3, new Hero("SamuriCat", AppGlobals.Types.Wood));
+            AddHero(4, new Hero("StackCat", AppGlobals.Types.Fire));
+            AddHero(5, new Hero("UltraCat", AppGlobals.Types.Water));
 
             CurrentHealth = 100;
             TotalHealth = 100;
