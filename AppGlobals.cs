@@ -13,5 +13,13 @@ namespace PuzzleRpg
         public static readonly int MaxHeroesOnATeam = 6;
 
         public static readonly string HeroImagePathPrefix = "Assets/Monsters/";
+
+        public enum Types 
+        {
+            Fire,
+            Water,
+            Wood,
+            Heal
+        }
     }
 }

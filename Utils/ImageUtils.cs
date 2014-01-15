@@ -22,5 +22,11 @@ namespace PuzzleRpg.Utils
             bitmapImage.UriSource = new Uri(path, UriKind.Relative);
             return bitmapImage;
         }
+
+        public static String GetOrbImageFromType(AppGlobals.Types orbType) 
+        {
+            var type = orbType.ToString();
+            return "Assets/Orbs/" + type + "Orb.png";
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace PuzzleRpg
         public Node Location { get; set; }
         public Image Element { get; set; }
         public bool Matched { get; set; }
-        public string Type { get; set; }
+        public AppGlobals.Types Type { get; set; }
         public bool MatchedHorizontally { get; set; }
         public bool MatchedVertically { get; set; }
 
@@ -64,16 +64,10 @@ namespace PuzzleRpg
 
         private string GetOrbType()
         {
-            string orbType;
             var randomNumber = MathUtils.GetRandomInteger(0, 4);
-            switch (randomNumber)
-            {
-                case 1: orbType = "Assets/Orbs/WaterOrb.png"; Type = "Water"; break;
-                case 2: orbType = "Assets/Orbs/FireOrb.png"; Type = "Fire"; break;
-                case 3: orbType = "Assets/Orbs/HealOrb.png"; Type = "Heal"; break;
-                default: orbType = "Assets/Orbs/WoodOrb.png"; Type = "Wood"; break;
-            }
-            return orbType;
+
+            Type = (AppGlobals.Types)randomNumber;
+            return ImageUtils.GetOrbImageFromType(Type);
         }
 
         public Image AddTouchEvents(Image orb)
