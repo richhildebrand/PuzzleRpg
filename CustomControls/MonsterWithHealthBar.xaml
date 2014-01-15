@@ -24,10 +24,6 @@
             <ColumnDefinition Width="15*" />
         </Grid.ColumnDefinitions>
 
-        <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="/Assets/Backdrops/City.png"/>
-        </Grid.Background>
-
         <Image x:Name="MonsterImage"  Grid.Row="1" Grid.Column="1" Stretch="Fill" />
         <local:HealthBar Grid.Row="2" Grid.Column="1"/>
     </Grid>
