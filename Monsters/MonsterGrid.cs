@@ -24,7 +24,7 @@ namespace PuzzleRpg.Monsters
         public MonsterGrid(MonsterWithHealthBar monsterUI)
         {
             _monsterUI = monsterUI;
-            var monster = MonsterDatabase.GetMonster(0);
+            var monster = MonsterDatabase.GetMonster(MathUtils.GetRandomInteger(0, MonsterDatabase.MonsterCount()));
             ActivateMonster(monster);
         }
 

@@ -106,6 +106,7 @@
     <Compile Include="CustomControls\MonsterWithHealthBar.xaml.cs">
       <DependentUpon>MonsterWithHealthBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\HeroDatabase.cs" />
     <Compile Include="Database\MonsterDatabase.cs" />
     <Compile Include="Heroes\CastSpellModal.cs" />
     <Compile Include="Heroes\Hero.cs" />
@@ -182,26 +183,22 @@
     <Content Include="Assets\Backdrops\ParchmentBackdrop.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
-    <Content Include="Assets\Monsters\ArrowCat\ArrowCatFull.png" />
-    <Content Include="Assets\Monsters\ArrowCat\ArrowCatProfile.png" />
-    <Content Include="Assets\Monsters\BearCat\BearCatFull.png" />
-    <Content Include="Assets\Monsters\BearCat\BearCatProfile.png" />
     <Content Include="Assets\Monsters\BigBlue\BigBlueFull.png" />
+    <Content Include="Assets\Monsters\BigBlue\BigBlueProfile.png" />
     <Content Include="Assets\Monsters\BlueDragon\BlueDragonFull.png" />
+    <Content Include="Assets\Monsters\BlueDragon\BlueDragonProfile.png" />
     <Content Include="Assets\Monsters\GreenDragon\GreenDragonFull.png" />
-    <Content Include="Assets\Monsters\MoonCat\MoonCatFull.png" />
-    <Content Include="Assets\Monsters\MoonCat\MoonCatProfile.png" />
+    <Content Include="Assets\Monsters\GreenDragon\GreenDragonProfile.png" />
     <Content Include="Assets\Monsters\RedDragon\RedDragonFull.png" />
+    <Content Include="Assets\Monsters\RedDragon\RedDragonProfile.png" />
     <Content Include="Assets\Monsters\Rex\RexFull.png" />
-    <Content Include="Assets\Monsters\SamuriCat\SamuriCatFull.png" />
-    <Content Include="Assets\Monsters\SamuriCat\SamuriCatProfile.png" />
-    <Content Include="Assets\Monsters\StackCat\StackCatFull.png" />
-    <Content Include="Assets\Monsters\StackCat\StackCatProfile.png" />
+    <Content Include="Assets\Monsters\Rex\RexProfile.png" />
     <Content Include="Assets\Monsters\StoneOrc\StoneOrcFull.png" />
+    <Content Include="Assets\Monsters\StoneOrc\StoneOrcProfile.png" />
     <Content Include="Assets\Monsters\Turtle\TurtleFull.png" />
-    <Content Include="Assets\Monsters\UltraCat\UltraCatFull.png" />
-    <Content Include="Assets\Monsters\UltraCat\UltraCatProfile.png" />
+    <Content Include="Assets\Monsters\Turtle\TurtleProfile.png" />
     <Content Include="Assets\Monsters\WoodOrc\WoodOrcFull.png" />
+    <Content Include="Assets\Monsters\WoodOrc\WoodOrcProfile.png" />
     <Content Include="Assets\Orbs\FireOrb.png" />
     <Content Include="Assets\Orbs\HealOrb.png" />
     <Content Include="Assets\Orbs\WaterOrb.png" />

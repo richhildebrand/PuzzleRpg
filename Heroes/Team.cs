@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using PuzzleRpg.Database;
+using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.Heroes
 {
@@ -13,12 +15,13 @@ namespace PuzzleRpg.Heroes
         public Team()
         {
             Heroes = new Hero[AppGlobals.MaxHeroesOnATeam];
-            AddHero(0, new Hero("ArrowCat", AppGlobals.Types.Fire));
-            AddHero(1, new Hero("BearCat", AppGlobals.Types.Water));
-            AddHero(2, new Hero("MoonCat", AppGlobals.Types.Wood));
-            AddHero(3, new Hero("SamuriCat", AppGlobals.Types.Wood));
-            AddHero(4, new Hero("StackCat", AppGlobals.Types.Fire));
-            //AddHero(5, new Hero("UltraCat", AppGlobals.Types.Water));
+
+            MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount());
+            AddHero(0, HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount())));
+            AddHero(1, HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount())));
+            AddHero(2, HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount())));
+            AddHero(3, HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount())));
+            AddHero(4, HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount())));
 
             CurrentHealth = 100;
             TotalHealth = 100;
