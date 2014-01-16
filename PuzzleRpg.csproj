@@ -106,6 +106,7 @@
     <Compile Include="CustomControls\MonsterWithHealthBar.xaml.cs">
       <DependentUpon>MonsterWithHealthBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\MonsterDatabase.cs" />
     <Compile Include="Heroes\CastSpellModal.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroGrid.cs" />

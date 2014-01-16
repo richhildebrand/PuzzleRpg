@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using PuzzleRpg.CustomControls;
+using PuzzleRpg.Database;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.Monsters
@@ -13,7 +14,7 @@ namespace PuzzleRpg.Monsters
         public MonsterGrid(MonsterWithHealthBar monsterUI)
         {
             _monsterUI = monsterUI;
-            var monster = new Monster("Hydra", 300, 10);
+            var monster = MonsterDatabase.GetMonster(0);
             ActivateMonster(monster);
         }
 

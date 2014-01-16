@@ -9,7 +9,7 @@ namespace PuzzleRpg.Monsters
 
         public Level()
         {
-            _stageOne = new Monster("hydra", 300, 0);
+            //Fill Monsters?
         }
 
         public Monster GetStage(int stageNumber)
