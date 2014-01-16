@@ -181,6 +181,7 @@
     <Content Include="Assets\Backdrops\City.png" />
     <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
     <Content Include="Assets\Backdrops\ParchmentBackdrop.png" />
+    <Content Include="Assets\Backgrounds\HeroProfile.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
     <Content Include="Assets\Monsters\BigBlue\BigBlueFull.png" />
