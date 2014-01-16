@@ -13,7 +13,9 @@ namespace PuzzleRpg.Database
         {
             _allMonsters = new List<Monster>();
                                          //Name   HP   Attack
-            _allMonsters.Add(new Monster("hydra", 300, 10));
+            _allMonsters.Add(new Monster("Rex", 1000, 10));
+            _allMonsters.Add(new Monster("StoneOrc", 500, 30));
+            _allMonsters.Add(new Monster("WoodOrc", 500, 30));
         }
 
         public static Monster GetMonster(int monsterId)

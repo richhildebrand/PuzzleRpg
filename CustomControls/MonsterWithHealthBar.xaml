@@ -24,7 +24,7 @@
             <ColumnDefinition Width="15*" />
         </Grid.ColumnDefinitions>
 
-        <Image x:Name="MonsterImage"  Grid.Row="1" Grid.Column="1" Stretch="Fill" />
+        <Image x:Name="MonsterImage"  Grid.Row="1" Grid.Column="1" Stretch="Uniform" />
         <local:HealthBar Grid.Row="2" Grid.Column="1"/>
     </Grid>
 </UserControl>
