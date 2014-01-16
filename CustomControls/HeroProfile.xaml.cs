@@ -25,7 +25,14 @@ namespace PuzzleRpg.CustomControls
         private void DrawProfile(Hero hero)
         {
             ProfilePicture.Source = ImageUtils.GetImageSourceFromPath("/" + hero.ProfileImagePath);
-            BordedrImage.ImageSource = GetBorderImageSource(hero.Type);
+            BorderImage.ImageSource = GetBorderImageSource(hero.Type);
+            PrimaryTypeImage.Source = GetOrbImageFromType(hero.Type);
+        }
+
+        private BitmapImage GetOrbImageFromType(AppGlobals.Types type)
+        {
+            var imagePath = ImageUtils.GetOrbImagePathFromType(type);
+            return ImageUtils.GetImageSourceFromPath("/" + imagePath);
         }
 
         private BitmapImage GetBorderImageSource(AppGlobals.Types type)
