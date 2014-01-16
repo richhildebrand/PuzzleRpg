@@ -187,8 +187,11 @@
     <Content Include="Assets\Monsters\BearCat\BearCatFull.png" />
     <Content Include="Assets\Monsters\BearCat\BearCatProfile.png" />
     <Content Include="Assets\Monsters\BigBlue\BigBlueFull.png" />
+    <Content Include="Assets\Monsters\BlueDragon\BlueDragonFull.png" />
+    <Content Include="Assets\Monsters\GreenDragon\GreenDragonFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatProfile.png" />
+    <Content Include="Assets\Monsters\RedDragon\RedDragonFull.png" />
     <Content Include="Assets\Monsters\Rex\RexFull.png" />
     <Content Include="Assets\Monsters\SamuriCat\SamuriCatFull.png" />
     <Content Include="Assets\Monsters\SamuriCat\SamuriCatProfile.png" />
