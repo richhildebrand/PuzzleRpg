@@ -9,26 +9,13 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="5*" />
-            <RowDefinition Height="90*" />
-            <RowDefinition Height="5*" />
-        </Grid.RowDefinitions>
+    <Border BorderThickness="1" CornerRadius="5" Margin="0" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Border.Background>
+            <ImageBrush x:Name="BordedrImage" Stretch="Fill" />
+        </Border.Background>
 
-        <Grid.ColumnDefinitions >
-            <ColumnDefinition Width="10*" />
-            <ColumnDefinition Width="80*" />
-            <ColumnDefinition Width="10*" />
-        </Grid.ColumnDefinitions>
-
-        <Grid.Background>
-            <ImageBrush x:Name="ProfilePicture"  Stretch="Fill" />
-        </Grid.Background>
-        
-        <Image  x:Name="LeftBorder" Grid.Row="0" Grid.ColumnSpan="3" Stretch="UniformToFill"/>
-        <Image  x:Name="RightBorder" Grid.Row="2" Grid.ColumnSpan="3" Stretch="UniformToFill" />
-        <Image  x:Name="TopBorder" Grid.Column="0" Grid.RowSpan="3" Stretch="UniformToFill" />
-        <Image  x:Name="BottomBorder" Grid.Column="2" Grid.RowSpan="3" Stretch="UniformToFill" />
-    </Grid>
+        <Grid x:Name="LayoutRoot" >
+            <Image x:Name="ProfilePicture"  Stretch="Fill" />
+        </Grid>
+    </Border>
 </UserControl>
