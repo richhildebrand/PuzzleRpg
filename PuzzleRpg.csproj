@@ -186,6 +186,7 @@
     <Content Include="Assets\Monsters\ArrowCat\ArrowCatProfile.png" />
     <Content Include="Assets\Monsters\BearCat\BearCatFull.png" />
     <Content Include="Assets\Monsters\BearCat\BearCatProfile.png" />
+    <Content Include="Assets\Monsters\BigBlue\BigBlueFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatFull.png" />
     <Content Include="Assets\Monsters\MoonCat\MoonCatProfile.png" />
     <Content Include="Assets\Monsters\Rex\RexFull.png" />
@@ -194,6 +195,7 @@
     <Content Include="Assets\Monsters\StackCat\StackCatFull.png" />
     <Content Include="Assets\Monsters\StackCat\StackCatProfile.png" />
     <Content Include="Assets\Monsters\StoneOrc\StoneOrcFull.png" />
+    <Content Include="Assets\Monsters\Turtle\TurtleFull.png" />
     <Content Include="Assets\Monsters\UltraCat\UltraCatFull.png" />
     <Content Include="Assets\Monsters\UltraCat\UltraCatProfile.png" />
     <Content Include="Assets\Monsters\WoodOrc\WoodOrcFull.png" />
