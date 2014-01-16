@@ -18,6 +18,11 @@ namespace PuzzleRpg.Database
             _allMonsters.Add(new Monster("WoodOrc", 500, 30));
         }
 
+        public static int MonsterCount()
+        {
+            return _allMonsters.Count();
+        }
+
         public static Monster GetMonster(int monsterId)
         {
             var monsterFromDatabase = _allMonsters[monsterId];
