@@ -39,9 +39,24 @@ namespace PuzzleRpg.Heroes
             return Convert.ToInt32(percentage);
         }
 
+        public int GetTotalAmountOfHealPoints()
+        {
+            var totalHealPoints = 0;
+            foreach (var hero in Heroes)
+            {
+                totalHealPoints += hero.HealsFor;
+            }
+            return totalHealPoints;
+        }
+
         public void TakeDamage(int monsterAttackDamage)
         {
             CurrentHealth -= monsterAttackDamage;
+        }
+
+        public void Heal(int amountToHeal)
+        {
+            CurrentHealth += amountToHeal;
         }
 
         public void AddHero(int slot, Hero hero, int hitPoints) 
