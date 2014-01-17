@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- TODO: Eric, should we use this image? Maybe a different color? -->
-            <!--<Image Source="/Assets/Backgrounds/HeroProfile.png"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />-->
+            <Image Source="/Assets/Backgrounds/HeroProfile.png"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />
             <Image x:Name="ProfilePicture" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />
             <Image x:Name="PrimaryTypeImage" Grid.Row="0" Grid.Column="0" Margin="-6, -6, 0, 0" Stretch="Uniform" />
         </Grid>
