@@ -88,9 +88,15 @@ namespace PuzzleRpg
         //When it comes to this card, can't we remove the first parameter? Above when this
         //Function is called it passes in the same _monsterGrid.ActiveMonster (which is global)
         //Unless this is going to change at some point.
+
+        // I feel passing the paramaters make this method easier to extract later.
+        // Think of it from a unit it testing stand point, we would want to inject our dependencies.
+
+        // Possibly I should only pass monster.AttackDamage but I wanted to the method to be flexable
+        // for things like adding monster abilites or player buffs with out the need to modify OnEndTurn
         private int MonsterAttacks(Monster monster, Team activePlayerTeam)
         {
-            var monsterAttackDamage = _monsterGrid.ActiveMonster.AttackDamage;
+            var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(monsterAttackDamage);
             return activePlayerTeam.GetPercentageOfRemainingHealth();
         }
