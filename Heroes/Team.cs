@@ -29,7 +29,7 @@ namespace PuzzleRpg.Heroes
             AddHero(3, heroFour, heroFour.HitPoints);
             AddHero(4, heroFive, heroFive.HitPoints);
 
-            CurrentHealth = 100;
+            CurrentHealth = GetTotalHealth();
             TotalHealth = GetTotalHealth();
         }
 
