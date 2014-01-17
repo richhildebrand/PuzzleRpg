@@ -107,7 +107,12 @@
       <DependentUpon>MonsterWithHealthBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Database\HeroDatabase.cs" />
+    <Compile Include="Database\HeroRepository.cs" />
     <Compile Include="Database\MonsterDatabase.cs" />
+    <Compile Include="Database\Repository.cs" />
+    <Compile Include="HeroBox.xaml.cs">
+      <DependentUpon>HeroBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Heroes\CastSpellModal.cs" />
     <Compile Include="Heroes\Hero.cs" />
     <Compile Include="Heroes\HeroGrid.cs" />
@@ -158,6 +163,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\MonsterWithHealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeroBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

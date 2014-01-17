@@ -30,6 +30,11 @@ namespace PuzzleRpg
             StartTurn();
         }
 
+        public void EndGame() {
+            //Clear loot / drops
+            MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
+        }
+
         private void StartTurn()
         {
             PopupUtils.UncoverScreen();
@@ -39,15 +44,29 @@ namespace PuzzleRpg
         {
             PopupUtils.CoverScreen(0);
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
+
             //PlayerHeals
             //MonsterTakesDamage
 
-            //MonsterAttacks
-            var monsterAttackDamage = _monsterGrid.ActiveMonster.AttackDamage;
-            _activeTeam.TakeDamage(monsterAttackDamage);
-            _playerHealth.SetHealthPercentage(_activeTeam.GetPercentageOfRemainingHealth());
+            var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
+                                                                 _activeTeam);
 
-            StartTurn();
+            if (remainingPlayerHealthPercentage >= 0)
+            {
+                _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentage);
+                StartTurn();
+            }
+            else
+            {
+                EndGame();
+            }
+        }
+
+        private int MonsterAttacks(Monster monster, Team activePlayerTeam)
+        {
+            var monsterAttackDamage = _monsterGrid.ActiveMonster.AttackDamage;
+            activePlayerTeam.TakeDamage(monsterAttackDamage);
+            return activePlayerTeam.GetPercentageOfRemainingHealth();
         }
     }
 }

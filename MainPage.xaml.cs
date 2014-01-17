@@ -5,6 +5,7 @@ using Microsoft.Phone.Controls;
 using PuzzleRpg.Heroes;
 using PuzzleRpg.Monsters;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -16,8 +17,14 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
-            PopupUtils.CoverScreen(100); //lol loading mask...
+            PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
+            MessageBus.Default.Register("EndGame", OnEndGame);
+        }
+
+        private void OnEndGame(object sender, NotificationEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void LoadGraphics(object sender, RoutedEventArgs e)

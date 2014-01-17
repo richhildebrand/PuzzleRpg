@@ -13,6 +13,8 @@ namespace PuzzleRpg.Heroes
         public string FullImagePath { get; set; }
         public string ProfileImagePath { get; set; }
 
+        private Hero() {} // Really C#?
+
         public Hero(string heroName, int hitpoints, int attackDamage, AppGlobals.Types type)
         {
             this.Name = heroName;
