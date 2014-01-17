@@ -13,6 +13,14 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="HeroGridTemplate">
+            <StackPanel VerticalAlignment="Top">
+                <TextBlock Text="{Binding Name}" />
+            </StackPanel>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -24,7 +32,7 @@
             <TextBlock Text="Stam" Margin="5" Style="{StaticResource PhoneTextTitle2Style}"/>
         </StackPanel>
 
-        <Grid x:Name="HeroGrid" Grid.Row="1"></Grid>
+        <phone:LongListSelector x:Name="HeroGrid" Grid.Row="1"  ItemTemplate="{StaticResource HeroGridTemplate}" />
     </Grid>
 
 </phone:PhoneApplicationPage>

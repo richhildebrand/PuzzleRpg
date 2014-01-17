@@ -33,23 +33,12 @@ namespace PuzzleRpg
             LoadPlayerHeroes(HeroGrid);
         }
 
-        private void LoadPlayerHeroes(Grid heroGrid)
+        private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
             var playerHeroes = HeroRepository.GetPlayerHeroes();
             var numberOfRowsToDisplay = playerHeroes.Count / HEROES_PER_ROW;
 
-            GridUtils.AddColumnsToGrid(heroGrid, HEROES_PER_ROW);
-            GridUtils.AddRowsToGrid(heroGrid, numberOfRowsToDisplay);
-
-            for (int i = 0; i < playerHeroes.Count; i++)
-            {
-                var heroProfile = new HeroProfile();
-                heroProfile.DrawHeroProfile(playerHeroes[i]);
-                heroGrid.Children.Add(heroProfile);
-                heroProfile.SetValue(Grid.RowProperty, i / HEROES_PER_ROW);
-                heroProfile.SetValue(Grid.ColumnProperty, i);
-                heroProfile.Height = Application.Current.Host.Content.ActualWidth / 5;
-            }
+            heroGrid.ItemsSource = playerHeroes;
         }
     }
 }
