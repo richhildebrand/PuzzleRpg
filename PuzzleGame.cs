@@ -62,6 +62,9 @@ namespace PuzzleRpg
             }
         }
 
+        //When it comes to this card, can't we remove the first parameter? Above when this
+        //Function is called it passes in the same _monsterGrid.ActiveMonster (which is global)
+        //Unless this is going to change at some point.
         private int MonsterAttacks(Monster monster, Team activePlayerTeam)
         {
             var monsterAttackDamage = _monsterGrid.ActiveMonster.AttackDamage;
