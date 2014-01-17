@@ -13,7 +13,9 @@ namespace PuzzleRpg.Database
         {
             _allMonsters = new List<Monster>();
                                          //Name   HP   Attack
-            _allMonsters.Add(new Monster("BlueDragon", 1000, 90));
+            //I made the BlueDragon have a more powerful attack since TotalHealth is now a large number.
+            //It was hard to actually see if the HealthBar was working or not
+            _allMonsters.Add(new Monster("BlueDragon", 1000, 1000));
             _allMonsters.Add(new Monster("GreenDragon", 1000, 90));
             _allMonsters.Add(new Monster("RedDragon", 1000, 90));
             _allMonsters.Add(new Monster("BigBlue", 300, 20));
