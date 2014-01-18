@@ -1,11 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
-using System.Windows.Controls;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
-using PuzzleRpg.Utils;
+using PuzzleRpg.Heroes;
 
 namespace PuzzleRpg
 {
@@ -36,9 +35,15 @@ namespace PuzzleRpg
         private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
             var playerHeroes = HeroRepository.GetPlayerHeroes();
-            var numberOfRowsToDisplay = playerHeroes.Count / HEROES_PER_ROW;
+            var numberOfHeroSlotsPlayerHasPurchased = 20; // || number Of Heroes (don't lose their drops!)
 
-            heroGrid.ItemsSource = playerHeroes;
+            var heroBoxRows = new List<Team>();
+            for (int i = 0; i < numberOfHeroSlotsPlayerHasPurchased / HEROES_PER_ROW; i++)
+            {
+                heroBoxRows.Add(new Team());
+            }
+
+            heroGrid.ItemsSource = heroBoxRows;
         }
     }
 }
