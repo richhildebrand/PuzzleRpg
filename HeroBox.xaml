@@ -16,8 +16,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="HeroGridTemplate">
-            <!--<TextBlock Text="{Binding Name}" />-->
-            <local:HeroProfileInHeroBox Name="{Binding Name}" />
+            <local:HeroProfileInHeroBox />
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 

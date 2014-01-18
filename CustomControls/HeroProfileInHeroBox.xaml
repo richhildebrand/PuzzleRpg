@@ -11,5 +11,6 @@
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <TextBlock Text="{Binding Name}" />
+        <Image Source="{Binding SlashProfileImagePath}" />
     </Grid>
 </UserControl>

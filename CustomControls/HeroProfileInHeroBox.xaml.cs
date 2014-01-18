@@ -6,8 +6,6 @@ namespace PuzzleRpg.CustomControls
 {
     public partial class HeroProfileInHeroBox : UserControl
     {
-        public String Name { get; set; }
-
         public HeroProfileInHeroBox()
         {
             InitializeComponent();
