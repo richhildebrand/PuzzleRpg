@@ -9,9 +9,9 @@ namespace PuzzleRpg.Utils
     {
         private static List<OrbMatch> _orbMatches;
 
-        public static List<OrbMatch> MatchAllOrbs(List<PuzzlePiece> puzzlePieces)
+        public static List<OrbMatch> MatchAllOrbs(List<PuzzlePiece> puzzlePieces, List<OrbMatch>  orbMatches)
         {
-            _orbMatches = new List<OrbMatch>();
+            _orbMatches = orbMatches; //set by side effect
             puzzlePieces = MatchHorizontalOrbsAndTheirVerticalConnections(puzzlePieces);
             puzzlePieces = MatchUnconnectedVerticalOrbs(puzzlePieces);
 

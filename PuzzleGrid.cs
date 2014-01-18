@@ -58,7 +58,7 @@ namespace PuzzleRpg
         }
 
         private async void MatchingAndReplacingPuzzlePieces(TaskCompletionSource<bool> taskSource) {
-            MatchedOrbs = MatchedOrbs.Concat(OrbMatcher.MatchAllOrbs(_puzzlePieces)).ToList();
+            MatchedOrbs = OrbMatcher.MatchAllOrbs(_puzzlePieces, MatchedOrbs);
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
             if (NeedToAddOrbs(_puzzlePieces))
             {
