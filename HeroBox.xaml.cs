@@ -37,12 +37,14 @@ namespace PuzzleRpg
             var playerHeroes = HeroRepository.GetPlayerHeroes();
             var numberOfHeroSlotsPlayerHasPurchased = 20; // || number Of Heroes (don't lose their drops!)
 
-            var heroBoxRows = new List<Team>();
-            for (int i = 0; i < numberOfHeroSlotsPlayerHasPurchased / HEROES_PER_ROW; i++)
+            var heroBoxRows = new List<Hero>();
+            for (int i = 0; i < numberOfHeroSlotsPlayerHasPurchased; i++)
             {
-                heroBoxRows.Add(new Team());
+                if (playerHeroes.Count > i)
+                {
+                    heroBoxRows.Add(playerHeroes[i]);
+                }
             }
-
             heroGrid.ItemsSource = heroBoxRows;
         }
     }
