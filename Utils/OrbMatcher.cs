@@ -9,29 +9,80 @@ namespace PuzzleRpg.Utils
     {
         public static List<PuzzlePiece> MatchHorizontalOrbrs(List<PuzzlePiece> puzzlePieces)
         {
+            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Column).ToList();
             for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
             {
                 var matchingNeighbors = GetMatchingRowNeighbors(puzzlePieces[pieceIndex], puzzlePieces);
                 if (matchingNeighbors.Count >= 3)
                 {
+                    matchingNeighbors = CheckNorthAndSouth(matchingNeighbors, puzzlePieces);
                     MarkAllOrbs(matchingNeighbors);
                     Debug.WriteLine(matchingNeighbors[0].Type.ToString() + matchingNeighbors.Count.ToString());
                 }
             }
+
+            // Now check for vertical matches that did not have a horizontal match
+            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
             return puzzlePieces;
         }
 
-        public static List<PuzzlePiece> MatchVerticalOrbs(List<PuzzlePiece> puzzlePieces)
+        private static List<PuzzlePiece> CheckNorthAndSouth(List<PuzzlePiece> currentlyMatchingPieces, List<PuzzlePiece> allPuzzlePieces)
         {
-            for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
+            var allVerticallyMatchedPieces = new List<PuzzlePiece>();
+            foreach (var puzzlePiece in currentlyMatchingPieces)
             {
-                var matchingNeighbors = GetMatchingColumnNeighbors(puzzlePieces[pieceIndex], puzzlePieces);
-                if (matchingNeighbors.Count >= 3)
+                //go all the way north
+                var northMostConnectedMatchingPiece = GetNorthMostConnectedMatchingPiece(puzzlePiece, allPuzzlePieces);
+                //come all the way south and add pieces
+                var oneLineOfVerticallyMatchedPieces = new List<PuzzlePiece>();
+                oneLineOfVerticallyMatchedPieces = WalkSouthMatchingOrbs(northMostConnectedMatchingPiece, oneLineOfVerticallyMatchedPieces, allPuzzlePieces);
+
+                if (oneLineOfVerticallyMatchedPieces.Count >= 3)
                 {
-                    MarkAllOrbs(matchingNeighbors);
+                    allVerticallyMatchedPieces = allVerticallyMatchedPieces.Concat(oneLineOfVerticallyMatchedPieces).ToList();
                 }
             }
-            return puzzlePieces;
+
+            currentlyMatchingPieces = currentlyMatchingPieces.Concat(allVerticallyMatchedPieces).ToList();
+            return currentlyMatchingPieces;
+        }
+  
+        private static List<PuzzlePiece> WalkSouthMatchingOrbs(PuzzlePiece northMostConnectedMatchingPiece, List<PuzzlePiece> matchingPieces, List<PuzzlePiece> allPuzzlePieces)
+        {
+            matchingPieces.Add(northMostConnectedMatchingPiece);
+
+            PuzzlePiece nextPiece = northMostConnectedMatchingPiece;
+            do
+            {
+                nextPiece = allPuzzlePieces.SingleOrDefault(pp => pp.Location.Column == nextPiece.Location.Column
+                                                               && pp.Location.Row == nextPiece.Location.Row + 1
+                                                               && pp.Type == nextPiece.Type);
+
+                nextPiece = AddPieceIfTypeMatches(northMostConnectedMatchingPiece, nextPiece, matchingPieces);
+            } while (nextPiece != null);
+
+            return matchingPieces;
+        }
+  
+        private static PuzzlePiece GetNorthMostConnectedMatchingPiece(PuzzlePiece puzzlePiece, List<PuzzlePiece> allPuzzlePieces)
+        {
+            bool foundNorthMostConnectedMatchingPiece;
+            PuzzlePiece currentPiece = puzzlePiece;
+            do
+            {
+                foundNorthMostConnectedMatchingPiece = true;
+                var nextPiece = allPuzzlePieces.SingleOrDefault(pp => pp.Location.Column == currentPiece.Location.Column
+                                                             && pp.Location.Row == currentPiece.Location.Row - 1
+                                                             && pp.Type == currentPiece.Type);
+
+                if (nextPiece != null)
+                {
+                    currentPiece = nextPiece;
+                    foundNorthMostConnectedMatchingPiece = false;
+                }
+            } while (!foundNorthMostConnectedMatchingPiece);
+
+            return currentPiece;
         }
 
         private static void MarkAllOrbs(List<PuzzlePiece> puzzlePiecesToMark)
@@ -50,29 +101,10 @@ namespace PuzzleRpg.Utils
             PuzzlePiece nextPiece = piece;
             do {
                 nextPiece = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == nextPiece.Location.Column + 1
-                                                                    && pp.Location.Row == nextPiece.Location.Row);
+                                                            && pp.Location.Row == nextPiece.Location.Row);
+
                 nextPiece = AddPieceIfTypeMatches(piece, nextPiece, matchingPieces);
             } while (nextPiece != null);
-
-            //var leftNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == piece.Location.Column - 1
-            //                                                    && pp.Location.Row == piece.Location.Row);
-            //AddPieceIfTypeMatches(piece, leftNeighbor, matchingPieces);
-
-            return matchingPieces;
-        }
-
-        private static List<PuzzlePiece> GetMatchingColumnNeighbors(PuzzlePiece piece, List<PuzzlePiece> puzzlePieces)
-        {
-            var matchingPieces = new List<PuzzlePiece>();
-            matchingPieces.Add(piece);
-
-            var upperNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Row == piece.Location.Row + 1
-                                                                && pp.Location.Column == piece.Location.Column);
-            AddPieceIfTypeMatches(piece, upperNeighbor, matchingPieces);
-
-            var lowerNeighbor = puzzlePieces.SingleOrDefault(pp => pp.Location.Row == piece.Location.Row - 1
-                                                                && pp.Location.Column == piece.Location.Column);
-            AddPieceIfTypeMatches(piece, lowerNeighbor, matchingPieces);
 
             return matchingPieces;
         }
