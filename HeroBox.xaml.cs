@@ -18,8 +18,8 @@ namespace PuzzleRpg
             InitializeComponent();
 
             // TODO: move somewhere that makes more sense
-            //if (HeroRepository.GetPlayerHeroes().Count == 0)
-            //{
+            if (HeroRepository.GetPlayerHeroes().Count == 0)
+            {
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(0));
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(1));
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(2));
@@ -28,7 +28,7 @@ namespace PuzzleRpg
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(5));
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(6));
                 HeroRepository.AddPlayerHero(HeroDatabase.GetHero(7));
-            //}
+            }
 
             LoadPlayerHeroes(HeroGrid);
         }

@@ -12,8 +12,12 @@ namespace PuzzleRpg.Database
 
         public static List<Hero> GetPlayerHeroes()
         {
-            var heroes = IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] as List<Hero>;
-            return heroes;
+            if (!IsolatedStorageSettings.ApplicationSettings.Contains(HEROES_KEY))
+            {
+                return new List<Hero>();
+            }
+            
+            return IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] as List<Hero>;
         }
 
         public static void AddPlayerHero(Hero newHero)
