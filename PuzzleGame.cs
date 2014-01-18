@@ -44,7 +44,7 @@ namespace PuzzleRpg
         {
             PopupUtils.CoverScreen(0);
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
-
+            var matches = _puzzleGrid.MatchedOrbs;
             //PlayerHeals
             //MonsterTakesDamage
 

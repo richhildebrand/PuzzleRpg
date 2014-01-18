@@ -13,7 +13,9 @@ namespace PuzzleRpg
         private readonly int _rows;
         private readonly int _columns;
         private readonly Grid _grid;
-        private List<PuzzlePiece> _puzzlePieces; 
+        private List<PuzzlePiece> _puzzlePieces;
+
+        public List<OrbMatch> MatchedOrbs { get; set; }
 
         public PuzzleGrid(Grid puzzleGrid, int rows, int columns)
         {
@@ -49,14 +51,14 @@ namespace PuzzleRpg
 
         public Task MatchAndReplacePuzzlePieces()
         {
+            MatchedOrbs = new List<OrbMatch>();
             var taskSource = new TaskCompletionSource<bool>();
             MatchingAndReplacingPuzzlePieces(taskSource);
             return taskSource.Task;
         }
 
         private async void MatchingAndReplacingPuzzlePieces(TaskCompletionSource<bool> taskSource) {
-            _puzzlePieces = OrbMatcher.MatchAllOrbs(_puzzlePieces);
-            //_puzzlePieces = OrbMatcher.MatchVerticalOrbs(_puzzlePieces);
+            MatchedOrbs = MatchedOrbs.Concat(OrbMatcher.MatchAllOrbs(_puzzlePieces)).ToList();
             _puzzlePieces = RemoveMatchedOrbs(_puzzlePieces, _grid);
             if (NeedToAddOrbs(_puzzlePieces))
             {

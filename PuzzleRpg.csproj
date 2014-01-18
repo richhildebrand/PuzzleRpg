@@ -125,6 +125,7 @@
     <Compile Include="Monsters\MonsterGrid.cs" />
     <Compile Include="Node.cs" />
     <Compile Include="MatchCounter\MatchCounter.cs" />
+    <Compile Include="OrbMatch.cs" />
     <Compile Include="OrbMove.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuzzleGame.cs" />

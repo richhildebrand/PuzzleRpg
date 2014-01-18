@@ -7,15 +7,19 @@ namespace PuzzleRpg.Utils
 {
     public static class OrbMatcher
     {
-        public static List<PuzzlePiece> MatchAllOrbs(List<PuzzlePiece> puzzlePieces)
+        private static List<OrbMatch> _orbMatches;
+
+        public static List<OrbMatch> MatchAllOrbs(List<PuzzlePiece> puzzlePieces)
         {
+            _orbMatches = new List<OrbMatch>();
             puzzlePieces = MatchHorizontalOrbsAndTheirVerticalConnections(puzzlePieces);
-            return MatchUnconnectedVerticalOrbs(puzzlePieces);
+            puzzlePieces = MatchUnconnectedVerticalOrbs(puzzlePieces);
+
+            return _orbMatches;
         }
   
         private static List<PuzzlePiece> MatchUnconnectedVerticalOrbs(List<PuzzlePiece> puzzlePieces)
         {
-            // Now check for vertical matches that did not have a horizontal match
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
 
             for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
@@ -24,7 +28,8 @@ namespace PuzzleRpg.Utils
                 if (matchingNeighbors.Count >= 3)
                 {
                     MarkAllOrbs(matchingNeighbors);
-                    Debug.WriteLine(matchingNeighbors[0].Type.ToString() + matchingNeighbors.Count.ToString());
+                    _orbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, false));
+                    //TODO: animate this
                 }
             }
 
@@ -41,7 +46,8 @@ namespace PuzzleRpg.Utils
                 {
                     matchingNeighbors = CheckNorthAndSouth(matchingNeighbors, puzzlePieces);
                     MarkAllOrbs(matchingNeighbors);
-                    Debug.WriteLine(matchingNeighbors[0].Type.ToString() + matchingNeighbors.Count.ToString());
+                    _orbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, true));
+                    //TODO: animate this
                 }
             }
 
