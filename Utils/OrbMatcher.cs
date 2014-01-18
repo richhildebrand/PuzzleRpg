@@ -7,7 +7,31 @@ namespace PuzzleRpg.Utils
 {
     public static class OrbMatcher
     {
-        public static List<PuzzlePiece> MatchHorizontalOrbrs(List<PuzzlePiece> puzzlePieces)
+        public static List<PuzzlePiece> MatchAllOrbs(List<PuzzlePiece> puzzlePieces)
+        {
+            puzzlePieces = MatchHorizontalOrbsAndTheirVerticalConnections(puzzlePieces);
+            return MatchUnconnectedVerticalOrbs(puzzlePieces);
+        }
+  
+        private static List<PuzzlePiece> MatchUnconnectedVerticalOrbs(List<PuzzlePiece> puzzlePieces)
+        {
+            // Now check for vertical matches that did not have a horizontal match
+            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
+
+            for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
+            {
+                var matchingNeighbors = GetMatchingColumnNeighbors(puzzlePieces[pieceIndex], puzzlePieces);
+                if (matchingNeighbors.Count >= 3)
+                {
+                    MarkAllOrbs(matchingNeighbors);
+                    Debug.WriteLine(matchingNeighbors[0].Type.ToString() + matchingNeighbors.Count.ToString());
+                }
+            }
+
+            return puzzlePieces;
+        }
+
+        private static List<PuzzlePiece> MatchHorizontalOrbsAndTheirVerticalConnections(List<PuzzlePiece> puzzlePieces)
         {
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Column).ToList();
             for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
@@ -21,8 +45,6 @@ namespace PuzzleRpg.Utils
                 }
             }
 
-            // Now check for vertical matches that did not have a horizontal match
-            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
             return puzzlePieces;
         }
 
@@ -31,9 +53,7 @@ namespace PuzzleRpg.Utils
             var allVerticallyMatchedPieces = new List<PuzzlePiece>();
             foreach (var puzzlePiece in currentlyMatchingPieces)
             {
-                //go all the way north
                 var northMostConnectedMatchingPiece = GetNorthMostConnectedMatchingPiece(puzzlePiece, allPuzzlePieces);
-                //come all the way south and add pieces
                 var oneLineOfVerticallyMatchedPieces = new List<PuzzlePiece>();
                 oneLineOfVerticallyMatchedPieces = WalkSouthMatchingOrbs(northMostConnectedMatchingPiece, oneLineOfVerticallyMatchedPieces, allPuzzlePieces);
 
@@ -102,6 +122,23 @@ namespace PuzzleRpg.Utils
             do {
                 nextPiece = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == nextPiece.Location.Column + 1
                                                             && pp.Location.Row == nextPiece.Location.Row);
+
+                nextPiece = AddPieceIfTypeMatches(piece, nextPiece, matchingPieces);
+            } while (nextPiece != null);
+
+            return matchingPieces;
+        }
+
+        private static List<PuzzlePiece> GetMatchingColumnNeighbors(PuzzlePiece piece, List<PuzzlePiece> puzzlePieces)
+        {
+            var matchingPieces = new List<PuzzlePiece>();
+            matchingPieces.Add(piece);
+
+            PuzzlePiece nextPiece = piece;
+            do
+            {
+                nextPiece = puzzlePieces.SingleOrDefault(pp => pp.Location.Column == nextPiece.Location.Column
+                                                            && pp.Location.Row == nextPiece.Location.Row + 1);
 
                 nextPiece = AddPieceIfTypeMatches(piece, nextPiece, matchingPieces);
             } while (nextPiece != null);
