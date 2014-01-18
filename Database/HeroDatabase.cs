@@ -13,7 +13,7 @@ namespace PuzzleRpg.Database
         static HeroDatabase()
         {
             _allHeroes = new List<Hero>();
-                                    //Name  HP  Attack  Type
+                                    //Name  HP  Attack  Type HealsFor
             _allHeroes.Add(new Hero("BlueDragon", 1000, 90, AppGlobals.Types.Water, 200));
             _allHeroes.Add(new Hero("GreenDragon", 1000, 90, AppGlobals.Types.Wood, 200));
             _allHeroes.Add(new Hero("RedDragon", 1000, 90, AppGlobals.Types.Fire, 200));
