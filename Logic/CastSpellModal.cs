@@ -4,9 +4,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 
-namespace PuzzleRpg.Heroes
+namespace PuzzleRpg.Logic
 {
     public class CastSpellModal
     {

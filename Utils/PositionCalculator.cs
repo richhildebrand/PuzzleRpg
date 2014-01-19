@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using PuzzleRpg.Models;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.Utils

@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
-namespace PuzzleRpg
+namespace PuzzleRpg.Logic
 {
     public class PuzzleGrid
     {

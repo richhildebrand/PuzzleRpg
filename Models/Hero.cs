@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace PuzzleRpg.Heroes
+namespace PuzzleRpg.Models
 {
     public class Hero
     {

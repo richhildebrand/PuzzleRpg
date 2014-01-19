@@ -9,7 +9,7 @@ using Microsoft.Expression.Interactivity.Layout;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
-namespace PuzzleRpg
+namespace PuzzleRpg.Models
 {
     public class PuzzlePiece
     {

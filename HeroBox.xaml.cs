@@ -4,7 +4,7 @@ using System.Linq;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Models;
 
 namespace PuzzleRpg
 {

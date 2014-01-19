@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq;
+using PuzzleRpg.Monsters;
 
-namespace PuzzleRpg.Monsters
+namespace PuzzleRpg.Models
 {
     public class Level
     {

@@ -3,9 +3,10 @@ using System.Linq;
 using System.Windows.Input;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
+using PuzzleRpg.Monsters;
 using PuzzleRpg.Utils;
 
-namespace PuzzleRpg.Monsters
+namespace PuzzleRpg.Logic
 {
     public class MonsterGrid
     {

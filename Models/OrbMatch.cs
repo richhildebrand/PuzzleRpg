@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace PuzzleRpg
+namespace PuzzleRpg.Models
 {
     public class OrbMatch
     {

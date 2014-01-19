@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Database
 {

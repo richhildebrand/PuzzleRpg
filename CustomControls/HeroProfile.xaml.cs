@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.CustomControls

@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpg", "PuzzleRpg.csproj", "{EA47488F-D832-4913-B91D-3507CEF2291D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpgTests", "PuzzleRpgTests\PuzzleRpgTests.csproj", "{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,26 +39,6 @@ Global
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Release|x86.ActiveCfg = Release|x86
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Release|x86.Build.0 = Release|x86
 		{EA47488F-D832-4913-B91D-3507CEF2291D}.Release|x86.Deploy.0 = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.ActiveCfg = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.Build.0 = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|ARM.Deploy.0 = Debug|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.ActiveCfg = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.Build.0 = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Debug|x86.Deploy.0 = Debug|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|Any CPU.ActiveCfg = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|ARM.ActiveCfg = Release|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|ARM.Build.0 = Release|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|ARM.Deploy.0 = Release|ARM
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|Mixed Platforms.Build.0 = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|x86.ActiveCfg = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|x86.Build.0 = Release|x86
-		{DFDD3B16-E210-4C71-88F4-C1B7B9E803DD}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Linq;
 using PuzzleRpg.CustomControls;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
-namespace PuzzleRpg
+namespace PuzzleRpg.Logic
 {
     public class PuzzleGame
     {

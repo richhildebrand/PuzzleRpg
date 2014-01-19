@@ -2,7 +2,8 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Logic;
+using PuzzleRpg.Models;
 
 namespace PuzzleRpg.CustomControls
 {

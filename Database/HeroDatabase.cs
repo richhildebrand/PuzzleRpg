@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using PuzzleRpg.Heroes;
+using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
 
 namespace PuzzleRpg.Database

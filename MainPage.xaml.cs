@@ -2,8 +2,8 @@
 using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
-using PuzzleRpg.Heroes;
-using PuzzleRpg.Monsters;
+using PuzzleRpg.Logic;
+using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
