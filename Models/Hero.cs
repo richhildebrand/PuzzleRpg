@@ -13,7 +13,6 @@ namespace PuzzleRpg.Models
 
         public string FullImagePath { get; set; }
         public string ProfileImagePath { get; set; }
-        public string SlashProfileImagePath { get; set; }
 
         private Hero() {} // Really C#?
 
@@ -27,7 +26,6 @@ namespace PuzzleRpg.Models
 
             FullImagePath = AppGlobals.HeroImagePathPrefix + heroName + "/" + heroName + "Full.png";
             ProfileImagePath = AppGlobals.HeroImagePathPrefix + heroName + "/" + heroName + "Profile.png";
-            SlashProfileImagePath = "/" + ProfileImagePath;
         }
     }
 }

@@ -5,6 +5,7 @@ using Microsoft.Phone.Controls;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
+using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
@@ -37,15 +38,20 @@ namespace PuzzleRpg
             var playerHeroes = HeroRepository.GetPlayerHeroes();
             var numberOfHeroSlotsPlayerHasPurchased = 20; // || number Of Heroes (don't lose their drops!)
 
-            var heroBoxRows = new List<Hero>();
+            var heroSlots = new List<HeroProfileView>();
             for (int i = 0; i < numberOfHeroSlotsPlayerHasPurchased; i++)
             {
+                var heroProfile = new HeroProfileView();
                 if (playerHeroes.Count > i)
                 {
-                    heroBoxRows.Add(playerHeroes[i]);
+                    var hero = playerHeroes[i];
+                    heroProfile.ProfileImageSource = "/" + hero.ProfileImagePath;
+                    heroProfile.OrbImageSource = ImageUtils.GetOrbImagePathFromType(hero.Type);
+                    heroProfile.BorderImageSource = "/" + ImageUtils.GetProfileBorderImagePathFromType(hero.Type);
                 }
+                heroSlots.Add(heroProfile);
             }
-            heroGrid.ItemsSource = heroBoxRows;
+            heroGrid.ItemsSource = heroSlots;
         }
     }
 }

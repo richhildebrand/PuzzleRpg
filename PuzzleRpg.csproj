@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Hero.cs" />
+    <Compile Include="Models\HeroProfileView.cs" />
     <Compile Include="Models\Level.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Team.cs" />

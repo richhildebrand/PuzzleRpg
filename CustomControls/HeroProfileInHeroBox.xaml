@@ -11,7 +11,7 @@
 
     <Border BorderThickness="1" CornerRadius="5" Margin="0" Padding="5" HorizontalAlignment="Center" VerticalAlignment="Center">
         <Border.Background>
-            <ImageBrush x:Name="BorderImage" Stretch="Fill" />
+            <ImageBrush ImageSource="{Binding BorderImageSource}"  Stretch="Fill" />
         </Border.Background>
 
         <Grid x:Name="LayoutRoot" Margin="0">
@@ -26,8 +26,8 @@
             </Grid.ColumnDefinitions>
 
             <Image Source="/Assets/Backgrounds/HeroProfile.png"  Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />
-            <Image Source="{Binding SlashProfileImagePath}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />
-            <Image Grid.Row="0" Grid.Column="0" Margin="-6, -6, 0, 0" Stretch="Uniform" />
+            <Image Source="{Binding ProfileImageSource}" Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Grid.ColumnSpan="2" Stretch="Fill" />
+            <Image Source="{Binding OrbImageSource}" Grid.Row="0" Grid.Column="0" Margin="-6, -6, 0, 0" Stretch="Uniform" />
         </Grid>
     </Border>
 </UserControl>
