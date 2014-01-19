@@ -46,16 +46,19 @@ namespace PuzzleRpg
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
             var matches = _puzzleGrid.MatchedOrbs;
             //PlayerHeals
+
             //MonsterTakesDamage
 
+            //MonsterAttacks
             var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
                                                                  _activeTeam);
 
             var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");            
 
+            //PlayerDiesOrNewGameStarts
             if (remainingPlayerHealthPercentage >= 0)
             {
-                IfHealOrbsMatchedSetNewHealthPercentage(listContainsHeals, remainingPlayerHealthPercentage);
+                PlayerHeals(listContainsHeals, remainingPlayerHealthPercentage);
                 
                 _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentage);
                 StartTurn();
@@ -66,8 +69,13 @@ namespace PuzzleRpg
             }
         }
   
-        //Rich - I don't like the name for this, what do you think? FIX IT :).
-        private void IfHealOrbsMatchedSetNewHealthPercentage(bool listContainsHeals, int remainingPlayerHealthPercentage)
+        //Rich - I don't like the name for this, what do you think? FIX IT :)
+
+        //I think most of this work should be pushed into team.which makes the new name better.
+        //Model it after Monster attacks.
+        //Also the player attacks / heals before the monster attacks, I added some comments
+        //for event order
+        private void PlayerHeals(bool listContainsHeals, int remainingPlayerHealthPercentage)
         {
             if (listContainsHeals)
             {
@@ -78,6 +86,8 @@ namespace PuzzleRpg
   
         //Rich - This works for now. What do you think?
         //Basically if the total percentage of health will be above 100%, I just set the total percent to be 100% to avoid any weird errors.
+
+        //Logic sounds fine but push it into Team.GetPercentageOfRemainingHealth().
         private int CalculatePercentageOfHealthToReturn(int remainingPlayerHealthPercentage)
         {
             var percentageToReturn = HealTeam(_activeTeam);
