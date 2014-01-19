@@ -16,7 +16,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="HeroGridTemplate">
-            <local:HeroProfileInHeroBox />
+            <local:HeroProfileInHeroBox Margin="3"/>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 

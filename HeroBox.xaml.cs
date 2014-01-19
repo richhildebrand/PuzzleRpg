@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Microsoft.Phone.Controls;
-using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
@@ -51,6 +51,9 @@ namespace PuzzleRpg
                 }
                 heroSlots.Add(heroProfile);
             }
+
+            heroGrid.GridCellSize = new System.Windows.Size(Application.Current.Host.Content.ActualWidth / HEROES_PER_ROW,
+                                                            100);
             heroGrid.ItemsSource = heroSlots;
         }
     }
