@@ -51,13 +51,12 @@ namespace PuzzleRpg
             var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
                                                                  _activeTeam);
 
-            //This will probably change :)
-            var remainingPlayerHealthPercentageAfterHeals = CalculatePercentageOfHealthToReturn(remainingPlayerHealthPercentage);
+            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");            
 
             if (remainingPlayerHealthPercentage >= 0)
             {
-                //This will probably change as well
-                _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentageAfterHeals);
+                IfHealOrbsMatchedSetNewHealthPercentage(listContainsHeals, remainingPlayerHealthPercentage);
+                
                 _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentage);
                 StartTurn();
             }
@@ -67,33 +66,29 @@ namespace PuzzleRpg
             }
         }
   
-        //This method is obviously need to change but I just wanted to see if the HealsFor prop was working.
-        //It will need to check on the orb type that was matched.
-        //If it is heal orb then heal the "TotalHealsFor" amount up to 100%
+        //Rich - I don't like the name for this, what do you think? FIX IT :).
+        private void IfHealOrbsMatchedSetNewHealthPercentage(bool listContainsHeals, int remainingPlayerHealthPercentage)
+        {
+            if (listContainsHeals)
+            {
+                var remainingPlayerHealthPercentageAfterHeals = CalculatePercentageOfHealthToReturn(remainingPlayerHealthPercentage);
+                _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentageAfterHeals);
+            }
+        }
+  
+        //Rich - This works for now. What do you think?
+        //Basically if the total percentage of health will be above 100%, I just set the total percent to be 100% to avoid any weird errors.
         private int CalculatePercentageOfHealthToReturn(int remainingPlayerHealthPercentage)
         {
-            var percentageToReturn = 0;
-            //Currently will heal automatically if the team's health percentage drops under 80%
-            if (remainingPlayerHealthPercentage < 80)
+            var percentageToReturn = HealTeam(_activeTeam);
+            var totalPercent = percentageToReturn + remainingPlayerHealthPercentage;
+            if (totalPercent > 100)
             {
-                percentageToReturn = HealTeam(_activeTeam);
-            }
-            else
-            {
-                percentageToReturn = 0;
+                percentageToReturn = 100;
             }
             return percentageToReturn;
         }
 
-        //When it comes to this card, can't we remove the first parameter? Above when this
-        //Function is called it passes in the same _monsterGrid.ActiveMonster (which is global)
-        //Unless this is going to change at some point.
-
-        // I feel passing the paramaters make this method easier to extract later.
-        // Think of it from a unit it testing stand point, we would want to inject our dependencies.
-
-        // Possibly I should only pass monster.AttackDamage but I wanted to the method to be flexable
-        // for things like adding monster abilites or player buffs with out the need to modify OnEndTurn
         private int MonsterAttacks(Monster monster, Team activePlayerTeam)
         {
             var monsterAttackDamage = monster.AttackDamage;
