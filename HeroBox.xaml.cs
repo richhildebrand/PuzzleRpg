@@ -6,6 +6,7 @@ using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -16,6 +17,7 @@ namespace PuzzleRpg
         public HeroBox()
         {
             InitializeComponent();
+            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
 
             // TODO: move somewhere that makes more sense
             if (HeroRepository.GetPlayerHeroes().Count == 0)
@@ -31,6 +33,11 @@ namespace PuzzleRpg
             }
 
             LoadPlayerHeroes(HeroGrid);
+        }
+
+        private void OnShowHeroDetails(object sender, NotificationEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void LoadPlayerHeroes(LongListSelector heroGrid)

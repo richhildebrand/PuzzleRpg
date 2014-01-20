@@ -115,6 +115,9 @@
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeroDetails.xaml.cs">
+      <DependentUpon>HeroDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\HeroProfileView.cs" />
@@ -173,6 +176,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HeroBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeroDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
