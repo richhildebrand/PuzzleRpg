@@ -32,6 +32,7 @@ namespace PuzzleRpg.Logic
 
         public void EndGame() {
             //Clear loot / drops
+            PopupUtils.UncoverScreen();
             MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
         }
 
@@ -53,7 +54,7 @@ namespace PuzzleRpg.Logic
             var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
                                                                  _activeTeam);
 
-            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");            
+            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");
 
             //PlayerDiesOrNewGameStarts
             if (remainingPlayerHealthPercentage >= 0)
