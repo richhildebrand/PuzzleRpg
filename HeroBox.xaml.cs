@@ -18,6 +18,7 @@ namespace PuzzleRpg
         {
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+            PopupUtils.UncoverScreen(); //just to be safe
 
             // TODO: move somewhere that makes more sense
             if (HeroRepository.GetPlayerHeroes().Count == 0)
