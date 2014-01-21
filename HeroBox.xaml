@@ -22,14 +22,13 @@
 
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0" >
-            <TextBlock Text="XP" Margin="5" Style="{StaticResource PhoneTextTitle2Style}"/>
-            <TextBlock Text="Stam" Margin="5" Style="{StaticResource PhoneTextTitle2Style}"/>
-        </StackPanel>
+        <Grid Grid.Row="0" >
+            <local:PlayerStats />
+        </Grid>
 
         <phone:LongListSelector 
             x:Name="HeroGrid" Grid.Row="1"
