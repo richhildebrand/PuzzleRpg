@@ -82,8 +82,9 @@ namespace PuzzleRpg.Models
             var totalPercent = currentPercentage + percentageToHeal;
             if (totalPercent > 100)
             {
-                currentPercentage = 100;
+                totalPercent = 100;
             }
+            CurrentHealth = Convert.ToInt32(((double)totalPercent / 100) * TotalHealth);
             return totalPercent;
         }
     }
