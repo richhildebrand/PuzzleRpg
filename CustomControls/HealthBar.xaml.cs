@@ -12,7 +12,7 @@ namespace PuzzleRpg.CustomControls
             SetHealthPercentage(100);
         }
 
-        public void SetHealthPercentage(int healthPercentage) {
+        public void SetHealthPercentage(double healthPercentage) {
             HealthPercentage.ColumnDefinitions[0].Width = new System.Windows.GridLength(healthPercentage, System.Windows.GridUnitType.Star);
             HealthPercentage.ColumnDefinitions[1].Width = new System.Windows.GridLength(100 - healthPercentage, System.Windows.GridUnitType.Star);
         }

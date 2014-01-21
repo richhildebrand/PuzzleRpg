@@ -46,7 +46,15 @@ namespace PuzzleRpg.Logic
             PopupUtils.CoverScreen(0);
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
             var matches = _puzzleGrid.MatchedOrbs;
+            var currentHealth = _activeTeam.CurrentHealth;
+
             //PlayerHeals
+            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");
+
+            if (listContainsHeals)
+            {
+                DoHealing(currentHealth);
+            }
 
             //MonsterTakesDamage
 
@@ -54,13 +62,9 @@ namespace PuzzleRpg.Logic
             var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
                                                                  _activeTeam);
 
-            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");
-
             //PlayerDiesOrNewGameStarts
             if (remainingPlayerHealthPercentage >= 0)
-            {
-                PlayerHeals(listContainsHeals, remainingPlayerHealthPercentage);
-                
+            {                
                 _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentage);
                 StartTurn();
             }
@@ -70,47 +74,16 @@ namespace PuzzleRpg.Logic
             }
         }
   
-        //Rich - I don't like the name for this, what do you think? FIX IT :)
-
-        //I think most of this work should be pushed into team.which makes the new name better.
-        //Model it after Monster attacks.
-        //Also the player attacks / heals before the monster attacks, I added some comments
-        //for event order
-        private void PlayerHeals(bool listContainsHeals, int remainingPlayerHealthPercentage)
+        private void DoHealing(int currentHealth)
         {
-            if (listContainsHeals)
-            {
-                var remainingPlayerHealthPercentageAfterHeals = CalculatePercentageOfHealthToReturn(remainingPlayerHealthPercentage);
-                _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentageAfterHeals);
-            }
-        }
-  
-        //Rich - This works for now. What do you think?
-        //Basically if the total percentage of health will be above 100%, I just set the total percent to be 100% to avoid any weird errors.
-
-        //Logic sounds fine but push it into Team.GetPercentageOfRemainingHealth().
-        private int CalculatePercentageOfHealthToReturn(int remainingPlayerHealthPercentage)
-        {
-            var percentageToReturn = HealTeam(_activeTeam);
-            var totalPercent = percentageToReturn + remainingPlayerHealthPercentage;
-            if (totalPercent > 100)
-            {
-                percentageToReturn = 100;
-            }
-            return percentageToReturn;
+            var remainingPlayerHealthPercentageAfterHeals = _activeTeam.GetPercentageOfRemainingHealth(currentHealth);
+            _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentageAfterHeals);
         }
 
         private int MonsterAttacks(Monster monster, Team activePlayerTeam)
         {
             var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(monsterAttackDamage);
-            return activePlayerTeam.GetPercentageOfRemainingHealth();
-        }
-
-        private int HealTeam(Team activePlayerTeam)
-        {
-            var amountToHeal = _activeTeam.GetTotalAmountOfHealPoints();
-            activePlayerTeam.Heal(amountToHeal);
             return activePlayerTeam.GetPercentageOfRemainingHealth();
         }
     }
