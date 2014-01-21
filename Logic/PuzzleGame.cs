@@ -83,7 +83,7 @@ namespace PuzzleRpg.Logic
         private int MonsterAttacks(Monster monster, Team activePlayerTeam)
         {
             var monsterAttackDamage = monster.AttackDamage;
-            activePlayerTeam.TakeDamage(100000);
+            activePlayerTeam.TakeDamage(1000);
             return activePlayerTeam.GetPercentageOfRemainingHealth();
         }
     }
