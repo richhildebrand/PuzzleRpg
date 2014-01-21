@@ -24,7 +24,7 @@
                     <ColumnDefinition Width="0*" />
                 </Grid.ColumnDefinitions>
 
-                <Rectangle Grid.Column="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Magenta" />
+                <Rectangle x:Name="ThisStatBar" Grid.Column="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="{Binding Color}" />
             </Grid>
 
             <Rectangle Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Transparent"/>
