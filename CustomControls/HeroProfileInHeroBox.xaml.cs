@@ -16,7 +16,9 @@ namespace PuzzleRpg.CustomControls
 
         public void OnSelectHero(object sender, GestureEventArgs e)
         {
-            MessageBus.Default.Notify("ShowHeroDetails", new Object(), new NotificationEventArgs());
+            var target = sender as Grid;
+            var targetId = target.Tag.ToString();
+            MessageBus.Default.Notify("ShowHeroDetails", new Object(), new NotificationEventArgs(targetId));
         }
     }
 }

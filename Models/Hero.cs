@@ -5,6 +5,7 @@ namespace PuzzleRpg.Models
 {
     public class Hero
     {
+        public Guid Id { get; set; }
         public int HitPoints { get; private set; }
         public int AttackDamage { get; private set; }
         public string Name { get; set; }
@@ -18,9 +19,10 @@ namespace PuzzleRpg.Models
 
         public Hero(string heroName, int hitpoints, int attackDamage, AppGlobals.Types type, int healsFor)
         {
-            this.Name = heroName;
-            this.AttackDamage = attackDamage;
-            this.HitPoints = hitpoints;
+            Id = Guid.NewGuid();
+            Name = heroName;
+            AttackDamage = attackDamage;
+            HitPoints = hitpoints;
             Type = type;
             this.HealsFor = healsFor;
 

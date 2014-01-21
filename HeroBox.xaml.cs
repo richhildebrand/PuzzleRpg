@@ -38,7 +38,9 @@ namespace PuzzleRpg
 
         private void OnShowHeroDetails(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml", UriKind.RelativeOrAbsolute));
+            var id = e.Message;
+            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml?playerOwnedHeroId=" + id,
+                                            UriKind.RelativeOrAbsolute));
         }
 
         private void LoadPlayerHeroes(LongListSelector heroGrid)
@@ -56,6 +58,7 @@ namespace PuzzleRpg
                     heroProfile.ProfileImageSource = "/" + hero.ProfileImagePath;
                     heroProfile.OrbImageSource = ImageUtils.GetOrbImagePathFromType(hero.Type);
                     heroProfile.BorderImageSource = "/" + ImageUtils.GetProfileBorderImagePathFromType(hero.Type);
+                    heroProfile.Id = hero.Id.ToString();
                 }
                 heroSlots.Add(heroProfile);
             }
