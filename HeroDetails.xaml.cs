@@ -26,7 +26,13 @@ namespace PuzzleRpg
             {
                 var heroGuid = new Guid(heroId);
                 ThisHero = HeroRepository.GetPlayerHeroes().Single(h => h.Id == heroGuid);
+                BindHero(ThisHero);
             }
+        }
+  
+        private void BindHero(Hero hero)
+        {
+            FullHeroImage.Source = ImageUtils.GetImageSourceFromPath(hero.FullImagePath);
         }
     }
 }
