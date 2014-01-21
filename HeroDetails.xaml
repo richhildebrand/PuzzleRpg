@@ -27,6 +27,20 @@
             <Image Source="Assets/Backdrops/Parchment.png" Stretch="Fill" />
             <Image x:Name="FullHeroImage" ></Image>
         </Grid>
+        
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Row="0" Text="Level 25 of 99" FontSize="50" />
+            <TextBlock Grid.Row="1" Text="Hit Points 175" FontSize="50" />
+            <TextBlock Grid.Row="2" Text="Heals For 25" FontSize="50" />
+            <TextBlock Grid.Row="3" Text="Attacks For 53" FontSize="50" />
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>
