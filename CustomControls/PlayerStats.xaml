@@ -1,0 +1,30 @@
+﻿<UserControl x:Class="PuzzleRpg.CustomControls.PlayerStats"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PuzzleRpg.CustomControls"
+    mc:Ignorable="d"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    d:DesignHeight="480" d:DesignWidth="480">
+    
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="5*"/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.25*"/>
+            <ColumnDefinition Width="9*"/>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Exp" Margin="3" VerticalAlignment="Stretch" />
+        <local:StatBar x:Name="ExpBar" Grid.Row="0" Grid.Column="1" Margin="3" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Stam" Margin="3" VerticalAlignment="Stretch" />
+        <local:StatBar x:Name="StamBar" Grid.Row="1" Grid.Column="1" Margin="3" />
+    </Grid>
+</UserControl>
