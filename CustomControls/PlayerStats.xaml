@@ -20,11 +20,11 @@
             <ColumnDefinition Width="1.25*"/>
             <ColumnDefinition Width="9*"/>
         </Grid.ColumnDefinitions>
-        
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="XP" Margin="5" Style="{StaticResource PhoneTextTitle3Style}" />
-        <local:HealthBar Grid.Row="0" Grid.Column="1"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Stam" Margin="5" Style="{StaticResource PhoneTextTitle3Style}" />
-        <local:HealthBar Grid.Row="1" Grid.Column="1"/>
+        <TextBlock Grid.Row="0" Grid.Column="0" Text="Exp" Margin="3" VerticalAlignment="Stretch" />
+        <local:StatBar Grid.Row="0" Grid.Column="1" Margin="3" />
+
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Stam" Margin="3" VerticalAlignment="Stretch" />
+        <local:StatBar Grid.Row="1" Grid.Column="1" Margin="3" />
     </Grid>
 </UserControl>
