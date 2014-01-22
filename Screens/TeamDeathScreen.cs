@@ -67,6 +67,11 @@ namespace PuzzleRpg.Screens
   
         private Grid PopulateTopRow(int row, Grid grid)
         {
+            var textBlock = new TextBlock();
+            textBlock.Text = "YOU DIED, RICH! - I actually think this should be a completely separate screen that can show stats and stuff....SEE TRELLO COMMENTS! :D";
+            textBlock.TextWrapping = TextWrapping.Wrap;
+            textBlock.FontSize = 25;
+            grid.Children.Add(textBlock);
             return grid;
         }
 
