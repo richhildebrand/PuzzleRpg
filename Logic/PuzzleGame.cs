@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Input;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
+using PuzzleRpg.Screens;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
@@ -70,6 +72,7 @@ namespace PuzzleRpg.Logic
             }
             else
             {
+                DisplayDeathDialog();
                 EndGame();
             }
         }
@@ -85,6 +88,12 @@ namespace PuzzleRpg.Logic
             var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(1000);
             return activePlayerTeam.GetPercentageOfRemainingHealth();
+        }
+
+        private void DisplayDeathDialog()
+        {
+            var teamDeathDialog = new TeamDeathScreen();
+            teamDeathDialog.Show();
         }
     }
 }
