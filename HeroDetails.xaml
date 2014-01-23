@@ -21,7 +21,7 @@
             <RowDefinition Height="4*"/>
         </Grid.RowDefinitions>
 
-        <local:PlayerStats Grid.Row="0"/>
+        <local:PlayerStats Grid.Row="0" />
 
         <Grid x:Name="TopHalf" Grid.Row="1" >
             <Image Source="Assets/Backdrops/Parchment.png" Stretch="Fill" />
@@ -31,7 +31,7 @@
         <Grid Grid.Row="2">
             <Border CornerRadius="30" Padding="10">
                 <Border.Background>
-                    <ImageBrush ImageSource="/Assets/ProfileBorders/Water.png" Stretch="Fill" />
+                    <ImageBrush x:Name="Border" ImageSource="/Assets/ProfileBorders/Water.png" Stretch="Fill" />
                 </Border.Background>
 
                 <Border CornerRadius="30" Padding="10">
@@ -42,7 +42,6 @@
                     <Grid>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="1*"/>
-                            <RowDefinition Height="0*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
                             <RowDefinition Height="1*"/>
@@ -54,14 +53,13 @@
                             <ColumnDefinition Width="9*"/>
                         </Grid.ColumnDefinitions>
 
-                        <Image Grid.Column="0" Margin="-20, -20, 0, 0" Grid.Row="0" Source="Assets/Orbs/WaterOrb.png" Stretch="Uniform"/>
-                        <TextBlock Grid.Column="1" Padding="5, 0, 5, 0" Margin="0, -18, 0, 0" Grid.Row="0" Text="Blue Dragon"  FontSize="50"/>
-                        <!--<Image Grid.ColumnSpan="2" Margin="-10, -10, -10, 0" Grid.Row="1" Source="Assets/ProfileBorders/Water.png" Stretch="Fill"/>-->
+                        <Image x:Name="OrbImage" Grid.Column="0" Margin="-20, -20, 0, 0" Grid.Row="0" Source="Assets/Orbs/WaterOrb.png" Stretch="Uniform"/>
+                        <TextBlock x:Name="HeroName" Grid.Column="1" Padding="5, 0, 5, 0" Margin="0, -18, 0, 0" Grid.Row="0" Text="Blue Dragon"  FontSize="50"/>
 
-                        <TextBlock Grid.ColumnSpan="2" Grid.Row="2" Margin="15, 0, 0, 0"  Text="Level 25 of 99" FontSize="40" />
-                        <TextBlock Grid.ColumnSpan="2" Grid.Row="3" Margin="15, 0, 0, 0"  Text="Hit Points 175" FontSize="40" />
-                        <TextBlock Grid.ColumnSpan="2" Grid.Row="4" Margin="15, 0, 0, 0"  Text="Heals For 25" FontSize="40" />
-                        <TextBlock Grid.ColumnSpan="2" Grid.Row="5" Margin="15, 0, 0, 0"  Text="Attacks For 53" FontSize="40" />
+                        <TextBlock x:Name="LevelCurrentAndMax" Grid.ColumnSpan="2" Grid.Row="1" Margin="15, 0, 0, 0"  Text="Level 25 of 99" FontSize="40" />
+                        <TextBlock x:Name="HP" Grid.ColumnSpan="2" Grid.Row="2" Margin="15, 0, 0, 0"  Text="Hit Points 175" FontSize="40" />
+                        <TextBlock x:Name="Heal" Grid.ColumnSpan="2" Grid.Row="3" Margin="15, 0, 0, 0"  Text="Heals For 25" FontSize="40" />
+                        <TextBlock x:Name="Attack" Grid.ColumnSpan="2" Grid.Row="4" Margin="15, 0, 0, 0"  Text="Attacks For 53" FontSize="40" />
                     </Grid>
                 </Border>
             </Border>

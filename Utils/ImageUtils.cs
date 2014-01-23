@@ -9,8 +9,6 @@ namespace PuzzleRpg.Utils
     {
         public static Image GetImageFromPath(String path)
         {
-            
-
             Image image = new Image();
             image.Source = GetImageSourceFromPath(path);
             return image;
