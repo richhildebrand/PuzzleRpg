@@ -36,6 +36,12 @@ namespace PuzzleRpg.Database
             return CopyMonster(monsterFromDatabase);
         }
 
+        public static Monster GetMonster(string monsterName)
+        {
+            var monsterFromDatabase = _allMonsters.Single(m => m.Name == monsterName);
+            return CopyMonster(monsterFromDatabase);
+        }
+
         private static Monster CopyMonster(Monster monsterToCopy)
         {
             return new Monster(monsterToCopy.Name,

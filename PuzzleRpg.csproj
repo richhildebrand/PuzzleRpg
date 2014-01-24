@@ -118,6 +118,7 @@
     <Compile Include="Database\HeroDatabase.cs" />
     <Compile Include="Database\HeroRepository.cs" />
     <Compile Include="Database\MonsterDatabase.cs" />
+    <Compile Include="Database\DungeonDatabase.cs" />
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
@@ -125,9 +126,10 @@
       <DependentUpon>HeroDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
+    <Compile Include="Models\Dungeon.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\HeroProfileView.cs" />
-    <Compile Include="Models\Level.cs" />
+    <Compile Include="Models\DungeonFloor.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="LocalizedStrings.cs" />

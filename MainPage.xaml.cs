@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.Database;
 using PuzzleRpg.Logic;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
@@ -31,7 +32,9 @@ namespace PuzzleRpg
 
         private void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            var monsterGrid = new MonsterGrid(MonsterGrid);
+            var ddb = new DungeonDatabase();
+            var activeDungeon = ddb.AllDungeons[0];
+            var monsterGrid = new MonsterGrid(MonsterGrid, activeDungeon);
 
             var activeTeam = new Team();
             HeroGrid.AddHeroes(activeTeam);

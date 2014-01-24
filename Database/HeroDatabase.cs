@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using PuzzleRpg.Models;
-using PuzzleRpg.Monsters;
 
 namespace PuzzleRpg.Database
 {
