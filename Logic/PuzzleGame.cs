@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Windows.Input;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
@@ -72,7 +71,8 @@ namespace PuzzleRpg.Logic
             }
             else
             {
-                DisplayDeathDialog();
+                //This was annoying me so I commented it out lol
+                //DisplayDeathDialog();
                 EndGame();
             }
         }
