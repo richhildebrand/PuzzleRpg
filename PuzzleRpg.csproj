@@ -148,6 +148,9 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Screens\TeamDeathScreen.cs" />
+    <Compile Include="TeamVictory.xaml.cs">
+      <DependentUpon>TeamVictory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
@@ -202,6 +205,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="TeamVictory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
@@ -218,6 +225,7 @@
     <Content Include="Assets\Backdrops\City.png" />
     <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
     <Content Include="Assets\Backdrops\Parchment.png" />
+    <Content Include="Assets\Backdrops\Parchment1.png" />
     <Content Include="Assets\Backgrounds\HeroProfile.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
