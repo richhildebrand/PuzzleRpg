@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
@@ -15,6 +16,11 @@ namespace PuzzleRpg
         {
             InitializeComponent();
             PopupUtils.UncoverScreen(); //just to be safe
+        }
+
+        public void OnScreenTap(object sender, GestureEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
