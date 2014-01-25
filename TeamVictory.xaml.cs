@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Utils;
 
@@ -92,6 +93,22 @@ namespace PuzzleRpg
             Random randoNumb = new Random();
             int myNmumber = randoNumb.Next(0, 20);
             return myNmumber;
+        }
+
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+
+            if (MessageBox.Show("You cannot navigate back into the game. However, you can navigate to the Hero Select screen. Is this where you would like to go? ", "Navigate to Hero Select?", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+            }
+
+            //Rich - Read Below:
+            //This will handle the back button for now, until we decide which screen it should actually take you too.
+            //I don't think ANY screen should send you back into an "active" game but rather send you to another page. Maybe have a modal that gives them options?
+            //Before I start implementing anything I want to get your input
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
         }
     }
 }

@@ -14,6 +14,7 @@ namespace PuzzleRpg
     {
         PuzzleGrid _puzzleGrid;
         PuzzleGame _puzzleGame;
+        bool justGotCalled = false;
 
         public MainPage()
         {
@@ -30,19 +31,44 @@ namespace PuzzleRpg
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        private void LoadGraphics(object sender, RoutedEventArgs e)
+        public void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            var ddb = new DungeonDatabase();
-            var activeDungeon = ddb.AllDungeons[0];
-            var monsterGrid = new MonsterGrid(MonsterGrid, activeDungeon);
+            if (!justGotCalled)
+            {
+                var ddb = new DungeonDatabase();
+                var activeDungeon = ddb.AllDungeons[0];
+                var monsterGrid = new MonsterGrid(MonsterGrid, activeDungeon);
 
-            var activeTeam = new Team();
-            HeroGrid.AddHeroes(activeTeam);
+                var activeTeam = new Team();
+                HeroGrid.AddHeroes(activeTeam);
 
-            _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
+                _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
-            _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
-            _puzzleGame.StartGame();
+                _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
+                _puzzleGame.StartGame();
+            }
+        }
+
+        //For now so I don't accidentally leave the game.
+        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
+        {
+            base.OnBackKeyPress(e);
+
+            if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit?", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (_puzzleGrid == null)
+            {
+                return;
+            }
+            justGotCalled = true;
         }
     }
 }
