@@ -14,7 +14,7 @@
     shell:SystemTray.IsVisible="True">
 
     <!--LayoutRoot is the root grid where all page content is placed-->
-    <Grid x:Name="LayoutRoot" >
+    <Grid x:Name="LayoutRoot" Tap="OnScreenTap">
         <Grid.Background>
             <!--Prly just a temporary image, but I wanted something!-->
             <ImageBrush ImageSource="/Assets/Backdrops/Parchment1.png" />

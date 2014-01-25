@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Utils;
 
@@ -15,10 +16,17 @@ namespace PuzzleRpg
             PopupUtils.UncoverScreen();
         }
 
+        public void OnScreenTap(object sender, GestureEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            DrawScreen();        }  
+            DrawScreen();
+        }
+  
         //Looking at the others, I think "DrawScreen" should be our "naming convention" for this type of thing. Well done.
         private void DrawScreen()
         {
