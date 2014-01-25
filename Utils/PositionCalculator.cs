@@ -14,6 +14,10 @@ namespace PuzzleRpg.Utils
             var nearestRow = Convert.ToInt32(GetNearestRow(image));
             if (nearestRow != origin.Row)
             {
+                nearestRow = (nearestRow < 0) ? 0 : nearestRow;
+                nearestRow = (nearestRow >= AppGlobals.PuzzleGridRowCount) ? AppGlobals.PuzzleGridRowCount - 1
+                                                                           : nearestRow;
+
                 var destination = new Node(nearestRow, origin.Column);
                 var orbMove = new OrbMove(origin, destination);
                 MessageBus.Default.Notify("SwapOrbs", orbMove, new NotificationEventArgs());
@@ -26,6 +30,10 @@ namespace PuzzleRpg.Utils
             var nearestColumn = Convert.ToInt32(Math.Round(movedTo / columnSize));
             if (nearestColumn != origin.Column)
             {
+                nearestColumn = (nearestColumn < 0) ? 0 : nearestColumn;
+                nearestColumn = (nearestColumn >= AppGlobals.PuzzleGridColumnCount) ? AppGlobals.PuzzleGridColumnCount - 1
+                                                                                    : nearestColumn;
+
                 var destination = new Node(origin.Row, nearestColumn);
                 var orbMove = new OrbMove(origin, destination);
                 MessageBus.Default.Notify("SwapOrbs", orbMove, new NotificationEventArgs());
