@@ -81,7 +81,9 @@ namespace PuzzleRpg.Logic
   
         private void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
         {
-            monsterGrid.ActiveMonster.TakeDamage(100);
+            var playerAttack = activeTeam.CalculateDamage(matches);
+            monsterGrid.ActiveMonster.TakeDamage(playerAttack);
+
             var remainingHealthPercent = monsterGrid.ActiveMonster.GetTotalPercentageOfHealPoints(); 
             monsterGrid.MonsterHealth.SetHealthPercentage(remainingHealthPercent);
         }

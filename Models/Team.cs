@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PuzzleRpg.Database;
 using PuzzleRpg.Utils;
@@ -30,6 +31,11 @@ namespace PuzzleRpg.Models
 
             CurrentHealth = GetTotalHealth();
             TotalHealth = GetTotalHealth();
+        }
+
+        public int CalculateDamage(List<OrbMatch> matches)
+        {
+            return 100;
         }
 
         public int GetPercentageOfRemainingHealth()
