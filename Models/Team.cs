@@ -57,26 +57,7 @@ namespace PuzzleRpg.Models
 
         public int CalculateDamage(List<OrbMatch> matches)
         {
-            var totalDamage = 0;
-
-            if (matches == null) {
-                return totalDamage;
-            }
-
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
-            {
-                var hero = Heroes[i];
-                if (hero != null)
-                {
-                    //TODO: care about sets matching greater than 3 orbs at once
-                    var typeMatches = matches.Count(m => m.Type == hero.Type);
-                    double heroDamage = hero.AttackDamage * typeMatches;
-                    var extraMatches = matches.Count - typeMatches;
-                    heroDamage *= (0.25 * extraMatches) + 1;
-                    totalDamage += Convert.ToInt32(heroDamage);
-                }
-            }
-            return totalDamage;
+            return TeamUtils.CalculateDamage(Heroes, matches);
         }
 
         public void TakeDamage(int monsterAttackDamage)
