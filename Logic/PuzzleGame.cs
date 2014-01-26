@@ -48,16 +48,8 @@ namespace PuzzleRpg.Logic
             PopupUtils.CoverScreen(0);
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
             var matches = _puzzleGrid.MatchedOrbs;
-            var currentHealth = _activeTeam.CurrentHealth;
 
-            //PlayerHeals
-            var listContainsHeals = matches.Any(s => s.Type.ToString() == "Heal");
-
-            if (listContainsHeals)
-            {
-                DoHealing(currentHealth);
-            }
-
+            PlayerHeals(_activeTeam, matches, _playerHealth);
             PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
             MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
 
@@ -74,17 +66,18 @@ namespace PuzzleRpg.Logic
             }
         }
   
+        private void PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
+        {
+            activeTeam.Heal(matches);
+            playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
+        }
+  
         private void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
         {
             var playerAttack = activeTeam.CalculateDamage(matches);
             var monster = monsterGrid.ActiveMonster;
             monster.TakeDamage(playerAttack);
             monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
-        }
-  
-        private void DoHealing(int currentHealth)
-        {
-            _playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
         }
 
         private void MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)

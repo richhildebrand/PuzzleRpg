@@ -33,6 +33,28 @@ namespace PuzzleRpg.Models
             TotalHealth = GetTotalHealth();
         }
 
+        public void Heal(List<OrbMatch> matches)
+        {
+            var healMatches = matches.Count(m => m.Type == AppGlobals.Types.Heal);
+            var totalHealing = 0;
+
+            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
+            {
+                var hero = Heroes[i];
+                if (hero != null)
+                {
+                    //TODO: care about sets matching greater than 3 orbs at once
+                    double heroHealing = hero.HealsFor * healMatches;
+                    var extraMatches = matches.Count - healMatches;
+                    heroHealing *= (0.25 * extraMatches) + 1;
+                    totalHealing += Convert.ToInt32(heroHealing);
+                }
+            }
+
+            CurrentHealth += totalHealing;
+            CurrentHealth = (CurrentHealth > TotalHealth) ? TotalHealth : CurrentHealth;
+        }
+
         public int CalculateDamage(List<OrbMatch> matches)
         {
             var totalDamage = 0;
@@ -62,18 +84,13 @@ namespace PuzzleRpg.Models
             CurrentHealth -= monsterAttackDamage;
         }
 
-        public void Heal(int amountToHeal)
-        {
-            CurrentHealth += amountToHeal;
-        }
-
-        public void AddHero(int slot, Hero hero, int hitPoints) 
+        private void AddHero(int slot, Hero hero, int hitPoints) 
         {
             Heroes[slot] = hero;
             hitPoints = hero.HitPoints;
         }
 
-        public int GetTotalHealth()
+        private int GetTotalHealth()
         {
             var hitPoints = 0;
             foreach (var hero in Heroes)
