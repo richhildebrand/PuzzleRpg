@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
@@ -18,10 +19,10 @@ namespace PuzzleRpg.Logic
 
         public PuzzleGame(PuzzleGrid puzzleGrid, HealthBar playerHealth, Team activeTeam, MonsterGrid monsterGrid)
         {
-            this._monsterGrid = monsterGrid;
-            this._activeTeam = activeTeam;
-            this._playerHealth = playerHealth;
-            this._puzzleGrid = puzzleGrid;
+            _monsterGrid = monsterGrid;
+            _activeTeam = activeTeam;
+            _playerHealth = playerHealth;
+            _puzzleGrid = puzzleGrid;
             MessageBus.Default.Register("EndTurn", OnEndTurn);
         }
 
@@ -57,7 +58,8 @@ namespace PuzzleRpg.Logic
                 DoHealing(currentHealth);
             }
 
-            //MonsterTakesDamage
+            //Player attacks 
+            PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
 
             //MonsterAttacks
             var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
@@ -75,6 +77,13 @@ namespace PuzzleRpg.Logic
                 //DisplayDeathDialog();
                 EndGame();
             }
+        }
+  
+        private void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
+        {
+            monsterGrid.ActiveMonster.TakeDamage(100);
+            var remainingHealthPercent = monsterGrid.ActiveMonster.GetTotalPercentageOfHealPoints(); 
+            monsterGrid.MonsterHealth.SetHealthPercentage(remainingHealthPercent);
         }
   
         private void DoHealing(int currentHealth)

@@ -12,6 +12,8 @@ namespace PuzzleRpg.Logic
     public class MonsterGrid
     {
         private readonly MonsterWithHealthBar _monsterUI;
+        public HealthBar MonsterHealth { get; set; }
+
         public Monster ActiveMonster { get; set; }
         public DungeonFloor ActiveFloor { get; set; }
 
@@ -27,6 +29,8 @@ namespace PuzzleRpg.Logic
         public MonsterGrid(MonsterWithHealthBar monsterUI, Dungeon activeDungeon)
         {
             _monsterUI = monsterUI;
+            MonsterHealth = _monsterUI.MonsterHealth;
+
             ActiveFloor = activeDungeon.Floors[0];
             ActivateMonster(ActiveFloor.Monsters);
         }

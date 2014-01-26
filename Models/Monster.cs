@@ -16,9 +16,22 @@ namespace PuzzleRpg.Monsters
         {
             Name = name;
             TotalHealth = hitPoints;
+            CurrentHealth = hitPoints;
             AttackDamage = attackDamage;
 
             FullImagePath = AppGlobals.HeroImagePathPrefix + name + "/" + name + "Full.png";
+        }
+
+        public void TakeDamage(int damageTaken)
+        {
+            CurrentHealth = CurrentHealth - damageTaken;
+            CurrentHealth = (CurrentHealth > TotalHealth) ? TotalHealth : CurrentHealth;
+        }
+
+        public double GetTotalPercentageOfHealPoints()
+        {
+            var percentageToReturn = ((double)CurrentHealth / (double)TotalHealth) * 100;
+            return percentageToReturn;
         }
     }
 }
