@@ -27,11 +27,5 @@ namespace PuzzleRpg.Monsters
             CurrentHealth = CurrentHealth - damageTaken;
             CurrentHealth = (CurrentHealth > TotalHealth) ? TotalHealth : CurrentHealth;
         }
-
-        public double GetTotalPercentageOfHealPoints()
-        {
-            var percentageToReturn = ((double)CurrentHealth / (double)TotalHealth) * 100;
-            return percentageToReturn;
-        }
     }
 }

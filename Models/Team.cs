@@ -57,23 +57,6 @@ namespace PuzzleRpg.Models
             return totalDamage;
         }
 
-        public int GetPercentageOfRemainingHealth()
-        {
-            var percentage = (double)CurrentHealth / (double)TotalHealth * 100;
-            return Convert.ToInt32(percentage);
-        }
-
-        public double GetTotalPercentageOfHealPoints()
-        {
-            var totalHealPoints = 0;
-            foreach (var hero in Heroes)
-            {
-                totalHealPoints += hero.HealsFor;
-            }
-            var percentageToReturn = ((double)totalHealPoints / (double)TotalHealth) * 100;
-            return percentageToReturn;
-        }
-
         public void TakeDamage(int monsterAttackDamage)
         {
             CurrentHealth -= monsterAttackDamage;
@@ -98,19 +81,6 @@ namespace PuzzleRpg.Models
                 hitPoints += hero.HitPoints;
             }
             return hitPoints;
-        }
-
-        public double GetPercentageOfRemainingHealth(int currentHealth)
-        {
-            var percentageToHeal = GetTotalPercentageOfHealPoints();
-            var currentPercentage = currentHealth / (double)TotalHealth * 100;
-            var totalPercent = currentPercentage + percentageToHeal;
-            if (totalPercent > 100)
-            {
-                totalPercent = 100;
-            }
-            CurrentHealth = Convert.ToInt32(((double)totalPercent / 100) * TotalHealth);
-            return totalPercent;
         }
     }
 }

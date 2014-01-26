@@ -58,17 +58,12 @@ namespace PuzzleRpg.Logic
                 DoHealing(currentHealth);
             }
 
-            //Player attacks 
             PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
-
-            //MonsterAttacks
-            var remainingPlayerHealthPercentage = MonsterAttacks(_monsterGrid.ActiveMonster,
-                                                                 _activeTeam);
+            MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
 
             //PlayerDiesOrNewGameStarts
-            if (remainingPlayerHealthPercentage >= 0)
+            if (_activeTeam.CurrentHealth >= 0)
             {                
-                _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentage);
                 StartTurn();
             }
             else
@@ -82,23 +77,21 @@ namespace PuzzleRpg.Logic
         private void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
         {
             var playerAttack = activeTeam.CalculateDamage(matches);
-            monsterGrid.ActiveMonster.TakeDamage(playerAttack);
-
-            var remainingHealthPercent = monsterGrid.ActiveMonster.GetTotalPercentageOfHealPoints(); 
-            monsterGrid.MonsterHealth.SetHealthPercentage(remainingHealthPercent);
+            var monster = monsterGrid.ActiveMonster;
+            monster.TakeDamage(playerAttack);
+            monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
   
         private void DoHealing(int currentHealth)
         {
-            var remainingPlayerHealthPercentageAfterHeals = _activeTeam.GetPercentageOfRemainingHealth(currentHealth);
-            _playerHealth.SetHealthPercentage(remainingPlayerHealthPercentageAfterHeals);
+            _playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
         }
 
-        private int MonsterAttacks(Monster monster, Team activePlayerTeam)
+        private void MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)
         {
             var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(1000);
-            return activePlayerTeam.GetPercentageOfRemainingHealth();
+            playerHealth.SetHealthPercentage(activePlayerTeam.CurrentHealth, activePlayerTeam.TotalHealth);
         }
 
         private void DisplayDeathDialog()
