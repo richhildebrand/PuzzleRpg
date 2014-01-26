@@ -35,23 +35,9 @@ namespace PuzzleRpg.Models
 
         public void Heal(List<OrbMatch> matches)
         {
-            var healMatches = matches.Count(m => m.Type == AppGlobals.Types.Heal);
-            var totalHealing = 0;
+            int healFor = TeamUtils.CalculateHealing(Heroes, matches);
 
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
-            {
-                var hero = Heroes[i];
-                if (hero != null)
-                {
-                    //TODO: care about sets matching greater than 3 orbs at once
-                    double heroHealing = hero.HealsFor * healMatches;
-                    var extraMatches = matches.Count - healMatches;
-                    heroHealing *= (0.25 * extraMatches) + 1;
-                    totalHealing += Convert.ToInt32(heroHealing);
-                }
-            }
-
-            CurrentHealth += totalHealing;
+            CurrentHealth += healFor;
             CurrentHealth = (CurrentHealth > TotalHealth) ? TotalHealth : CurrentHealth;
         }
 

@@ -10,6 +10,31 @@ namespace PuzzleRpg.Utils
         private static readonly double MATCH_MULTIPLIER = 0.25;
         private static readonly double ORB_OVER_THREE_MULTIPLIER = 0.25;
 
+        public static int CalculateHealing(Hero[] heroes, List<OrbMatch> matches)
+        {
+            var healMatches = matches.Where(m => m.Type == AppGlobals.Types.Heal).ToList();
+            var totalHealing = 0;
+
+            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
+            {
+                var hero = heroes[i];
+                if (hero != null)
+                {
+                    double heroHealing = 0;
+                    foreach (var match in healMatches)
+                    {
+                        heroHealing = CalculateMatchDamage(hero.HealsFor, match);
+                    }
+
+                    var extraMatches = matches.Count - healMatches.Count;
+                    heroHealing *= (0.25 * extraMatches) + 1;
+                    totalHealing += Convert.ToInt32(heroHealing);
+                }
+            }
+
+            return totalHealing;
+        }
+
         public static int CalculateDamage(Hero[] heroes, List<OrbMatch> matches)
         {
             var totalDamage = 0;
