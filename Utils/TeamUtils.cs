@@ -27,7 +27,7 @@ namespace PuzzleRpg.Utils
                     }
 
                     var extraMatches = matches.Count - healMatches.Count;
-                    heroHealing *= (0.25 * extraMatches) + 1;
+                    heroHealing *= (MATCH_MULTIPLIER * extraMatches) + 1;
                     totalHealing += Convert.ToInt32(heroHealing);
                 }
             }
