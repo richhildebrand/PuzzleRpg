@@ -45,7 +45,7 @@ namespace PuzzleRpg.Database
         private static Monster CopyMonster(Monster monsterToCopy)
         {
             return new Monster(monsterToCopy.Name,
-                               monsterToCopy.HitPoints,
+                               monsterToCopy.TotalHealth,
                                monsterToCopy.AttackDamage);
         }
     }
