@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Navigation;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
@@ -38,6 +39,11 @@ namespace PuzzleRpg.Logic
             MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
         }
 
+        public void MonsterDefeated()
+        {
+            MessageBus.Default.Notify("MonsterDefeated", new Object(), new NotificationEventArgs());
+        }
+
         private void StartTurn()
         {
             PopupUtils.UncoverScreen();
@@ -54,9 +60,13 @@ namespace PuzzleRpg.Logic
             MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
 
             //PlayerDiesOrNewGameStarts
-            if (_activeTeam.CurrentHealth >= 0)
+            if (_activeTeam.CurrentHealth > 0 && _monsterGrid.ActiveMonster.CurrentHealth > 0)
             {                
                 StartTurn();
+            }
+            else if (_monsterGrid.ActiveMonster.CurrentHealth <= 0)
+            {
+                MonsterDefeated();
             }
             else
             {

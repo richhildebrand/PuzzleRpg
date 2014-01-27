@@ -22,12 +22,18 @@ namespace PuzzleRpg
             PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
             MessageBus.Default.Register("EndGame", OnEndGame);
+            MessageBus.Default.Register("MonsterDefeated", MonsterDefeated);
         }
 
         private void OnEndGame(object sender, NotificationEventArgs e)
         {
-            //this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
             //Eric: So I have an easy way to view my screen while I work on it :D
+            //this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void MonsterDefeated(object sender, NotificationEventArgs e)
+        {
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
         }
 
