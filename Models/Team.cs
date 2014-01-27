@@ -17,14 +17,14 @@ namespace PuzzleRpg.Models
             Heroes = new Hero[AppGlobals.MaxHeroesOnATeam];
 
             var heroOne = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
-            var heroTwo = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
+            //var heroTwo = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
             var heroThree = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
             var heroFour = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
             var heroFive = HeroDatabase.GetHero(MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount()));
 
             MathUtils.GetRandomInteger(0, HeroDatabase.HeroCount());
             AddHero(0, heroOne, heroOne.HitPoints);
-            AddHero(1, heroTwo, heroTwo.HitPoints);
+            //AddHero(1, heroTwo, heroTwo.HitPoints);
             AddHero(2, heroThree, heroThree.HitPoints);
             AddHero(3, heroFour, heroFour.HitPoints);
             AddHero(4, heroFive, heroFive.HitPoints);
