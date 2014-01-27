@@ -62,7 +62,10 @@ namespace PuzzleRpg.Models
             var hitPoints = 0;
             foreach (var hero in Heroes)
             {
-                hitPoints += hero.HitPoints;
+                if (hero != null)
+                {
+                    hitPoints += hero.HitPoints;
+                }
             }
             return hitPoints;
         }
