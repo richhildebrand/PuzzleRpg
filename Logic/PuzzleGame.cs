@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows.Navigation;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
