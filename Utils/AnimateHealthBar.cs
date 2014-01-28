@@ -17,7 +17,10 @@ namespace PuzzleRpg.Utils
             _taskSource = new TaskCompletionSource<bool>();
             _healthStoryBoard = new Storyboard();
 
-            DoAnimation(column, oldValue, newValue);
+            if (oldValue != newValue) 
+            {
+                DoAnimation(column, oldValue, newValue);
+            }
             _healthStoryBoard.Completed += EndAnimation;
             _healthStoryBoard.Begin();
 
@@ -32,7 +35,7 @@ namespace PuzzleRpg.Utils
   
         private static void DoAnimation(ColumnDefinition column, double oldValue, double newValue)
         {
-            Duration duration = new Duration(TimeSpan.FromMilliseconds(1000));
+            Duration duration = new Duration(TimeSpan.FromMilliseconds(600));
             CubicEase ease = new CubicEase { EasingMode = EasingMode.EaseOut };
 
             DoubleAnimation animation = new DoubleAnimation();

@@ -19,7 +19,7 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
-            //PopupUtils.CoverScreen(100);
+            PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
             MessageBus.Default.Register("EndGame", OnEndGame);
             MessageBus.Default.Register("MonsterDefeated", MonsterDefeated);
@@ -35,7 +35,7 @@ namespace PuzzleRpg
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        public void LoadGraphics(object sender, RoutedEventArgs e)
+        public async void LoadGraphics(object sender, RoutedEventArgs e)
         {
             if (!justGotCalled)
             {
@@ -45,6 +45,7 @@ namespace PuzzleRpg
 
                 var activeTeam = new Team();
                 HeroGrid.AddHeroes(activeTeam);
+                PlayerHealth.HealthPercentage.ColumnDefinitions[0].MaxWidth = PlayerHealth.HealthPercentage.ActualWidth;
 
                 _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
