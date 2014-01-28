@@ -12,8 +12,8 @@ namespace PuzzleRpg.Logic
     public class MonsterGrid
     {
         private readonly MonsterWithHealthBar _monsterUI;
+        private readonly Dungeon _dungeon;
         private DungeonFloor _activeFloor;
-        private Dungeon _dungeon;
         
         public HealthBar MonsterHealth { get; set; }
         public Monster ActiveMonster { get; set; }
@@ -53,12 +53,12 @@ namespace PuzzleRpg.Logic
             return hasAnotherFloor;
         }
 
-        private void ActivateMonster(Monster monster)
+        private async void ActivateMonster(Monster monster)
         {
             _monsterUI.MonsterImage.Source = ImageUtils.GetImageSourceFromPath("/" + monster.FullImagePath);
             //_monsterUI.Tap += HACK_ToggleMonsterImage;
             ActiveMonster = monster;
-            MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
+            await MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
     }
 }

@@ -19,7 +19,7 @@ namespace PuzzleRpg
         public MainPage()
         {
             InitializeComponent();
-            PopupUtils.CoverScreen(100);
+            //PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
             MessageBus.Default.Register("EndGame", OnEndGame);
             MessageBus.Default.Register("MonsterDefeated", MonsterDefeated);

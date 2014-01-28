@@ -22,8 +22,8 @@
 
             <Grid Grid.Row="1" x:Name="HealthPercentage" >
                 <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="10*" />
-                    <ColumnDefinition Width="0*" />
+                    <ColumnDefinition Width="100*" />
+                    <ColumnDefinition Width="auto" />
                 </Grid.ColumnDefinitions>
 
                 <Rectangle Grid.Column="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Magenta" />
