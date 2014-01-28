@@ -150,6 +150,9 @@
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
     <Compile Include="Screens\TeamDeathScreen.cs" />
+    <Compile Include="TeamSelection.xaml.cs">
+      <DependentUpon>TeamSelection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TeamVictory.xaml.cs">
       <DependentUpon>TeamVictory.xaml</DependentUpon>
     </Compile>
@@ -206,6 +209,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TeamSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
