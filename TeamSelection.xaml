@@ -30,6 +30,14 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" >
             <local:HeroesOnPuzzleGameBoard x:Name="HeroGrid" Grid.Row="1" />
         </Grid>
+
+        <Grid Grid.Row="2">
+            <TextBlock Text="I'm team stats!" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <TextBlock Text="I'm a nav bar!" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>
