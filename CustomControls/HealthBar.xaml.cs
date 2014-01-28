@@ -14,7 +14,7 @@ namespace PuzzleRpg.CustomControls
         {
             InitializeComponent();
             HealthPercentage.ColumnDefinitions[0].MaxWidth = 100;
-            DrawHealthBar(100);
+            //DrawHealthBar(100);
         }
 
         public Task SetHealthPercentage(int currentHealth, int totalHealth)
@@ -28,9 +28,8 @@ namespace PuzzleRpg.CustomControls
             var oldMaxWidth = healthColumn.MaxWidth;
             var newMaxWidth = newHealthPercentage;
 
-            //HealthPercentage.ColumnDefinitions[1].Width = new System.Windows.GridLength(100 - newHealthPercentage, System.Windows.GridUnitType.Star);
-            var booHiss = new AnimateHealthBar();
-            return Task.WhenAll(booHiss.Animate(healthColumn, oldMaxWidth, newMaxWidth));
+            healthColumn.MaxWidth = newMaxWidth;
+            return Task.WhenAll(AnimateHealthBar.Animate(healthColumn, oldMaxWidth, newMaxWidth));
         }
 
         private double CalculateHealthPercentage(int current, int total)

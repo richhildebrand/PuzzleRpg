@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Monsters;
@@ -54,12 +55,12 @@ namespace PuzzleRpg.Logic
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
             var matches = _puzzleGrid.MatchedOrbs;
 
-            PlayerHeals(_activeTeam, matches, _playerHealth);
-            PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
+            await PlayerHeals(_activeTeam, matches, _playerHealth);
+            await PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
 
             if (MonsterIsAlive())
             {
-                MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
+                await MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
                 if (PlayerIsAlive())
                 {
                     StartNewTurn();
@@ -95,25 +96,25 @@ namespace PuzzleRpg.Logic
             return _monsterGrid.ActiveMonster.CurrentHealth >= 0;
         }
   
-        private async void PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
+        private Task PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
         {
             activeTeam.Heal(matches);
-            await playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
+            return playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
         }
-  
-        private async void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
+
+        private Task PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
         {
             var playerAttack = activeTeam.CalculateDamage(matches);
             var monster = monsterGrid.ActiveMonster;
             monster.TakeDamage(playerAttack);
-            await monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
+            return monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
 
-        private async void MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)
+        private Task MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)
         {
             var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(1000);
-            await playerHealth.SetHealthPercentage(activePlayerTeam.CurrentHealth, activePlayerTeam.TotalHealth);
+            return playerHealth.SetHealthPercentage(activePlayerTeam.CurrentHealth, activePlayerTeam.TotalHealth);
         }
 
         private void DisplayDeathDialog()

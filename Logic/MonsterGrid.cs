@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
@@ -53,12 +54,12 @@ namespace PuzzleRpg.Logic
             return hasAnotherFloor;
         }
 
-        private async void ActivateMonster(Monster monster)
+        private Task ActivateMonster(Monster monster)
         {
             _monsterUI.MonsterImage.Source = ImageUtils.GetImageSourceFromPath("/" + monster.FullImagePath);
             //_monsterUI.Tap += HACK_ToggleMonsterImage;
             ActiveMonster = monster;
-            await MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
+            return MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
     }
 }

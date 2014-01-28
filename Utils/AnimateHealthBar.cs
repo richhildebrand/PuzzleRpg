@@ -9,10 +9,10 @@ namespace PuzzleRpg.Utils
 {
     public class AnimateHealthBar
     {
-        private TaskCompletionSource<bool> _taskSource;
-        private Storyboard _healthStoryBoard;
+        private static TaskCompletionSource<bool> _taskSource;
+        private static Storyboard _healthStoryBoard;
 
-        public Task Animate(ColumnDefinition column, double oldValue, double newValue)
+        public static Task Animate(ColumnDefinition column, double oldValue, double newValue)
         {
             _taskSource = new TaskCompletionSource<bool>();
             _healthStoryBoard = new Storyboard();
@@ -24,13 +24,13 @@ namespace PuzzleRpg.Utils
             return _taskSource.Task;
         }
 
-        private void EndAnimation(object sender, EventArgs e)
+        private static void EndAnimation(object sender, EventArgs e)
         {
             _healthStoryBoard.Stop();
             _taskSource.SetResult(true);
         }
   
-        private void DoAnimation(ColumnDefinition column, double oldValue, double newValue)
+        private static void DoAnimation(ColumnDefinition column, double oldValue, double newValue)
         {
             Duration duration = new Duration(TimeSpan.FromMilliseconds(1000));
             CubicEase ease = new CubicEase { EasingMode = EasingMode.EaseOut };
