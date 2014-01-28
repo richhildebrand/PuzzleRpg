@@ -56,23 +56,35 @@ namespace PuzzleRpg.Logic
 
             PlayerHeals(_activeTeam, matches, _playerHealth);
             PlayerAttacksMonster(_monsterGrid, _activeTeam, matches);
-            MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
 
-            //PlayerDiesOrNewGameStarts
-            if (_activeTeam.CurrentHealth > 0 && _monsterGrid.ActiveMonster.CurrentHealth > 0)
-            {                
-                StartTurn();
-            }
-            else if (_monsterGrid.ActiveMonster.CurrentHealth <= 0)
+            if (MonsterIsAlive())
             {
-                MonsterDefeated();
+                MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
+                if (PlayerIsAlive())
+                {
+                    StartTurn();
+                }
+                else 
+                {
+                    //This was annoying me so I commented it out lol
+                    //DisplayDeathDialog();
+                    EndGame();
+                }
             }
             else
             {
-                //This was annoying me so I commented it out lol
-                //DisplayDeathDialog();
-                EndGame();
+                MonsterDefeated();
             }
+        }
+
+        private bool PlayerIsAlive()
+        {
+            return _activeTeam.CurrentHealth > 0;
+        }
+
+        private bool MonsterIsAlive()
+        {
+            return _monsterGrid.ActiveMonster.CurrentHealth >= 0;
         }
   
         private void PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
