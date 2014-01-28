@@ -13,14 +13,20 @@ namespace PuzzleRpg.CustomControls
         public HealthBar()
         {
             InitializeComponent();
-            HealthPercentage.ColumnDefinitions[0].MaxWidth = 100;
-            //DrawHealthBar(100);
+            HealthPercentage.ColumnDefinitions[0].MaxWidth = HealthPercentage.ActualWidth;
         }
 
         public Task SetHealthPercentage(int currentHealth, int totalHealth)
         {
-            var updatedPercentage = CalculateHealthPercentage(currentHealth, totalHealth);
-            return Task.WhenAll(DrawHealthBar(updatedPercentage));
+            var percentage = CalculateHealthPercentage(currentHealth, totalHealth);
+            var healthPixels = TranslatePercentageToPixels(percentage, HealthPercentage.ActualWidth);
+            return Task.WhenAll(DrawHealthBar(healthPixels));
+        }
+  
+        private double TranslatePercentageToPixels(double percentage, double fullGridSize)
+        {
+            var multiplyer = percentage / 100;
+            return fullGridSize * multiplyer;
         }
 
         private Task DrawHealthBar(double newHealthPercentage) {
