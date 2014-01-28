@@ -154,6 +154,7 @@
       <DependentUpon>TeamVictory.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
+    <Compile Include="Utils\AnimateHealthBar.cs" />
     <Compile Include="Utils\TeamUtils.cs" />
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />

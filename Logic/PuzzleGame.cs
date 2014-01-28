@@ -95,25 +95,25 @@ namespace PuzzleRpg.Logic
             return _monsterGrid.ActiveMonster.CurrentHealth >= 0;
         }
   
-        private void PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
+        private async void PlayerHeals(Team activeTeam, List<OrbMatch> matches, HealthBar playerHealth)
         {
             activeTeam.Heal(matches);
-            playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
+            await playerHealth.SetHealthPercentage(_activeTeam.CurrentHealth, _activeTeam.TotalHealth);
         }
   
-        private void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
+        private async void PlayerAttacksMonster(MonsterGrid monsterGrid, Team activeTeam, List<OrbMatch> matches)
         {
             var playerAttack = activeTeam.CalculateDamage(matches);
             var monster = monsterGrid.ActiveMonster;
             monster.TakeDamage(playerAttack);
-            monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
+            await monsterGrid.MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
 
-        private void MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)
+        private async void MonsterAttacksPlayer(Monster monster, Team activePlayerTeam, HealthBar playerHealth)
         {
             var monsterAttackDamage = monster.AttackDamage;
             activePlayerTeam.TakeDamage(1000);
-            playerHealth.SetHealthPercentage(activePlayerTeam.CurrentHealth, activePlayerTeam.TotalHealth);
+            await playerHealth.SetHealthPercentage(activePlayerTeam.CurrentHealth, activePlayerTeam.TotalHealth);
         }
 
         private void DisplayDeathDialog()
