@@ -12,10 +12,11 @@ namespace PuzzleRpg.Logic
     public class MonsterGrid
     {
         private readonly MonsterWithHealthBar _monsterUI;
+        private DungeonFloor _activeFloor;
+        private Dungeon _dungeon;
+        
         public HealthBar MonsterHealth { get; set; }
-
         public Monster ActiveMonster { get; set; }
-        public DungeonFloor ActiveFloor { get; set; }
 
         private int HACK_currentMonster = 0;//TODO: REMOVE THIS!!!
         private void HACK_ToggleMonsterImage(object sender, GestureEventArgs e)
@@ -26,13 +27,30 @@ namespace PuzzleRpg.Logic
             _monsterUI.MonsterImage.Source = ImageUtils.GetImageSourceFromPath("/" + monster.FullImagePath);
         }
 
-        public MonsterGrid(MonsterWithHealthBar monsterUI, Dungeon activeDungeon)
+        public MonsterGrid(MonsterWithHealthBar monsterUI, Dungeon dungeon)
         {
             _monsterUI = monsterUI;
             MonsterHealth = _monsterUI.MonsterHealth;
 
-            ActiveFloor = activeDungeon.Floors[0];
-            ActivateMonster(ActiveFloor.Monsters);
+            _dungeon = dungeon;
+            _activeFloor = _dungeon.Floors[0];
+            ActivateMonster(_activeFloor.Monsters);
+        }
+        
+        public bool LoadNextFloor()
+        {
+            var hasAnotherFloor = false;
+            var currentFloorIndex = _dungeon.Floors.IndexOf(_activeFloor);
+
+            var nextFloorIndex = currentFloorIndex + 1;
+            if (nextFloorIndex < _dungeon.Floors.Count)
+            {
+                _activeFloor = _dungeon.Floors[nextFloorIndex];
+                ActivateMonster(_activeFloor.Monsters);
+                hasAnotherFloor = true;
+            }
+
+            return hasAnotherFloor;
         }
 
         private void ActivateMonster(Monster monster)
@@ -40,6 +58,7 @@ namespace PuzzleRpg.Logic
             _monsterUI.MonsterImage.Source = ImageUtils.GetImageSourceFromPath("/" + monster.FullImagePath);
             _monsterUI.Tap += HACK_ToggleMonsterImage;
             ActiveMonster = monster;
+            MonsterHealth.SetHealthPercentage(monster.CurrentHealth, monster.TotalHealth);
         }
     }
 }

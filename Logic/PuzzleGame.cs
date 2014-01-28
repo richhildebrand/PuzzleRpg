@@ -29,7 +29,7 @@ namespace PuzzleRpg.Logic
         public async void StartGame()
         {
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
-            StartTurn();
+            StartNewTurn();
         }
 
         public void EndGame() {
@@ -38,12 +38,12 @@ namespace PuzzleRpg.Logic
             MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
         }
 
-        public void MonsterDefeated()
+        public void DungeonDefeated()
         {
             MessageBus.Default.Notify("MonsterDefeated", new Object(), new NotificationEventArgs());
         }
 
-        private void StartTurn()
+        private void StartNewTurn()
         {
             PopupUtils.UncoverScreen();
         }
@@ -62,7 +62,7 @@ namespace PuzzleRpg.Logic
                 MonsterAttacksPlayer(_monsterGrid.ActiveMonster, _activeTeam, _playerHealth);
                 if (PlayerIsAlive())
                 {
-                    StartTurn();
+                    StartNewTurn();
                 }
                 else 
                 {
@@ -73,7 +73,15 @@ namespace PuzzleRpg.Logic
             }
             else
             {
-                MonsterDefeated();
+                var hasAnotherFloor = _monsterGrid.LoadNextFloor();
+                if (hasAnotherFloor)
+                {
+                    StartNewTurn();
+                }
+                else
+                {
+                    DungeonDefeated();
+                }
             }
         }
 
