@@ -31,8 +31,8 @@ namespace PuzzleRpg.CustomControls
 
         private Task DrawHealthBar(double newHealthPercentage) {
             var healthColumn = HealthPercentage.ColumnDefinitions[0];
-            var oldMaxWidth = healthColumn.MaxWidth;
-            var newMaxWidth = newHealthPercentage;
+            var oldMaxWidth = Convert.ToInt32(healthColumn.MaxWidth);
+            var newMaxWidth = Convert.ToInt32(newHealthPercentage);
 
             healthColumn.MaxWidth = newMaxWidth;
             return Task.WhenAll(AnimateHealthBar.Animate(healthColumn, oldMaxWidth, newMaxWidth));

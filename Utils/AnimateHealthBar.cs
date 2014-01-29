@@ -12,7 +12,7 @@ namespace PuzzleRpg.Utils
         private static TaskCompletionSource<bool> _taskSource;
         private static Storyboard _healthStoryBoard;
 
-        public static Task Animate(ColumnDefinition column, double oldValue, double newValue)
+        public static Task Animate(ColumnDefinition column, int oldValue, int newValue)
         {
             _taskSource = new TaskCompletionSource<bool>();
             _healthStoryBoard = new Storyboard();
