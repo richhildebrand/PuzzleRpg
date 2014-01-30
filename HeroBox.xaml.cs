@@ -45,8 +45,7 @@ namespace PuzzleRpg
 
         private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
-            heroGrid.GridCellSize = new System.Windows.Size(Application.Current.Host.Content.ActualWidth / HEROES_PER_ROW,
-                                                            100);
+            heroGrid.GridCellSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(HEROES_PER_ROW);
             heroGrid.ItemsSource = GetHeroProfiles();
         }
 
@@ -62,7 +61,7 @@ namespace PuzzleRpg
         {
             var numberOfHeroSlotsPlayerHasPurchased = 20; //TODO: save in local storage
             var emptySlotsToAdd = numberOfHeroSlotsPlayerHasPurchased - heroProfiles.Count;
-            var emptyHeroSlots = EmptyHeroProfileGetter.GetEmptyHeroProfiles(emptySlotsToAdd);
+            var emptyHeroSlots = EmptyHeroViewModelGetter.GetEmptyHeroViewModel(emptySlotsToAdd);
             return heroProfiles.Concat(emptyHeroSlots).ToList();
         }
 

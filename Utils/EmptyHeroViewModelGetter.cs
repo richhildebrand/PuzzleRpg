@@ -5,9 +5,9 @@ using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Utils
 {
-    public static class EmptyHeroProfileGetter
+    public static class EmptyHeroViewModelGetter
     {
-        public static List<HeroViewModel> GetEmptyHeroProfiles(int numberOfEmptyProfilesToGet)
+        public static List<HeroViewModel> GetEmptyHeroViewModel(int numberOfEmptyProfilesToGet)
         {
             var additionalHeroVMs = FillEmptySlots(numberOfEmptyProfilesToGet);
             return additionalHeroVMs;

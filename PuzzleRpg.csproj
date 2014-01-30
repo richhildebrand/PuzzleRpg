@@ -158,7 +158,7 @@
     </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\AnimateHealthBar.cs" />
-    <Compile Include="Utils\EmptyHeroProfileGetter.cs" />
+    <Compile Include="Utils\EmptyHeroViewModelGetter.cs" />
     <Compile Include="Utils\HeroToViewModelMapper.cs" />
     <Compile Include="Utils\TeamUtils.cs" />
     <Compile Include="Utils\GridUtils.cs" />
@@ -168,6 +168,7 @@
     <Compile Include="Utils\OrbMatcher.cs" />
     <Compile Include="Utils\PopupUtils.cs" />
     <Compile Include="Utils\PositionCalculator.cs" />
+    <Compile Include="Utils\ViewCalculations.cs" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

@@ -34,7 +34,7 @@
         </Grid>
 
         <phone:LongListSelector 
-            x:Name="HeroGrid" Grid.Row="1"
+            x:Name="Team" Grid.Row="1"
             ItemTemplate="{StaticResource TeamTemplate}"
             LayoutMode="Grid"
             GridCellSize="100, 100"
