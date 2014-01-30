@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Navigation;
+using System.Windows.Input;
 using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace PuzzleRpg
 {
@@ -15,6 +10,11 @@ namespace PuzzleRpg
         public TeamSelection()
         {
             InitializeComponent();
+        }
+        public void ChangeTeamMember(object sender, GestureEventArgs e)
+        {
+            var x = 3;
+            var y = x;
         }
     }
 }

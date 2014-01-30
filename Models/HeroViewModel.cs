@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace PuzzleRpg.Models
 {
-    class HeroProfileView
+    public class HeroViewModel
     {
         public String ProfileImageSource { get; set; }
         public String OrbImageSource { get; set; }

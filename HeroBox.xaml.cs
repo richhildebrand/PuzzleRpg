@@ -46,26 +46,34 @@ namespace PuzzleRpg
         private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
             var playerHeroes = HeroRepository.GetPlayerHeroes();
-            var numberOfHeroSlotsPlayerHasPurchased = 20; // || number Of Heroes (don't lose their drops!)
+            var numberOfHeroSlotsPlayerHasPurchased = 20; // TODO: store in local storage
 
-            var heroSlots = new List<HeroProfileView>();
-            for (int i = 0; i < numberOfHeroSlotsPlayerHasPurchased; i++)
-            {
-                var heroProfile = new HeroProfileView();
-                if (playerHeroes.Count > i)
-                {
-                    var hero = playerHeroes[i];
-                    heroProfile.ProfileImageSource = "/" + hero.ProfileImagePath;
-                    heroProfile.OrbImageSource = ImageUtils.GetOrbImagePathFromType(hero.Type);
-                    heroProfile.BorderImageSource = "/" + ImageUtils.GetProfileBorderImagePathFromType(hero.Type);
-                    heroProfile.Id = hero.Id.ToString();
-                }
-                heroSlots.Add(heroProfile);
-            }
+            var heroVMs = HeroToViewModelConverter.GetHeroViewModels(playerHeroes);
+            var emptyHeroSlots = GetEmptyHeroSlots(numberOfHeroSlotsPlayerHasPurchased, heroVMs.Count);
+            heroVMs = heroVMs.Concat(emptyHeroSlots).ToList();
 
             heroGrid.GridCellSize = new System.Windows.Size(Application.Current.Host.Content.ActualWidth / HEROES_PER_ROW,
                                                             100);
-            heroGrid.ItemsSource = heroSlots;
+            heroGrid.ItemsSource = heroVMs;
+        }
+
+        private List<HeroViewModel> GetEmptyHeroSlots(int totalAvailableSlots, int currentlyOccupiedSlots)
+        {
+            var emptySlotCount = totalAvailableSlots - currentlyOccupiedSlots;
+            var additionalHeroVMs = FillEmptySlots(emptySlotCount);
+            return additionalHeroVMs;
+        }
+
+        private List<HeroViewModel> FillEmptySlots(int extraSlotsToAdd)
+        {
+            var emptyHeroVMs = new List<HeroViewModel>();
+            if (extraSlotsToAdd > 0)
+            {
+                var emptySlots = new Hero[extraSlotsToAdd];
+                emptyHeroVMs = HeroToViewModelConverter.GetHeroViewModels(emptySlots).ToList();
+            }
+
+            return emptyHeroVMs;
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)

@@ -128,7 +128,7 @@
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Dungeon.cs" />
     <Compile Include="Models\Hero.cs" />
-    <Compile Include="Models\HeroProfileView.cs" />
+    <Compile Include="Models\HeroViewModel.cs" />
     <Compile Include="Models\DungeonFloor.cs" />
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Team.cs" />
@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\AnimateHealthBar.cs" />
+    <Compile Include="Utils\HeroToViewModelConverter.cs" />
     <Compile Include="Utils\TeamUtils.cs" />
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />

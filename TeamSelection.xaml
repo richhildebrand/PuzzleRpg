@@ -14,6 +14,12 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
+    <phone:PhoneApplicationPage.Resources>
+        <DataTemplate x:Key="TeamTemplate">
+            <local:HeroProfileInHeroBox Margin="3" Tap="ChangeTeamMember"/>
+        </DataTemplate>
+    </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -27,9 +33,12 @@
             <local:PlayerStats />
         </Grid>
 
-        <Grid x:Name="ContentPanel" Grid.Row="1" >
-            <local:HeroesOnPuzzleGameBoard x:Name="HeroGrid" Grid.Row="1" />
-        </Grid>
+        <phone:LongListSelector 
+            x:Name="HeroGrid" Grid.Row="1"
+            ItemTemplate="{StaticResource TeamTemplate}"
+            LayoutMode="Grid"
+            GridCellSize="100, 100"
+        />
 
         <Grid Grid.Row="2">
             <TextBlock Text="I'm team stats!" HorizontalAlignment="Center" VerticalAlignment="Center" />
