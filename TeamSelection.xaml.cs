@@ -11,8 +11,12 @@ namespace PuzzleRpg
 {
     public partial class TeamSelection : PhoneApplicationPage
     {
+        private HeroRepository _heroRepository;
+
         public TeamSelection()
         {
+            _heroRepository = new HeroRepository();
+
             InitializeComponent();
             ShowTeam();
             InitAvailableHeroes();
@@ -46,7 +50,7 @@ namespace PuzzleRpg
             AvailableHeroes.Visibility = Visibility.Collapsed;
 
             //TODO: Filter heroes already on team
-            var availableHeroes = HeroRepository.GetHeroesOwnedByPlayer();
+            var availableHeroes = _heroRepository.GetHeroesOwnedByPlayer();
             AvailableHeroes.ItemsSource= HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
         }
     }

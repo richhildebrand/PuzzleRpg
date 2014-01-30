@@ -6,41 +6,28 @@ using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Database
 {
-    public static class HeroRepository
+    public class HeroRepository : Repository
     {
-        private static readonly string HEROES_KEY = "Heroes";
+        private readonly string HEROES_KEY = "Heroes";
 
-        static HeroRepository()
+        public HeroRepository()
         {
             CreateKeyIfMissing(HEROES_KEY);
         }
 
-        private static void CreateKeyIfMissing(string key) 
-        {
-            if (KeyIsMissing(key))
-            {
-                CreateKey(key);
-            }
-        }
-
-        private static bool KeyIsMissing(string key)
-        {
-            return !IsolatedStorageSettings.ApplicationSettings.Contains(key);
-        }
-
-        private static void CreateKey(string key)
+        protected override void CreateKey(string key)
         {
             var heroes = new List<Hero>();
             IsolatedStorageSettings.ApplicationSettings.Add(HEROES_KEY, heroes);
             GivePlayerStartingHeroes();
         }
 
-        public static List<Hero> GetHeroesOwnedByPlayer()
+        public List<Hero> GetHeroesOwnedByPlayer()
         {
             return IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] as List<Hero>;
         }
 
-        public static void AddHeroToPlayerCollection(Hero newHero)
+        public void AddHeroToPlayerCollection(Hero newHero)
         {
             var heroes = GetHeroesOwnedByPlayer();
             heroes.Add(newHero);
@@ -48,7 +35,7 @@ namespace PuzzleRpg.Database
             IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
-        private static void GivePlayerStartingHeroes() {
+        private void GivePlayerStartingHeroes() {
             AddHeroToPlayerCollection(HeroDatabase.GetHero(0));
             AddHeroToPlayerCollection(HeroDatabase.GetHero(1));
             AddHeroToPlayerCollection(HeroDatabase.GetHero(2));

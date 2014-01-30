@@ -11,11 +11,13 @@ namespace PuzzleRpg
     public partial class HeroDetails : PhoneApplicationPage
     {
         public Hero ThisHero { get; set; }
+        private HeroRepository _heroRepository;
 
         public HeroDetails()
         {
             InitializeComponent();
             PopupUtils.UncoverScreen(); //just to be safe
+            _heroRepository = new HeroRepository();
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)
@@ -31,7 +33,7 @@ namespace PuzzleRpg
             if (NavigationContext.QueryString.TryGetValue("playerOwnedHeroId", out heroId))
             {
                 var heroGuid = new Guid(heroId);
-                ThisHero = HeroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
+                ThisHero = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
                 DrawScreen(ThisHero);
             }
         }

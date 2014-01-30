@@ -13,12 +13,14 @@ namespace PuzzleRpg
     public partial class HeroBox : PhoneApplicationPage
     {
         private readonly int HEROES_PER_ROW = 5;
+        private HeroRepository _heroRepository;
 
         public HeroBox()
         {
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             PopupUtils.UncoverScreen(); //just to be safe
+            _heroRepository = new HeroRepository();
             LoadPlayerHeroes(HeroGrid);
         }
 
@@ -37,7 +39,7 @@ namespace PuzzleRpg
 
         private List<HeroViewModel> GetHeroProfiles()
         {
-            var heroesOwnedByPlayer = HeroRepository.GetHeroesOwnedByPlayer();
+            var heroesOwnedByPlayer = _heroRepository.GetHeroesOwnedByPlayer();
             var filledHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
             var allHeroProfiles  = AddEmptyProfiles(filledHeroProfiles);
             return allHeroProfiles;
