@@ -32,16 +32,21 @@ namespace PuzzleRpg
 
         private void ShowTeam()
         {
+            var heroProfileSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(AppGlobals.MaxHeroesOnATeam);
+            Team.GridCellSize = heroProfileSize;
+
             Hero[] activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
             Team.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(activeTeam);
         }
 
         private void InitAvailableHeroes()
         {
+            var heroProfileSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(AppGlobals.MaxHeroesOnATeam);
+            AvailableHeroes.GridCellSize = heroProfileSize;
             AvailableHeroes.Visibility = Visibility.Collapsed;
-            var availableHeroes = HeroRepository.GetHeroesOwnedByPlayer();
 
             //TODO: Filter heroes already on team
+            var availableHeroes = HeroRepository.GetHeroesOwnedByPlayer();
             AvailableHeroes.ItemsSource= HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
         }
     }
