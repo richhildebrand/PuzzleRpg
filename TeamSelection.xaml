@@ -16,7 +16,11 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="TeamTemplate">
-            <local:HeroProfileInHeroBox Margin="3" Tap="ChangeTeamMember"/>
+            <local:HeroProfileInHeroBox Margin="3" Tap="OnBeginSelectingDifferentHero"/>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="AvailableHeroesTemplate">
+            <local:HeroProfileInHeroBox Margin="3" Tap="OnAddHeroToTeam"/>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
@@ -40,9 +44,16 @@
             GridCellSize="100, 100"
         />
 
-        <Grid Grid.Row="2">
+        <Grid Name="TeamStats" Grid.Row="2">
             <TextBlock Text="I'm team stats!" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
+
+        <phone:LongListSelector 
+            x:Name="AvailableHeroes" Grid.Row="2"
+            ItemTemplate="{StaticResource AvailableHeroesTemplate}"
+            LayoutMode="Grid"
+            GridCellSize="100, 100"
+        />
 
         <Grid Grid.Row="3">
             <TextBlock Text="I'm a nav bar!" HorizontalAlignment="Center" VerticalAlignment="Center" />

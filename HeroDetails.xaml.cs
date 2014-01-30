@@ -31,7 +31,7 @@ namespace PuzzleRpg
             if (NavigationContext.QueryString.TryGetValue("playerOwnedHeroId", out heroId))
             {
                 var heroGuid = new Guid(heroId);
-                ThisHero = HeroRepository.GetPlayerHeroes().Single(h => h.Id == heroGuid);
+                ThisHero = HeroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
                 DrawScreen(ThisHero);
             }
         }

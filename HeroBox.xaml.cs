@@ -19,20 +19,6 @@ namespace PuzzleRpg
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             PopupUtils.UncoverScreen(); //just to be safe
-
-            // TODO: move somewhere that makes more sense
-            if (HeroRepository.GetPlayerHeroes().Count == 0)
-            {
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(0));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(1));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(2));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(3));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(4));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(5));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(6));
-                HeroRepository.AddPlayerHero(HeroDatabase.GetHero(7));
-            }
-
             LoadPlayerHeroes(HeroGrid);
         }
 
@@ -51,7 +37,7 @@ namespace PuzzleRpg
 
         private List<HeroViewModel> GetHeroProfiles()
         {
-            var heroesOwnedByPlayer = HeroRepository.GetPlayerHeroes();
+            var heroesOwnedByPlayer = HeroRepository.GetHeroesOwnedByPlayer();
             var filledHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
             var allHeroProfiles  = AddEmptyProfiles(filledHeroProfiles);
             return allHeroProfiles;
