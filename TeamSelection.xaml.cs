@@ -14,10 +14,13 @@ namespace PuzzleRpg
     public partial class TeamSelection : PhoneApplicationPage
     {
         private HeroRepository _heroRepository;
+        private string _teamMemberToSwap;
+        private Hero[] _activeTeam;
 
         public TeamSelection()
         {
             _heroRepository = new HeroRepository();
+            _activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
 
             InitializeComponent();
             ShowTeam();
@@ -26,6 +29,10 @@ namespace PuzzleRpg
 
         public void OnAddHeroToTeam(object sender, GestureEventArgs e)
         {
+            var selectedProfile = sender as HeroProfileInHeroBox;
+            var heroToAdd = GetHeroId(selectedProfile.HeroId);
+            AddHeroToTeam(heroToAdd);
+
             AvailableHeroes.Visibility = Visibility.Collapsed;
             TeamStats.Visibility = Visibility.Visible;
         }
@@ -34,17 +41,47 @@ namespace PuzzleRpg
         {
             AvailableHeroes.Visibility = Visibility.Visible;
             TeamStats.Visibility = Visibility.Collapsed;
+            _teamMemberToSwap = GetHeroId(sender);
+        }
+
+        private void AddHeroToTeam(string heroId)
+        {
+            var heroGuid = new Guid(heroId);
+            if (_teamMemberToSwap == null)
+            {
+                for (int i = 0; i < _activeTeam.Length; i++)
+                {
+                    var hero = _activeTeam[i];
+                    if (hero == null)
+                    {
+                        _activeTeam[i] = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
+                        ShowTeam();
+                        break;
+                    }
+                }
+            }
+        }
+
+        private string GetHeroId(object sender) {
+            var selectedHeroProfile = sender as Grid;
+
+            if (selectedHeroProfile == null || selectedHeroProfile.Tag == null)
+            {
+                return null;
+            }
+            var heroId = selectedHeroProfile.Tag;
+            return heroId.ToString();
         }
 
         private void ShowTeam()
         {
-            Hero[] activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
-            HeroViewModel[] activeHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(activeTeam);
+            var activeHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(_activeTeam);
 
             for (int i = 0; i < activeHeroProfiles.Length; i++)
             {
                 var heroProfile = Team.Children[i] as HeroProfileInHeroBox;
                 heroProfile.Draw(activeHeroProfiles[i]);
+                heroProfile.Tap -= OnBeginSelectingDifferentHero;
                 heroProfile.Tap += OnBeginSelectingDifferentHero;
             }
         }
@@ -57,7 +94,7 @@ namespace PuzzleRpg
 
             //TODO: Filter heroes already on team
             var availableHeroes = _heroRepository.GetHeroesOwnedByPlayer();
-            AvailableHeroes.ItemsSource= HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
+            AvailableHeroes.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
         }
     }
 }
