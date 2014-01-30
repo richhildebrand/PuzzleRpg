@@ -45,35 +45,25 @@ namespace PuzzleRpg
 
         private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
-            var playerHeroes = HeroRepository.GetPlayerHeroes();
-            var numberOfHeroSlotsPlayerHasPurchased = 20; // TODO: store in local storage
-
-            var heroVMs = HeroToViewModelConverter.GetHeroViewModels(playerHeroes);
-            var emptyHeroSlots = GetEmptyHeroSlots(numberOfHeroSlotsPlayerHasPurchased, heroVMs.Count);
-            heroVMs = heroVMs.Concat(emptyHeroSlots).ToList();
-
             heroGrid.GridCellSize = new System.Windows.Size(Application.Current.Host.Content.ActualWidth / HEROES_PER_ROW,
                                                             100);
-            heroGrid.ItemsSource = heroVMs;
+            heroGrid.ItemsSource = GetHeroProfiles();
         }
 
-        private List<HeroViewModel> GetEmptyHeroSlots(int totalAvailableSlots, int currentlyOccupiedSlots)
+        private List<HeroViewModel> GetHeroProfiles()
         {
-            var emptySlotCount = totalAvailableSlots - currentlyOccupiedSlots;
-            var additionalHeroVMs = FillEmptySlots(emptySlotCount);
-            return additionalHeroVMs;
+            var heroesOwnedByPlayer = HeroRepository.GetPlayerHeroes();
+            var filledHeroProfiles = HeroToViewModelConverter.GetHeroViewModels(heroesOwnedByPlayer);
+            var allHeroProfiles  = AddEmptyProfiles(filledHeroProfiles);
+            return allHeroProfiles;
         }
 
-        private List<HeroViewModel> FillEmptySlots(int extraSlotsToAdd)
+        private List<HeroViewModel> AddEmptyProfiles(List<HeroViewModel> heroProfiles)
         {
-            var emptyHeroVMs = new List<HeroViewModel>();
-            if (extraSlotsToAdd > 0)
-            {
-                var emptySlots = new Hero[extraSlotsToAdd];
-                emptyHeroVMs = HeroToViewModelConverter.GetHeroViewModels(emptySlots).ToList();
-            }
-
-            return emptyHeroVMs;
+            var numberOfHeroSlotsPlayerHasPurchased = 20; //TODO: save in local storage
+            var emptySlotsToAdd = numberOfHeroSlotsPlayerHasPurchased - heroProfiles.Count;
+            var emptyHeroSlots = EmptyHeroProfileGetter.GetEmptyHeroProfiles(emptySlotsToAdd);
+            return heroProfiles.Concat(emptyHeroSlots).ToList();
         }
 
         protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
