@@ -45,6 +45,7 @@ namespace PuzzleRpg
             {
                 var heroProfile = Team.Children[i] as HeroProfileInHeroBox;
                 heroProfile.Draw(activeHeroProfiles[i]);
+                heroProfile.Tap += OnBeginSelectingDifferentHero;
             }
         }
 
