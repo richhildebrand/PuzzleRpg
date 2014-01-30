@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
@@ -36,11 +38,14 @@ namespace PuzzleRpg
 
         private void ShowTeam()
         {
-            var heroProfileSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(AppGlobals.MaxHeroesOnATeam);
-            Team.GridCellSize = heroProfileSize;
-
             Hero[] activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
-            Team.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(activeTeam);
+            HeroViewModel[] activeHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(activeTeam);
+
+            for (int i = 0; i < activeHeroProfiles.Length; i++)
+            {
+                var heroProfile = Team.Children[i] as HeroProfileInHeroBox;
+                heroProfile.Draw(activeHeroProfiles[i]);
+            }
         }
 
         private void InitAvailableHeroes()

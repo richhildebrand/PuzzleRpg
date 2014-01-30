@@ -1,15 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace PuzzleRpg.Utils
 {
     public static class ViewCalculations
     {
-        private static double GetScreenWidth() {
+        public static double GetScreenWidth() {
             return Application.Current.Host.Content.ActualWidth;
         }
 

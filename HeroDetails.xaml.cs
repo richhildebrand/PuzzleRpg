@@ -15,9 +15,10 @@ namespace PuzzleRpg
 
         public HeroDetails()
         {
+            _heroRepository = new HeroRepository();
+
             InitializeComponent();
             PopupUtils.UncoverScreen(); //just to be safe
-            _heroRepository = new HeroRepository();
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)
