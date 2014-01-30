@@ -10,30 +10,41 @@ namespace PuzzleRpg.Database
     {
         private static readonly string HEROES_KEY = "Heroes";
 
+        static HeroRepository()
+        {
+            CreateKeyIfMissing(HEROES_KEY);
+        }
+
+        private static void CreateKeyIfMissing(string key) 
+        {
+            if (KeyIsMissing(key))
+            {
+                CreateKey(key);
+            }
+        }
+
+        private static bool KeyIsMissing(string key)
+        {
+            return !IsolatedStorageSettings.ApplicationSettings.Contains(key);
+        }
+
+        private static void CreateKey(string key)
+        {
+            var heroes = new List<Hero>();
+            IsolatedStorageSettings.ApplicationSettings.Add(HEROES_KEY, heroes);
+            GivePlayerStartingHeroes();
+        }
+
         public static List<Hero> GetHeroesOwnedByPlayer()
         {
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains(HEROES_KEY))
-            {
-                GivePlayerStartingHeroes();
-            }
-            
             return IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] as List<Hero>;
         }
 
         public static void AddHeroToPlayerCollection(Hero newHero)
         {
-            if (!IsolatedStorageSettings.ApplicationSettings.Contains(HEROES_KEY))
-            {
-                var heroes = new List<Hero>();
-                heroes.Add(newHero);
-                IsolatedStorageSettings.ApplicationSettings.Add(HEROES_KEY, heroes);
-            }
-            else
-            {
-                var heroes = GetHeroesOwnedByPlayer();
-                heroes.Add(newHero);
-                IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] = heroes;
-            }
+            var heroes = GetHeroesOwnedByPlayer();
+            heroes.Add(newHero);
+            IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] = heroes;
             IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
