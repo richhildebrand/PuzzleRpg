@@ -53,7 +53,7 @@ namespace PuzzleRpg
         private List<HeroViewModel> GetHeroProfiles()
         {
             var heroesOwnedByPlayer = HeroRepository.GetPlayerHeroes();
-            var filledHeroProfiles = HeroToViewModelConverter.GetHeroViewModels(heroesOwnedByPlayer);
+            var filledHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
             var allHeroProfiles  = AddEmptyProfiles(filledHeroProfiles);
             return allHeroProfiles;
         }

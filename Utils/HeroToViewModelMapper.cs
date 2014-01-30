@@ -5,7 +5,7 @@ using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Utils
 {
-    public static class HeroToViewModelConverter
+    public static class HeroToViewModelMapper
     {
         public static List<HeroViewModel> GetHeroViewModels(List<Hero> heroes) {
             Hero[] heroArray = heroes.ToArray();

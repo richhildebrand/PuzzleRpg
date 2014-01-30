@@ -19,7 +19,7 @@ namespace PuzzleRpg.Utils
             if (extraSlotsToAdd > 0)
             {
                 var emptySlots = new Hero[extraSlotsToAdd];
-                emptyHeroVMs = HeroToViewModelConverter.GetHeroViewModels(emptySlots).ToList();
+                emptyHeroVMs = HeroToViewModelMapper.GetHeroViewModels(emptySlots).ToList();
             }
 
             return emptyHeroVMs;

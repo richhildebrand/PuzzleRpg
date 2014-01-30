@@ -159,7 +159,7 @@
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\AnimateHealthBar.cs" />
     <Compile Include="Utils\EmptyHeroProfileGetter.cs" />
-    <Compile Include="Utils\HeroToViewModelConverter.cs" />
+    <Compile Include="Utils\HeroToViewModelMapper.cs" />
     <Compile Include="Utils\TeamUtils.cs" />
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />
