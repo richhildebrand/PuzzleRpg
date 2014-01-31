@@ -24,7 +24,7 @@ namespace PuzzleRpg
 
             InitializeComponent();
             ShowTeam();
-            InitAvailableHeroes();
+            LoadAvailableHeroes();
         }
 
         public void OnAddHeroToTeam(object sender, GestureEventArgs e)
@@ -35,6 +35,7 @@ namespace PuzzleRpg
 
             AvailableHeroes.Visibility = Visibility.Collapsed;
             TeamStats.Visibility = Visibility.Visible;
+            LoadAvailableHeroes();
         }
 
         public void OnBeginSelectingDifferentHero(object sender, GestureEventArgs e)
@@ -94,14 +95,16 @@ namespace PuzzleRpg
             }
         }
 
-        private void InitAvailableHeroes()
+        private void LoadAvailableHeroes()
         {
             var heroProfileSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(AppGlobals.MaxHeroesOnATeam);
             AvailableHeroes.GridCellSize = heroProfileSize;
             AvailableHeroes.Visibility = Visibility.Collapsed;
 
-            //TODO: Filter heroes already on team
             var availableHeroes = _heroRepository.GetHeroesOwnedByPlayer();
+            var heroesInUse =_activeTeam.ToList();
+
+            availableHeroes = availableHeroes.Except(heroesInUse).ToList();
             AvailableHeroes.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
         }
     }
