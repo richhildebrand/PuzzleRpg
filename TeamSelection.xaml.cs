@@ -29,8 +29,8 @@ namespace PuzzleRpg
 
         public void OnAddHeroToTeam(object sender, GestureEventArgs e)
         {
-            var selectedProfile = sender as HeroProfileInHeroBox;
-            var heroToAdd = GetHeroId(selectedProfile.HeroId);
+            var heroToAdd = GetHeroId(sender);
+            RemoveHeroFromTeam(_teamMemberToSwap);
             AddHeroToTeam(heroToAdd);
 
             AvailableHeroes.Visibility = Visibility.Collapsed;
@@ -47,29 +47,37 @@ namespace PuzzleRpg
         private void AddHeroToTeam(string heroId)
         {
             var heroGuid = new Guid(heroId);
-            if (_teamMemberToSwap == null)
+            for (int i = 0; i < _activeTeam.Length; i++)
             {
-                for (int i = 0; i < _activeTeam.Length; i++)
+                var hero = _activeTeam[i];
+                if (hero == null)
                 {
-                    var hero = _activeTeam[i];
-                    if (hero == null)
-                    {
-                        _activeTeam[i] = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
-                        ShowTeam();
-                        break;
-                    }
+                    _activeTeam[i] = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
+                    ShowTeam();
+                    break;
                 }
             }
         }
 
-        private string GetHeroId(object sender) {
-            var selectedHeroProfile = sender as Grid;
+        private void RemoveHeroFromTeam(string idToRemove) {
+            if (idToRemove != null)
+            {
+                var id = new Guid(idToRemove);
+                var heroToRemove = _activeTeam.Single(h => h != null && h.Id == id);
+                var indexToRemove = Array.IndexOf(_activeTeam, heroToRemove);
+                _activeTeam[indexToRemove] = null;
+            }
+        }
 
-            if (selectedHeroProfile == null || selectedHeroProfile.Tag == null)
+        private string GetHeroId(object sender) {
+            var selectedProfile = sender as HeroProfileInHeroBox;
+            var selectedHero = selectedProfile.HeroId;
+
+            if (selectedHero.Tag == null)
             {
                 return null;
             }
-            var heroId = selectedHeroProfile.Tag;
+            var heroId = selectedHero.Tag;
             return heroId.ToString();
         }
 
