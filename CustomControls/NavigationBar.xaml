@@ -9,10 +9,10 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="100" d:DesignWidth="480">
 
-    <Grid x:Name="LayoutRoot" HorizontalAlignment="Center"  Background="{StaticResource PhoneChromeBrush}">
-        <Rectangle x:Name="FirstNavigationItem" Height="100" Width="100" Margin="30,0,350,0" Fill="AliceBlue" HorizontalAlignment="Stretch"  Tap="FirstNavigationItem_Tap"/>
-        <Rectangle x:Name="SecondNavigationItem" Height="100" Width="100" Margin="135,0,245,0" Fill="Blue" HorizontalAlignment="Stretch" Tag="SecondNavigationItem_Tap" />
-        <Rectangle x:Name="ThirdNavigationItem" Height="100" Width="100" Margin="345,0,35,0" Fill="Yellow" HorizontalAlignment="Stretch" Tag="ThirdNavigationItem_Tap" />
-        <Rectangle x:Name="FourthNavigationItem" Height="100" Width="100" Margin="240,0,140,0" Fill="Green" HorizontalAlignment="Stretch" Tag="FourthNavigationItem_Tap" />
+    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+        <Rectangle Grid.Column="1" x:Name="FirstNavigationItem" Height="100" Width="100" Fill="AliceBlue" Tap="FirstNavigationItem_Tap" HorizontalAlignment="Left"/>
+        <Rectangle Grid.Column="2" x:Name="SecondNavigationItem" Height="100" Width="100" Margin="135,0,245,0" Fill="Blue" Tag="SecondNavigationItem_Tap" />
+        <Rectangle Grid.Column="3" x:Name="ThirdNavigationItem" Height="100" Width="100" Margin="345,0,35,0" Fill="Yellow" Tag="ThirdNavigationItem_Tap" />
+        <Rectangle Grid.Column="4" x:Name="FourthNavigationItem" Height="100" Width="100" Margin="240,0,140,0" Fill="Green" Tag="FourthNavigationItem_Tap" />
     </Grid>
 </UserControl>

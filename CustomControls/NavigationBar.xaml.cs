@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Navigation;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
@@ -14,29 +13,24 @@ namespace PuzzleRpg.CustomControls
             InitializeComponent();
         }
 
-        private void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
+        public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-            var target = sender as TextBlock;
-            if (target.Tag != null)
-            {
-                var targetId = target.Tag.ToString();
-                MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs(targetId));
-            }
+            MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());    
         }
 
-        private void SecondNavigationItem_Tap(object sender, GestureEventArgs e)
+        public void SecondNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-
+            MessageBus.Default.Notify("SecondNavigationItem_Tap", new Object(), new NotificationEventArgs());
         }
 
-        private void ThirdNavigationItem_Tap(object sender, GestureEventArgs e)
+        public void ThirdNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-
+            MessageBus.Default.Notify("ThirdNavigationItem", new Object(), new NotificationEventArgs());
         }
 
-        private void FourthNavigationItem_Tap(object sender, GestureEventArgs e)
+        public void FourthNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-
+            MessageBus.Default.Notify("FourthNavigationItem", new Object(), new NotificationEventArgs());
         }
     }
 }
