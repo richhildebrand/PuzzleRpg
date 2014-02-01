@@ -38,7 +38,7 @@ namespace PuzzleRpg.Utils
             {
                 To = 0,
                 From = 1,
-                Duration = TimeSpan.FromSeconds(1)
+                Duration = TimeSpan.FromMilliseconds(400)
             };
 
             Storyboard.SetTarget(opacityAnimation, puzzlePiece.Element);
