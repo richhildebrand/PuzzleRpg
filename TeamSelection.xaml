@@ -29,8 +29,10 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
             <RowDefinition Height="12*"/>
-            <RowDefinition Height="68*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="58*"/>
             <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" >
@@ -53,18 +55,18 @@
             <local:HeroProfileInHeroBox Grid.Column="4"/>
         </Grid>
 
-        <Grid Name="TeamStats" Grid.Row="2">
-            <TextBlock Text="I'm team stats!" HorizontalAlignment="Center" VerticalAlignment="Center" />
+        <Grid Name="TeamStats" Grid.Row="3">
+            <local:TeamStats />
         </Grid>
 
         <phone:LongListSelector 
-            x:Name="AvailableHeroes" Grid.Row="2"
+            x:Name="AvailableHeroes" Grid.Row="3"
             ItemTemplate="{StaticResource AvailableHeroesTemplate}"
             LayoutMode="Grid"
             GridCellSize="100, 100"
         />
 
-        <Grid Grid.Row="3">
+        <Grid Grid.Row="5">
             <TextBlock Text="I'm a nav bar!" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Grid>
     </Grid>

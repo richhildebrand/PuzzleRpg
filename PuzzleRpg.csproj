@@ -115,6 +115,9 @@
     <Compile Include="CustomControls\StatBar.xaml.cs">
       <DependentUpon>StatBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\TeamStats.xaml.cs">
+      <DependentUpon>TeamStats.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Database\HeroDatabase.cs" />
     <Compile Include="Database\HeroRepository.cs" />
     <Compile Include="Database\MonsterDatabase.cs" />
@@ -201,6 +204,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\StatBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\TeamStats.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
