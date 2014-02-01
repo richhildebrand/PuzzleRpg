@@ -55,8 +55,8 @@
             <local:HeroProfileInHeroBox Grid.Column="4"/>
         </Grid>
 
-        <Grid Name="TeamStats" Grid.Row="3">
-            <local:TeamStats />
+        <Grid Grid.Row="3">
+            <local:TeamStats x:Name="TeamStats" />
         </Grid>
 
         <phone:LongListSelector 

@@ -24,18 +24,18 @@
             <ColumnDefinition Width="10*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="50" Text="Total Health is ?????" />
+        <TextBlock Grid.Row="0" Grid.ColumnSpan="2" FontSize="50" Text="Total Health is ?????" x:Name="TotalHealth"/>
         
         <Image Grid.Row="1" Grid.Column="0" Source="/Assets/Orbs/HealOrb.png"></Image>
-        <Image Grid.Row="2" Grid.Column="0" Source="/Assets/Orbs/HealOrb.png"></Image>
-        <Image Grid.Row="3" Grid.Column="0" Source="/Assets/Orbs/FireOrb.png"></Image>
-        <Image Grid.Row="4" Grid.Column="0" Source="/Assets/Orbs/WaterOrb.png"></Image>
-        <Image Grid.Row="5" Grid.Column="0" Source="/Assets/Orbs/WoodOrb.png"></Image>
+        <Image Grid.Row="2" Grid.Column="0" Source="/Assets/Orbs/WaterOrb.png"></Image>
+        <Image Grid.Row="3" Grid.Column="0" Source="/Assets/Orbs/WaterOrb.png"></Image>
+        <Image Grid.Row="4" Grid.Column="0" Source="/Assets/Orbs/WoodOrb.png"></Image>
+        <Image Grid.Row="5" Grid.Column="0" Source="/Assets/Orbs/FireOrb.png"></Image>
 
-        <TextBlock Grid.Row="1" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Heals for ?????" />
-        <TextBlock Grid.Row="2" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" />
-        <TextBlock Grid.Row="3" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" />
-        <TextBlock Grid.Row="4" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" />
-        <TextBlock Grid.Row="5" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" />
+        <TextBlock Grid.Row="1" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Heals for ?????" x:Name="HealsFor" />
+        <TextBlock Grid.Row="2" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" x:Name="EarthAttacksFor" />
+        <TextBlock Grid.Row="3" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" x:Name="WaterAttacksFor" />
+        <TextBlock Grid.Row="4" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" x:Name="WoodAttacksFor" />
+        <TextBlock Grid.Row="5" Grid.Column="1" Padding="15, 0, 0, 0" FontSize="40"  VerticalAlignment="Center" Text="Attacks for ?????" x:Name="FireAttacksFor" />
     </Grid>
 </UserControl>

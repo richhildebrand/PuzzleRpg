@@ -24,6 +24,7 @@ namespace PuzzleRpg
 
             InitializeComponent();
             ShowTeam();
+            LoadTeamStats();
             LoadAvailableHeroes();
         }
 
@@ -33,6 +34,7 @@ namespace PuzzleRpg
             RemoveHeroFromTeam(_teamMemberToSwap);
             AddHeroToTeam(heroToAdd);
 
+            LoadTeamStats();
             AvailableHeroes.Visibility = Visibility.Collapsed;
             TeamStats.Visibility = Visibility.Visible;
             LoadAvailableHeroes();
@@ -106,6 +108,11 @@ namespace PuzzleRpg
 
             availableHeroes = availableHeroes.Except(heroesInUse).ToList();
             AvailableHeroes.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
+        }
+
+        private void LoadTeamStats()
+        {
+            TeamStats.Draw(_activeTeam);
         }
     }
 }
