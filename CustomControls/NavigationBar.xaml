@@ -7,9 +7,12 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="100" d:DesignWidth="480">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-
+        <Rectangle Height="100" Width="100" Margin="0,0,380,0" Fill="AliceBlue"/>
+        <Rectangle Height="100" Width="100" Margin="105,0,275,0" Fill="Blue"/>
+        <Rectangle Height="100" Width="100" Margin="315,0,65,0" Fill="Yellow"/>
+        <Rectangle Height="100" Width="100" Margin="210,0,170,0" Fill="Green"/>
     </Grid>
 </UserControl>
