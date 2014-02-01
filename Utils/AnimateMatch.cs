@@ -13,7 +13,6 @@ namespace PuzzleRpg.Utils
     {
         private TaskCompletionSource<bool> _taskSource;
 
-
         public Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
         {
             _taskSource = new TaskCompletionSource<bool>();

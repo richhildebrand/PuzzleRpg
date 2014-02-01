@@ -53,6 +53,7 @@ namespace PuzzleRpg.Utils
                 if (matchingNeighbors.Count >= 3)
                 {
                     matchingNeighbors = CheckNorthAndSouth(matchingNeighbors, puzzlePieces);
+                    matchingNeighbors = matchingNeighbors.Distinct().ToList();
                     MarkAllOrbs(matchingNeighbors);
                     OrbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, true));
 
