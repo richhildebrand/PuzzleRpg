@@ -41,11 +41,9 @@ namespace PuzzleRpg.Logic
             var pieceToSwap = _puzzlePieces.SingleOrDefault(pp => pp.Location.Row == orbMove.Destination.Row
                                                                && pp.Location.Column == orbMove.Destination.Column);
 
-            if (pieceToSwap != null)
-            {
-                pieceToSwap.SetPosition(orbMove.Origin.Row, orbMove.Origin.Column);
-                movingPiece.SetPosition(orbMove.Destination.Row, orbMove.Destination.Column);
-            }
+            pieceToSwap.SetPosition(orbMove.Origin.Row, orbMove.Origin.Column);
+            movingPiece.Location.Row = orbMove.Destination.Row;
+            movingPiece.Location.Column = orbMove.Destination.Column;
         }
 
         public Task MatchAndReplacePuzzlePieces()
