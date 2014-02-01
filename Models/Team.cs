@@ -59,7 +59,6 @@ namespace PuzzleRpg.Models
 
         private int GetTotalHealth()
         {
-            return 10000000;
             var hitPoints = 0;
             foreach (var hero in Heroes)
             {
