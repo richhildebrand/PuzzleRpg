@@ -1,55 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media;
+using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Utils
 {
-    public static class AnimateMatch
+    public class AnimateMatch
     {
-        private static List<PuzzlePiece> _puzzlePieces;
-        private static TaskCompletionSource<bool> _taskSource;
+        private TaskCompletionSource<bool> _taskSource;
 
-        public static Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
+
+        public Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
         {
             _taskSource = new TaskCompletionSource<bool>();
 
-            _puzzlePieces = puzzlePieces;
-            foreach (var piece in puzzlePieces)
+            var storyboard = new Storyboard();
+
+            foreach (var puzzlePiece in puzzlePieces)
             {
-                FadePiece(piece);
+                var animation = DoAnimation(puzzlePiece);
+                storyboard.Children.Add(animation);
             }
-            AppGlobals.PuzzleStoryBoard.Completed += EndAnimation;
-            AppGlobals.PuzzleStoryBoard.Begin();
+
+            storyboard.Completed += EndAnimation;
+            storyboard.Begin();
+
             return _taskSource.Task;
         }
-  
-        private static void EndAnimation(object sender, EventArgs e)
+
+        private DoubleAnimation DoAnimation(PuzzlePiece puzzlePiece)
         {
-            AppGlobals.PuzzleStoryBoard.Stop();
-            AppGlobals.PuzzleStoryBoard = new Storyboard();
-            _taskSource.SetResult(true);
+             var opacityAnimation = new DoubleAnimation
+            {
+                To = 0,
+                From = 1,
+                Duration = TimeSpan.FromSeconds(1)
+            };
+
+            Storyboard.SetTarget(opacityAnimation, puzzlePiece.Element);
+            Storyboard.SetTargetProperty(opacityAnimation,
+                                            new PropertyPath(Image.OpacityProperty));
+
+            return opacityAnimation;
         }
 
-        private static void FadePiece(PuzzlePiece piece)
+        private void EndAnimation(object sender, EventArgs e)
         {
-            var image = piece.Element;
-            image.RenderTransform = piece._dragTranslation;
-
-            DoubleAnimation moveAnim = new DoubleAnimation();
-            moveAnim.Duration = TimeSpan.FromMilliseconds(400);
-
-            moveAnim.From = 1;
-            moveAnim.To = 0;
-
-            Storyboard.SetTarget(moveAnim, image);
-            Storyboard.SetTargetProperty(moveAnim, new PropertyPath(SolidColorBrush.OpacityProperty));
-            AppGlobals.PuzzleStoryBoard.Children.Add(moveAnim);
+            _taskSource.SetResult(true);
         }
     }
 }
