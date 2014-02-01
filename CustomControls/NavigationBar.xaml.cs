@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Navigation;
-using Microsoft.Phone.Controls;
-using Microsoft.Phone.Shell;
 
 namespace PuzzleRpg.CustomControls
 {
@@ -15,6 +11,26 @@ namespace PuzzleRpg.CustomControls
         public NavigationBar()
         {
             InitializeComponent();
+        }
+
+        public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+        }
+
+        private void SecondNavigationItem_Tap(object sender, GestureEventArgs e)
+        {
+
+        }
+
+        private void ThirdNavigationItem_Tap(object sender, GestureEventArgs e)
+        {
+
+        }
+
+        private void FourthNavigationItem_Tap(object sender, GestureEventArgs e)
+        {
+
         }
     }
 }
