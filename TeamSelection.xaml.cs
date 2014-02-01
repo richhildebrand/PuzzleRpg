@@ -8,6 +8,7 @@ using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -23,6 +24,8 @@ namespace PuzzleRpg
             _activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
 
             InitializeComponent();
+            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+
             ShowTeam();
             LoadTeamStats();
             LoadAvailableHeroes();
@@ -113,6 +116,13 @@ namespace PuzzleRpg
         private void LoadTeamStats()
         {
             TeamStats.Draw(_activeTeam);
+        }
+
+        private void OnShowHeroDetails(object sender, NotificationEventArgs e)
+        {
+            var id = e.Message;
+            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml?playerOwnedHeroId=" + id,
+                                            UriKind.RelativeOrAbsolute));
         }
     }
 }
