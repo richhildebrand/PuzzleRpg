@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
 {
@@ -13,9 +14,14 @@ namespace PuzzleRpg.CustomControls
             InitializeComponent();
         }
 
-        public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
+        private void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+            var target = sender as TextBlock;
+            if (target.Tag != null)
+            {
+                var targetId = target.Tag.ToString();
+                MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs(targetId));
+            }
         }
 
         private void SecondNavigationItem_Tap(object sender, GestureEventArgs e)

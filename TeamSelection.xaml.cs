@@ -25,6 +25,7 @@ namespace PuzzleRpg
 
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+            MessageBus.Default.Register("FirstNavigationItem", FirstNavItem);
 
             ShowTeam();
             LoadTeamStats();
@@ -122,6 +123,13 @@ namespace PuzzleRpg
         {
             var id = e.Message;
             this.NavigationService.Navigate(new Uri("/HeroDetails.xaml?playerOwnedHeroId=" + id,
+                                            UriKind.RelativeOrAbsolute));
+        }
+
+        private void FirstNavItem(object sender, NotificationEventArgs e)
+        {
+            var id = e.Message;
+            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
     }
