@@ -51,7 +51,7 @@ namespace PuzzleRpg.Logic
 
         private async void OnEndTurn(object sender, NotificationEventArgs e)
         {
-            PopupUtils.CoverScreen(0);
+            PopupUtils.CoverScreen(5);
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
             var matches = _puzzleGrid.MatchedOrbs;
 
