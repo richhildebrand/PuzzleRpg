@@ -282,6 +282,11 @@
     <Content Include="Assets\ProfileBorders\Fire.png" />
     <Content Include="Assets\ProfileBorders\Water.png" />
     <Content Include="Assets\ProfileBorders\Wood.png" />
+    <Content Include="Assets\Screenshots\GameScreen.png" />
+    <Content Include="Assets\Screenshots\HeroDetails.png" />
+    <Content Include="Assets\Screenshots\Heroes.png" />
+    <Content Include="Assets\Screenshots\Summary.png" />
+    <Content Include="Assets\Screenshots\TeamSelection.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

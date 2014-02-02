@@ -32,5 +32,10 @@ namespace PuzzleRpg.CustomControls
         {
             MessageBus.Default.Notify("FourthNavigationItem", new Object(), new NotificationEventArgs());
         }
+
+        public void FifthNavigationItem_Tap(object sender, GestureEventArgs e)
+        {
+            MessageBus.Default.Notify("FifthNavigationItem", new Object(), new NotificationEventArgs());
+        }
     }
 }

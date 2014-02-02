@@ -29,6 +29,7 @@ namespace PuzzleRpg
             MessageBus.Default.Register("SecondNavigationItem_Tap", SecondNavItem);
             MessageBus.Default.Register("ThirdNavigationItem", ThirdNavItem);
             MessageBus.Default.Register("FourthNavigationItem", FourthNavItem);
+            MessageBus.Default.Register("FifthNavigationItem", FifthNavItem);
 
             ShowTeam();
             LoadTeamStats();
@@ -131,25 +132,31 @@ namespace PuzzleRpg
 
         private void FirstNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
         private void SecondNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
+            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
         private void ThirdNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
+            this.NavigationService.Navigate(new Uri("/MainPage.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
         private void FourthNavItem(object sender, NotificationEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
+                                            UriKind.RelativeOrAbsolute));
+        }
+
+        private void FifthNavItem(object sender, NotificationEventArgs e)
+        {
+            this.NavigationService.Navigate(new Uri("/TeamSelection.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
     }
