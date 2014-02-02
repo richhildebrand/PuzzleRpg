@@ -14,13 +14,15 @@ namespace PuzzleRpg
     public partial class TeamSelection : PhoneApplicationPage
     {
         private HeroRepository _heroRepository;
+        private TeamRepository _teamRepository;
         private string _teamMemberToSwap;
         private Hero[] _activeTeam;
 
         public TeamSelection()
         {
             _heroRepository = new HeroRepository();
-            _activeTeam = new Hero[AppGlobals.MaxHeroesOnATeam];
+            _teamRepository = new TeamRepository();
+            _activeTeam = _teamRepository.GetTeam();
 
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
@@ -63,6 +65,7 @@ namespace PuzzleRpg
                 if (hero == null)
                 {
                     _activeTeam[i] = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
+                    _teamRepository.SaveTeam(_activeTeam);
                     ShowTeam();
                     break;
                 }

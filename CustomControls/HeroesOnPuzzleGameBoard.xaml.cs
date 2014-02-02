@@ -21,7 +21,7 @@ namespace PuzzleRpg.CustomControls
             this._activeTeam = activeTeam;
             for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
             {
-                AddHero(i, activeTeam.Heroes[i], LayoutRoot);
+                AddHero(i, activeTeam.TeamMembers[i], LayoutRoot);
             }
         }
 
