@@ -126,6 +126,7 @@
     <Compile Include="Database\MonsterDatabase.cs" />
     <Compile Include="Database\DungeonDatabase.cs" />
     <Compile Include="Database\Repository.cs" />
+    <Compile Include="Database\TeamRepository.cs" />
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
