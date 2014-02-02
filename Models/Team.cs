@@ -32,8 +32,9 @@ namespace PuzzleRpg.Models
             TeamMembers.Add(GetRandomTeamMember(3));
             TeamMembers.Add(GetRandomTeamMember(4));
 
-            CurrentHealth = GetTotalHealth();
-            TotalHealth = GetTotalHealth();
+            var heroes = TeamMembers.Select(h => h.ThisHero);
+            CurrentHealth = heroes.Sum(h => h.HitPoints);
+            TotalHealth = heroes.Sum(h => h.HitPoints);
         }
 
         public void Heal(List<OrbMatch> matches)
@@ -88,16 +89,6 @@ namespace PuzzleRpg.Models
             }
 
             throw new Exception("No open slots");
-        }
-
-        private int GetTotalHealth()
-        {
-            var hitPoints = 0;
-            foreach (var teamMember in TeamMembers)
-            {
-                hitPoints += teamMember.ThisHero.HitPoints;
-            }
-            return hitPoints;
         }
     }
 }
