@@ -14,16 +14,16 @@ namespace PuzzleRpg.CustomControls
             InitializeComponent();
         }
 
-        public void Draw(Hero[] team) {
-            var filteredTeam = team.ToList().Where(h => h != null).ToList();
+        public void Draw(Team team) {
+            var heroes = team.TeamMembers.Select(tm => tm.ThisHero).ToList();
 
-            TotalHealth.Text = "Total health is " + filteredTeam.Sum(h => h.HitPoints);
-            HealsFor.Text = "Heals for " + filteredTeam.Sum(h => h.HealsFor);
+            TotalHealth.Text = "Total health is " + heroes.Sum(h => h.HitPoints);
+            HealsFor.Text = "Heals for " + heroes.Sum(h => h.HealsFor);
 
-            EarthAttacksFor.Text = "Attacks For " + " ???";
-            WaterAttacksFor.Text = GetDamageMessage(filteredTeam, AppGlobals.Types.Water);
-            WoodAttacksFor.Text = GetDamageMessage(filteredTeam, AppGlobals.Types.Wood);
-            FireAttacksFor.Text = GetDamageMessage(filteredTeam, AppGlobals.Types.Fire);
+            EarthAttacksFor.Text = "Attacks for " + " ???";
+            WaterAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Water);
+            WoodAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Wood);
+            FireAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Fire);
 
         }
 

@@ -26,7 +26,7 @@ namespace PuzzleRpg.Utils
             return heroViewModels;
         }
 
-        private static HeroViewModel GetHeroViewModel(Hero hero) {
+        public static HeroViewModel GetHeroViewModel(Hero hero) {
             var heroVM = new HeroViewModel();
 
             if (hero != null)

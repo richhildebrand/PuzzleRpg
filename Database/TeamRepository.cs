@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using PuzzleRpg.Models;
@@ -14,19 +15,20 @@ namespace PuzzleRpg.Database
             CreateKeyIfMissing(TEAM_KEY);
         }
 
-        public Hero[] GetTeam() {
-            return IsolatedStorageSettings.ApplicationSettings[TEAM_KEY] as Hero[];
+        public List<TeamMember> GetTeam() {
+            return IsolatedStorageSettings.ApplicationSettings[TEAM_KEY] as List<TeamMember>;
         }
 
-        public void SaveTeam(Hero[] heroes) {
-            IsolatedStorageSettings.ApplicationSettings[TEAM_KEY] = heroes;
+        public void SaveTeam(List<TeamMember> teamMembers)
+        {
+            IsolatedStorageSettings.ApplicationSettings[TEAM_KEY] = teamMembers;
             IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         protected override void CreateKey(string key)
         {
-            var heroes = new Hero[5];
-            IsolatedStorageSettings.ApplicationSettings.Add(TEAM_KEY, heroes);
+            var teamMembers = new List<TeamMember>();
+            IsolatedStorageSettings.ApplicationSettings.Add(TEAM_KEY, teamMembers);
         }
     }
 }

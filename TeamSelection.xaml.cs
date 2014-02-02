@@ -16,13 +16,13 @@ namespace PuzzleRpg
         private HeroRepository _heroRepository;
         private TeamRepository _teamRepository;
         private string _teamMemberToSwap;
-        private Hero[] _activeTeam;
+        private Team _activeTeam;
 
         public TeamSelection()
         {
             _heroRepository = new HeroRepository();
             _teamRepository = new TeamRepository();
-            _activeTeam = _teamRepository.GetTeam();
+            _activeTeam = new Team();
 
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
@@ -40,7 +40,7 @@ namespace PuzzleRpg
         public void OnAddHeroToTeam(object sender, GestureEventArgs e)
         {
             var heroToAdd = GetHeroId(sender);
-            RemoveHeroFromTeam(_teamMemberToSwap);
+            _activeTeam.RemoveHeroFromTeam(_teamMemberToSwap);
             AddHeroToTeam(heroToAdd);
 
             LoadTeamStats();
@@ -56,30 +56,10 @@ namespace PuzzleRpg
             _teamMemberToSwap = GetHeroId(sender);
         }
 
-        private void AddHeroToTeam(string heroId)
+        private void AddHeroToTeam(string idOfHeroToAdd)
         {
-            var heroGuid = new Guid(heroId);
-            for (int i = 0; i < _activeTeam.Length; i++)
-            {
-                var hero = _activeTeam[i];
-                if (hero == null)
-                {
-                    _activeTeam[i] = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
-                    _teamRepository.SaveTeam(_activeTeam);
-                    ShowTeam();
-                    break;
-                }
-            }
-        }
-
-        private void RemoveHeroFromTeam(string idToRemove) {
-            if (idToRemove != null)
-            {
-                var id = new Guid(idToRemove);
-                var heroToRemove = _activeTeam.Single(h => h != null && h.Id == id);
-                var indexToRemove = Array.IndexOf(_activeTeam, heroToRemove);
-                _activeTeam[indexToRemove] = null;
-            }
+            _activeTeam.AddTeamMember(idOfHeroToAdd);
+            ShowTeam();
         }
 
         private string GetHeroId(object sender) {
@@ -96,12 +76,14 @@ namespace PuzzleRpg
 
         private void ShowTeam()
         {
-            var activeHeroProfiles = HeroToViewModelMapper.GetHeroViewModels(_activeTeam);
-
-            for (int i = 0; i < activeHeroProfiles.Length; i++)
+            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
             {
+                var teamMember = _activeTeam.TeamMembers.SingleOrDefault(tm => tm.Slot == i);
+                var hero = (teamMember != null) ? teamMember.ThisHero : null;
+                var heroVM = HeroToViewModelMapper.GetHeroViewModel(hero);
+
                 var heroProfile = Team.Children[i] as HeroProfileInHeroBox;
-                heroProfile.Draw(activeHeroProfiles[i]);
+                heroProfile.Draw(heroVM);
                 heroProfile.Tap -= OnBeginSelectingDifferentHero;
                 heroProfile.Tap += OnBeginSelectingDifferentHero;
             }
@@ -114,7 +96,7 @@ namespace PuzzleRpg
             AvailableHeroes.Visibility = Visibility.Collapsed;
 
             var availableHeroes = _heroRepository.GetHeroesOwnedByPlayer();
-            var heroesInUse =_activeTeam.ToList();
+            var heroesInUse = _activeTeam.TeamMembers.Select(tm => tm.ThisHero).ToList();
 
             availableHeroes = availableHeroes.Except(heroesInUse).ToList();
             AvailableHeroes.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
