@@ -21,10 +21,10 @@ namespace PuzzleRpg.Models
         {
             TeamMembers = new List<TeamMember>();
 
-            TeamMembers.Add(GetRandomTeamMember(1));
+            TeamMembers.Add(GetRandomTeamMember(0));
+            TeamMembers.Add(GetRandomTeamMember(2));
             TeamMembers.Add(GetRandomTeamMember(3));
             TeamMembers.Add(GetRandomTeamMember(4));
-            TeamMembers.Add(GetRandomTeamMember(5));
 
             CurrentHealth = GetTotalHealth();
             TotalHealth = GetTotalHealth();
@@ -51,12 +51,9 @@ namespace PuzzleRpg.Models
         private int GetTotalHealth()
         {
             var hitPoints = 0;
-            foreach (var hero in TeamMembers)
+            foreach (var teamMember in TeamMembers)
             {
-                if (hero != null)
-                {
-                    hitPoints += hero.HitPoints;
-                }
+                hitPoints += teamMember.ThisHero.HitPoints;
             }
             return hitPoints;
         }

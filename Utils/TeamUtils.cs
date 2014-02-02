@@ -15,27 +15,23 @@ namespace PuzzleRpg.Utils
             var healMatches = matches.Where(m => m.Type == AppGlobals.Types.Heal).ToList();
             var totalHealing = 0;
 
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
+            foreach (var teamMember in teamMembers)
             {
-                var hero = heroes[i];
-                if (hero != null)
+                double heroHealing = 0;
+                foreach (var match in healMatches)
                 {
-                    double heroHealing = 0;
-                    foreach (var match in healMatches)
-                    {
-                        heroHealing = CalculateMatchDamage(hero.HealsFor, match);
-                    }
-
-                    var extraMatches = matches.Count - healMatches.Count;
-                    heroHealing *= (MATCH_MULTIPLIER * extraMatches) + 1;
-                    totalHealing += Convert.ToInt32(heroHealing);
+                    heroHealing = CalculateMatchDamage(teamMember.ThisHero.HealsFor, match);
                 }
+
+                var extraMatches = matches.Count - healMatches.Count;
+                heroHealing *= (MATCH_MULTIPLIER * extraMatches) + 1;
+                totalHealing += Convert.ToInt32(heroHealing);
             }
 
             return totalHealing;
         }
 
-        public static int CalculateDamage(Hero[] heroes, List<OrbMatch> matches)
+        public static int CalculateDamage(List<TeamMember> teamMembers, List<OrbMatch> matches)
         {
             var totalDamage = 0;
 
@@ -44,13 +40,9 @@ namespace PuzzleRpg.Utils
                 return totalDamage;
             }
 
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
+            foreach (var teamMember in teamMembers)
             {
-                var hero = heroes[i];
-                if (hero != null)
-                {
-                    totalDamage += CalculateHeroDamage(hero, matches);
-                }
+                totalDamage += CalculateHeroDamage(teamMember.ThisHero, matches);
             }
 
             return totalDamage;

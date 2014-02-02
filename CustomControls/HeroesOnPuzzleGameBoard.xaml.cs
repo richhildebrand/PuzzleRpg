@@ -19,23 +19,20 @@ namespace PuzzleRpg.CustomControls
         public void AddHeroes(Team activeTeam)
         {
             this._activeTeam = activeTeam;
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
+            foreach (var teamMember in activeTeam.TeamMembers)
             {
-                AddHero(i, activeTeam.TeamMembers[i], LayoutRoot);
+                AddTeamMember(teamMember, LayoutRoot);
             }
         }
 
-        private void AddHero(int column, Hero hero, Grid grid)
+        private void AddTeamMember(TeamMember teamMemeber, Grid grid)
         {
-            if (hero != null)
-            {
                 var heroProfile = new HeroProfile();
-                heroProfile.DrawHeroProfile(hero);
+                heroProfile.DrawHeroProfile(teamMemeber.ThisHero);
                 grid.Children.Add(heroProfile);
                 heroProfile.SetValue(Grid.RowProperty, 0);
-                heroProfile.SetValue(Grid.ColumnProperty, column*2);
+                heroProfile.SetValue(Grid.ColumnProperty, teamMemeber.Slot*2);
                 heroProfile.Tap += OnSelectHero;
-            }
         }
 
         private void OnSelectHero(object sender, GestureEventArgs e)
