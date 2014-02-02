@@ -148,6 +148,7 @@
     <Compile Include="Models\Node.cs" />
     <Compile Include="Models\OrbMatch.cs" />
     <Compile Include="Models\OrbMove.cs" />
+    <Compile Include="Models\TeamMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logic\PuzzleGame.cs" />
     <Compile Include="Logic\PuzzleGrid.cs" />
