@@ -27,7 +27,7 @@ namespace PuzzleRpg
 
         private void OnEndGame(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamSelection.xaml", UriKind.RelativeOrAbsolute));
+            this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml", UriKind.RelativeOrAbsolute));
         }
 
         private void MonsterDefeated(object sender, NotificationEventArgs e)

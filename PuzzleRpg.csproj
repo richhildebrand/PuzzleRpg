@@ -94,6 +94,9 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppGlobals.cs" />
+    <Compile Include="CustomControls\DungeonSelector.xaml.cs">
+      <DependentUpon>DungeonSelector.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\HealthBar.xaml.cs">
       <DependentUpon>HealthBar.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,9 @@
     </Compile>
     <Compile Include="HeroDetails.xaml.cs">
       <DependentUpon>HeroDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DungeonSelection.xaml.cs">
+      <DependentUpon>DungeonSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Dungeon.cs" />
@@ -188,6 +194,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
+    <Page Include="CustomControls\DungeonSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\HealthBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -229,6 +239,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="HeroDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DungeonSelection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

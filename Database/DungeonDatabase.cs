@@ -19,7 +19,7 @@ namespace PuzzleRpg.Database
 
         private Dungeon GetGreenDragonsDen()
         {
-            var dungeon = new Dungeon();
+            var dungeon = new Dungeon("Green Dragons Den");
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("WoodOrc")));
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("WoodOrc")));
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("Turtle")));
@@ -29,7 +29,7 @@ namespace PuzzleRpg.Database
 
         private Dungeon GetBlueDragonsDen()
         {
-            var dungeon = new Dungeon();
+            var dungeon = new Dungeon("Blue Dragons Den");
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("StoneOrc")));
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("StoneOrc")));
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("BigBlue")));
