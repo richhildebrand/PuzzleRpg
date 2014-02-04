@@ -280,6 +280,7 @@
     <Content Include="Assets\Monsters\Turtle\TurtleProfile.png" />
     <Content Include="Assets\Monsters\WoodOrc\WoodOrcFull.png" />
     <Content Include="Assets\Monsters\WoodOrc\WoodOrcProfile.png" />
+    <Content Include="Assets\Orbs\EarthOrb.png" />
     <Content Include="Assets\Orbs\FireOrb.png" />
     <Content Include="Assets\Orbs\HealOrb.png" />
     <Content Include="Assets\Orbs\WaterOrb.png" />

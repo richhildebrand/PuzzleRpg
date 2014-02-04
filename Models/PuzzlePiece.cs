@@ -64,7 +64,7 @@ namespace PuzzleRpg.Models
 
         private string GetOrbType()
         {
-            var randomNumber = MathUtils.GetRandomInteger(0, 4);
+            var randomNumber = MathUtils.GetRandomInteger(0, 5);
 
             Type = (AppGlobals.Types)randomNumber;
             return ImageUtils.GetOrbImagePathFromType(Type);

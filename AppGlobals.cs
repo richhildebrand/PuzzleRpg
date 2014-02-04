@@ -19,6 +19,7 @@ namespace PuzzleRpg
             Fire,
             Water,
             Wood,
+            Earth,
             Heal
         }
     }
