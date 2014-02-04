@@ -172,7 +172,7 @@
     <Compile Include="Utils\AnimateMatch.cs" />
     <Compile Include="Utils\EmptyHeroViewModelGetter.cs" />
     <Compile Include="Utils\HeroToViewModelMapper.cs" />
-    <Compile Include="Utils\TeamMemberToTeamMemberToSaveInDatabaseMapper.cs" />
+    <Compile Include="Utils\TeamMemberMapper.cs" />
     <Compile Include="Utils\TeamUtils.cs" />
     <Compile Include="Utils\GridUtils.cs" />
     <Compile Include="Utils\ImageUtils.cs" />

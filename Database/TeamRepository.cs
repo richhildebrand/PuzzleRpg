@@ -11,24 +11,35 @@ namespace PuzzleRpg.Database
     public class TeamRepository : Repository
     {
         private readonly string TEAMS_KEY = "Teams";
+        private HeroRepository _heroRepository;
 
         public TeamRepository()
         {
+            _heroRepository = new HeroRepository();
             CreateKeyIfMissing(TEAMS_KEY);
         }
 
         public List<TeamMemberToSaveToDatabase> GetTeam()
         {
-            // TODO: validate team members are in hero database
-            return IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] as List<TeamMemberToSaveToDatabase>;
+            var heroesOnTeam = IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] as List<TeamMemberToSaveToDatabase>;
+            heroesOnTeam = RemoveHeroesNoLongerOwnedByPlayer(heroesOnTeam);
+
+            return heroesOnTeam;
         }
 
         public void SaveTeam(List<TeamMember> teamMembers)
         {
-            var membersForDatabase = TeamMemberToTeamMemberToSaveInDatabaseMapper.Map(teamMembers);
+            var membersForDatabase = TeamMemberMapper.Map(teamMembers);
 
             IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] = membersForDatabase;
             IsolatedStorageSettings.ApplicationSettings.Save();
+        }
+
+        private List<TeamMemberToSaveToDatabase> RemoveHeroesNoLongerOwnedByPlayer(List<TeamMemberToSaveToDatabase> teamMembers)
+        {
+            var ownedHeroes = _heroRepository.GetHeroesOwnedByPlayer();
+            var ownedHeroIds = ownedHeroes.Select(h => h.Id);
+            return teamMembers.Where(tm => ownedHeroIds.Contains(tm.HeroId)).ToList();
         }
 
         protected override void CreateKey(string key)
