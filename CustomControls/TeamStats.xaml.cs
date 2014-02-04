@@ -20,7 +20,7 @@ namespace PuzzleRpg.CustomControls
             TotalHealth.Text = "Total health is " + heroes.Sum(h => h.HitPoints);
             HealsFor.Text = "Heals for " + heroes.Sum(h => h.HealsFor);
 
-            EarthAttacksFor.Text = "Attacks for " + " ???";
+            EarthAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Earth);
             WaterAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Water);
             WoodAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Wood);
             FireAttacksFor.Text = GetDamageMessage(heroes, AppGlobals.Types.Fire);
