@@ -10,6 +10,8 @@ namespace PuzzleRpg.CustomControls
 {
     public partial class HeroProfileInHeroBox : UserControl
     {
+        public int? TeamSlot { get; set; }
+
         public HeroProfileInHeroBox()
         {
             InitializeComponent();

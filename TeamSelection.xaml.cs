@@ -15,7 +15,7 @@ namespace PuzzleRpg
     {
         private HeroRepository _heroRepository;
         private TeamRepository _teamRepository;
-        private string _teamMemberToSwap;
+        private int _teamSlotToModify;
         private Team _activeTeam;
 
         public TeamSelection()
@@ -39,9 +39,13 @@ namespace PuzzleRpg
 
         public void OnAddHeroToTeam(object sender, GestureEventArgs e)
         {
-            var heroToAdd = GetHeroId(sender);
-            _activeTeam.RemoveHeroFromTeam(_teamMemberToSwap);
-            AddHeroToTeam(heroToAdd);
+            var selectedProfile = sender as HeroProfileInHeroBox;
+            var heroToAdd = selectedProfile.HeroId.Tag as string;
+
+            _activeTeam.RemoveHeroFromTeam(_teamSlotToModify);
+            AddHeroToTeam(_teamSlotToModify, heroToAdd);
+
+            _teamRepository.SaveTeam(_activeTeam);
 
             LoadTeamStats();
             AvailableHeroes.Visibility = Visibility.Collapsed;
@@ -51,27 +55,17 @@ namespace PuzzleRpg
 
         public void OnBeginSelectingDifferentHero(object sender, GestureEventArgs e)
         {
+            var selectedProfile = sender as HeroProfileInHeroBox;
+            _teamSlotToModify = (int)selectedProfile.TeamSlot;
+
             AvailableHeroes.Visibility = Visibility.Visible;
             TeamStats.Visibility = Visibility.Collapsed;
-            _teamMemberToSwap = GetHeroId(sender);
         }
 
-        private void AddHeroToTeam(string idOfHeroToAdd)
+        private void AddHeroToTeam(int teamSlotToAddHero, string idOfHeroToAdd)
         {
-            _activeTeam.AddTeamMember(idOfHeroToAdd);
+            _activeTeam.AddTeamMember(teamSlotToAddHero, idOfHeroToAdd);
             ShowTeam();
-        }
-
-        private string GetHeroId(object sender) {
-            var selectedProfile = sender as HeroProfileInHeroBox;
-            var selectedHero = selectedProfile.HeroId;
-
-            if (selectedHero.Tag == null)
-            {
-                return null;
-            }
-            var heroId = selectedHero.Tag;
-            return heroId.ToString();
         }
 
         private void ShowTeam()
@@ -84,6 +78,7 @@ namespace PuzzleRpg
 
                 var heroProfile = Team.Children[i] as HeroProfileInHeroBox;
                 heroProfile.Draw(heroVM);
+                heroProfile.TeamSlot = i;
                 heroProfile.Tap -= OnBeginSelectingDifferentHero;
                 heroProfile.Tap += OnBeginSelectingDifferentHero;
             }

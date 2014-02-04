@@ -11,8 +11,8 @@ namespace PuzzleRpg.Models
         public List<TeamMember> TeamMembers { get; set; }
         public int TotalHealth { get; set; }
         public int CurrentHealth { get; set; }
+        public int TeamId { get; set; }
 
-        private int _teamId = 1;
         private readonly HeroRepository _heroRepository;
         private readonly TeamRepository _teamRepository;
 
@@ -56,44 +56,19 @@ namespace PuzzleRpg.Models
             CurrentHealth -= monsterAttackDamage;
         }
 
-        public void RemoveHeroFromTeam(string idToRemove)
+        public void RemoveHeroFromTeam(int slot)
         {
-            if (idToRemove != null)
-            {
-                var id = new Guid(idToRemove);
-                var memberToRemove = TeamMembers.Single(tm => tm.ThisHero.Id == id);
-                TeamMembers.Remove(memberToRemove);
-
-                var teamForDatabase = new TeamToSaveToDatabase(_teamId, TeamMembers);
-                _teamRepository.SaveTeam(teamForDatabase);
-            }
+            var teamMemberToRemove = TeamMembers.SingleOrDefault(tm => tm.Slot == slot);
+            TeamMembers.Remove(teamMemberToRemove);
         }
 
-        public void AddTeamMember(string idOfHeroToAdd)
+        public void AddTeamMember(int slotToAddHero, string idOfHeroToAdd)
         {
             var heroGuid = new Guid(idOfHeroToAdd);
             var heroToAdd = _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroGuid);
 
-            var firstOpenSlot = GetFirstOpenSlot();
-            var teamMemberToAdd = new TeamMember(firstOpenSlot, heroToAdd);
+            var teamMemberToAdd = new TeamMember(slotToAddHero, heroToAdd);
             TeamMembers.Add(teamMemberToAdd);
-
-            var teamForDatabase = new TeamToSaveToDatabase(_teamId, TeamMembers);
-            _teamRepository.SaveTeam(teamForDatabase);
-        }
-  
-        private int GetFirstOpenSlot()
-        {
-            for (int i = 0; i < AppGlobals.MaxHeroesOnATeam; i++)
-            {
-                var heroInSlot = TeamMembers.SingleOrDefault(tm => tm.Slot == i);
-                if (heroInSlot == null)
-                {
-                    return i;
-                }
-            }
-
-            throw new Exception("No open slots");
         }
     }
 }

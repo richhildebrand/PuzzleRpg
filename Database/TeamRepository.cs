@@ -28,6 +28,13 @@ namespace PuzzleRpg.Database
             return teamToGet;
         }
 
+        public void SaveTeam(Team team)
+        {
+            var teamMemberForDatabase = TeamMemberMapper.Map(team.TeamMembers);
+            var teamForDatabase = new TeamToSaveToDatabase(team.TeamId, teamMemberForDatabase);
+            SaveTeam(teamForDatabase);
+        }
+
         public void SaveTeam(TeamToSaveToDatabase team)
         {
             List<TeamToSaveToDatabase> teams = GetTeams();
