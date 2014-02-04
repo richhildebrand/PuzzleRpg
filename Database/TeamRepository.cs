@@ -11,7 +11,7 @@ namespace PuzzleRpg.Database
     public class TeamRepository : Repository
     {
         private readonly string TEAMS_KEY = "Teams";
-        private HeroRepository _heroRepository;
+        private readonly HeroRepository _heroRepository;
 
         public TeamRepository()
         {
@@ -19,20 +19,28 @@ namespace PuzzleRpg.Database
             CreateKeyIfMissing(TEAMS_KEY);
         }
 
-        public List<TeamMemberToSaveToDatabase> GetTeam()
+        public TeamToSaveToDatabase GetTeam(int teamId)
         {
-            var heroesOnTeam = IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] as List<TeamMemberToSaveToDatabase>;
-            heroesOnTeam = RemoveHeroesNoLongerOwnedByPlayer(heroesOnTeam);
+            var teams = GetTeams();
+            var teamToGet = teams.Single(t => t.TeamId == teamId);
+            teamToGet.TeamMembers = RemoveHeroesNoLongerOwnedByPlayer(teamToGet.TeamMembers);
 
-            return heroesOnTeam;
+            return teamToGet;
         }
 
-        public void SaveTeam(List<TeamMember> teamMembers)
+        public void SaveTeam(TeamToSaveToDatabase team)
         {
-            var membersForDatabase = TeamMemberMapper.Map(teamMembers);
+            List<TeamToSaveToDatabase> teams = GetTeams();
+            var unmodifiedTeams = teams.Where(t => t.TeamId != team.TeamId).ToList();
+            unmodifiedTeams.Add(team);
 
-            IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] = membersForDatabase;
+            IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] = unmodifiedTeams;
             IsolatedStorageSettings.ApplicationSettings.Save();
+        }
+
+        private List<TeamToSaveToDatabase> GetTeams() 
+        {
+            return IsolatedStorageSettings.ApplicationSettings[TEAMS_KEY] as List<TeamToSaveToDatabase>;
         }
 
         private List<TeamMemberToSaveToDatabase> RemoveHeroesNoLongerOwnedByPlayer(List<TeamMemberToSaveToDatabase> teamMembers)
@@ -44,8 +52,8 @@ namespace PuzzleRpg.Database
 
         protected override void CreateKey(string key)
         {
-            var teamMembers = new List<TeamMemberToSaveToDatabase>();
-            IsolatedStorageSettings.ApplicationSettings.Add(TEAMS_KEY, teamMembers);
+            var team = new List<TeamToSaveToDatabase>();
+            IsolatedStorageSettings.ApplicationSettings.Add(TEAMS_KEY, team);
         }
     }
 }

@@ -12,6 +12,7 @@ namespace PuzzleRpg.Models
         public int TotalHealth { get; set; }
         public int CurrentHealth { get; set; }
 
+        private int _teamId = 1;
         private readonly HeroRepository _heroRepository;
         private readonly TeamRepository _teamRepository;
 
@@ -63,7 +64,8 @@ namespace PuzzleRpg.Models
                 var memberToRemove = TeamMembers.Single(tm => tm.ThisHero.Id == id);
                 TeamMembers.Remove(memberToRemove);
 
-                _teamRepository.SaveTeam(TeamMembers);
+                var teamForDatabase = new TeamToSaveToDatabase(_teamId, TeamMembers);
+                _teamRepository.SaveTeam(teamForDatabase);
             }
         }
 
@@ -76,7 +78,8 @@ namespace PuzzleRpg.Models
             var teamMemberToAdd = new TeamMember(firstOpenSlot, heroToAdd);
             TeamMembers.Add(teamMemberToAdd);
 
-            _teamRepository.SaveTeam(TeamMembers);
+            var teamForDatabase = new TeamToSaveToDatabase(_teamId, TeamMembers);
+            _teamRepository.SaveTeam(teamForDatabase);
         }
   
         private int GetFirstOpenSlot()
