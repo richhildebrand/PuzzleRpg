@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using Microsoft.Phone.Controls;
 using SimpleMvvmToolkit;
 
@@ -13,14 +14,24 @@ namespace PuzzleRpg.CustomControls
         public NavigationBar()
         {
             InitializeComponent();
-            MessageBus.Default.Register("CurrentPage", GetCurrentPage);
+            MessageBus.Default.Register("CurrentPage", GetCurrentPageAndCallHighlight);
         }
 
-        private void GetCurrentPage(object sender, NotificationEventArgs e)
+        private void GetCurrentPageAndCallHighlight(object sender, NotificationEventArgs e)
         {
-            string thing = ((PhoneApplicationFrame)Application.Current.RootVisual).CurrentSource.ToString();
-        }        
+            string currentPageUrl = ((PhoneApplicationFrame)Application.Current.RootVisual).CurrentSource.ToString();
+            HighlightCurrentPage(currentPageUrl);
+        }
 
+        private void HighlightCurrentPage(string currentPageToHighlight)
+        {
+            
+            if (currentPageToHighlight == "/TeamSelection.xaml")
+            {
+                FirstNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            }
+            
+        }
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
             MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());    
