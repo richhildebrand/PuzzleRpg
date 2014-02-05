@@ -272,7 +272,6 @@
     </Content>
     <Content Include="Assets\Backdrops\BlueGradiantBackdrop.png" />
     <Content Include="Assets\Backdrops\City.png" />
-    <Content Include="Assets\Backdrops\LevelSelection.png" />
     <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
     <Content Include="Assets\Backdrops\Parchment.png" />
     <Content Include="Assets\Backdrops\Parchment1.png" />

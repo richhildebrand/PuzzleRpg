@@ -129,7 +129,7 @@ namespace PuzzleRpg
 
         private void FourthNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml",
+            this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
