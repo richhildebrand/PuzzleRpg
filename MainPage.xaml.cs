@@ -14,10 +14,13 @@ namespace PuzzleRpg
     {
         PuzzleGrid _puzzleGrid;
         PuzzleGame _puzzleGame;
-        bool justGotCalled = false;
+        Dungeon _activeDungeon;
+        DungeonDatabase _dungeonDatabase;
 
         public MainPage()
         {
+            _dungeonDatabase = new DungeonDatabase();
+
             InitializeComponent();
             PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
@@ -37,43 +40,28 @@ namespace PuzzleRpg
 
         public async void LoadGraphics(object sender, RoutedEventArgs e)
         {
-            if (!justGotCalled)
-            {
-                var ddb = new DungeonDatabase();
-                var activeDungeon = ddb.AllDungeons[0];
-                var monsterGrid = new MonsterGrid(MonsterGrid, activeDungeon);
+            var monsterGrid = new MonsterGrid(MonsterGrid, _activeDungeon);
 
-                var activeTeam = new Team();
-                HeroGrid.AddHeroes(activeTeam);
-                PlayerHealth.HealthPercentage.ColumnDefinitions[0].MaxWidth = PlayerHealth.HealthPercentage.ActualWidth;
+            var activeTeam = new Team();
+            HeroGrid.AddHeroes(activeTeam);
+            PlayerHealth.HealthPercentage.ColumnDefinitions[0].MaxWidth = PlayerHealth.HealthPercentage.ActualWidth;
 
-                _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
+            _puzzleGrid = new PuzzleGrid(PuzzleGrid, AppGlobals.PuzzleGridRowCount, AppGlobals.PuzzleGridColumnCount);
 
-                _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
-                _puzzleGame.StartGame();
-            }
-        }
-
-        //For now so I don't accidentally leave the game.
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            base.OnBackKeyPress(e);
-
-            if (MessageBox.Show("Are you sure you want to exit?", "Confirm Exit?", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
-            {
-                e.Cancel = true;
-            }
+            _puzzleGame = new PuzzleGame(_puzzleGrid, PlayerHealth, activeTeam, monsterGrid);
+            _puzzleGame.StartGame();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
-            if (_puzzleGrid == null)
+            string queryStringParam = "";
+            if (NavigationContext.QueryString.TryGetValue("dungeonToEnter", out queryStringParam))
             {
-                return;
+                var idOfDungeon = Convert.ToInt32(queryStringParam);
+                _activeDungeon = _dungeonDatabase.AllDungeons.Single(d => d.Id == idOfDungeon);
             }
-            justGotCalled = true;
         }
     }
 }

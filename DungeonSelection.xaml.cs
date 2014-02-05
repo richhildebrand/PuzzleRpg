@@ -32,7 +32,7 @@ namespace PuzzleRpg
         private void OnEnterDungeon(object sender, NotificationEventArgs e)
         {
             var dungeonToEnter = e.Message;
-            this.NavigationService.Navigate(new Uri("/MainPage.xaml?duneonToEnter=" + dungeonToEnter,
+            this.NavigationService.Navigate(new Uri("/MainPage.xaml?dungeonToEnter=" + dungeonToEnter,
                                             UriKind.RelativeOrAbsolute));
         }
     }
