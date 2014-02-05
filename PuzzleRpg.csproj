@@ -147,8 +147,8 @@
     <Compile Include="Models\Monster.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="LocalizedStrings.cs" />
-    <Compile Include="MainPage.xaml.cs">
-      <DependentUpon>MainPage.xaml</DependentUpon>
+    <Compile Include="PlayDungeon.xaml.cs">
+      <DependentUpon>PlayDungeon.xaml</DependentUpon>
     </Compile>
     <Compile Include="Logic\MonsterGrid.cs" />
     <Compile Include="Models\Node.cs" />
@@ -246,7 +246,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="PlayDungeon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,14 +10,14 @@ using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
-    public partial class MainPage : PhoneApplicationPage
+    public partial class PlayDungeon: PhoneApplicationPage
     {
         PuzzleGrid _puzzleGrid;
         PuzzleGame _puzzleGame;
         Dungeon _activeDungeon;
         DungeonDatabase _dungeonDatabase;
 
-        public MainPage()
+        public PlayDungeon()
         {
             _dungeonDatabase = new DungeonDatabase();
 
