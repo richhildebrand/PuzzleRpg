@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Microsoft.Phone.Controls;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
@@ -11,7 +13,13 @@ namespace PuzzleRpg.CustomControls
         public NavigationBar()
         {
             InitializeComponent();
+            MessageBus.Default.Register("CurrentPage", GetCurrentPage);
         }
+
+        private void GetCurrentPage(object sender, NotificationEventArgs e)
+        {
+            string thing = ((PhoneApplicationFrame)Application.Current.RootVisual).CurrentSource.ToString();
+        }        
 
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {

@@ -145,5 +145,15 @@ namespace PuzzleRpg
             this.NavigationService.Navigate(new Uri("/TeamSelection.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
+
+        }
+
+
     }
 }
