@@ -32,7 +32,7 @@ namespace PuzzleRpg.CustomControls
             }
             if (currentPageToHighlight == "/HeroBox.xaml")
             {
-                SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+                SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             }
             
         }

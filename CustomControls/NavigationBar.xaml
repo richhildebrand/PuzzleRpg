@@ -7,7 +7,7 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="100" d:DesignWidth="480">
+    d:DesignHeight="100" d:DesignWidth="500">
 
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <Grid.ColumnDefinitions >
@@ -18,12 +18,12 @@
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="FirstNavBorder" Background="Transparent" BorderThickness="3">
-            <Image x:Name="FirstNavigationItem" Source="/Assets/Screenshots/TeamSelection.png" Height="100" Width="100" Tap="FirstNavigationItem_Tap" Margin="0,0,-4,0" Grid.ColumnSpan="2" />
+        <Border x:Name="FirstNavBorder" Background="Transparent" BorderThickness="5">
+            <Image x:Name="FirstNavigationItem" HorizontalAlignment="Center" Source="/Assets/Screenshots/TeamSelectionIcon.png" Height="95" Width="95" Tap="FirstNavigationItem_Tap" Grid.ColumnSpan="2" />
         </Border>
 
-        <Border x:Name="SecondNavBorder" Background="Transparent" BorderThickness="3" Grid.Column="1">
-            <Image x:Name="SecondNavigationItem" Source="/Assets/Screenshots/Heroes.png" Height="100" Width="100" Tap="SecondNavigationItem_Tap" Margin="-7,-3,-3,-3" Grid.ColumnSpan="2" Grid.Column="1" />
+        <Border x:Name="SecondNavBorder" Background="Transparent" BorderThickness="5" Grid.Column="1">
+            <Image x:Name="SecondNavigationItem" HorizontalAlignment="Center" Source="/Assets/Screenshots/HeroBoxIcon.png" Tap="SecondNavigationItem_Tap" Grid.ColumnSpan="2" Grid.Column="1" />
         </Border>
 
         <Image x:Name="ThirdNavigationItem" Source="/Assets/Screenshots/GameScreen.png" Height="100" Width="100" Tap="ThirdNavigationItem_Tap" Margin="0,0,92,0" Grid.ColumnSpan="2" Grid.Column="2" />
