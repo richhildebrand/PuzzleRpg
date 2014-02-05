@@ -66,7 +66,10 @@ namespace PuzzleRpg
 
         private void AddHeroToTeam(int teamSlotToAddHero, string idOfHeroToAdd)
         {
-            _activeTeam.AddTeamMember(teamSlotToAddHero, idOfHeroToAdd);
+            if (idOfHeroToAdd != null)
+            {
+                _activeTeam.AddTeamMember(teamSlotToAddHero, idOfHeroToAdd);
+            }
             ShowTeam();
         }
 
@@ -96,7 +99,9 @@ namespace PuzzleRpg
             var heroesInUse = _activeTeam.TeamMembers.Select(tm => tm.ThisHero).ToList();
 
             availableHeroes = availableHeroes.Except(heroesInUse).ToList();
-            AvailableHeroes.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
+            var availableHeroVMs = HeroToViewModelMapper.GetHeroViewModels(availableHeroes);
+            availableHeroVMs.Insert(0, new HeroViewModel());
+            AvailableHeroes.ItemsSource = availableHeroVMs;
         }
 
         private void LoadTeamStats()
