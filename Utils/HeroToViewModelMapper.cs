@@ -41,7 +41,7 @@ namespace PuzzleRpg.Utils
         {
             var heroVM = new HeroViewModel();
             heroVM.ProfileImageSource = "/" + hero.ProfileImagePath;
-            heroVM.OrbImageSource = ImageUtils.GetOrbImagePathFromType(hero.Type);
+            heroVM.OrbImageSource = "/" + ImageUtils.GetOrbImagePathFromType(hero.Type);
             heroVM.BorderImageSource = "/" + ImageUtils.GetProfileBorderImagePathFromType(hero.Type);
             heroVM.Id = hero.Id.ToString();
 
