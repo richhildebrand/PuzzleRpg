@@ -16,10 +16,12 @@ namespace PuzzleRpg
         PuzzleGame _puzzleGame;
         Dungeon _activeDungeon;
         DungeonDatabase _dungeonDatabase;
+        TeamRepository _teamRepository;
 
         public PlayDungeon()
         {
             _dungeonDatabase = new DungeonDatabase();
+            _teamRepository = new TeamRepository();
 
             InitializeComponent();
             PopupUtils.CoverScreen(100);
@@ -42,7 +44,8 @@ namespace PuzzleRpg
         {
             var monsterGrid = new MonsterGrid(MonsterGrid, _activeDungeon);
 
-            var activeTeam = new Team();
+            var teamFromDatabase = _teamRepository.GetTeam();
+            var activeTeam = new Team(teamFromDatabase);
             HeroGrid.AddHeroes(activeTeam);
             PlayerHealth.HealthPercentage.ColumnDefinitions[0].MaxWidth = PlayerHealth.HealthPercentage.ActualWidth;
 

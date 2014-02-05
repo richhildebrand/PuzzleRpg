@@ -12,6 +12,7 @@ namespace PuzzleRpg.Database
     {
         private readonly string TEAMS_KEY = "Teams";
         private readonly HeroRepository _heroRepository;
+        private const int FIRST_TEAM_ID = 1;
 
         public TeamRepository()
         {
@@ -19,7 +20,7 @@ namespace PuzzleRpg.Database
             CreateKeyIfMissing(TEAMS_KEY);
         }
 
-        public TeamToSaveToDatabase GetTeam(int teamId)
+        public TeamToSaveToDatabase GetTeam(int teamId = FIRST_TEAM_ID)
         {
             var teams = GetTeams();
             var teamToGet = teams.Single(t => t.TeamId == teamId);
@@ -59,8 +60,10 @@ namespace PuzzleRpg.Database
 
         protected override void CreateKey(string key)
         {
-            var team = new List<TeamToSaveToDatabase>();
-            IsolatedStorageSettings.ApplicationSettings.Add(TEAMS_KEY, team);
+            var teams = new List<TeamToSaveToDatabase>();
+            var firstTeam = new TeamToSaveToDatabase(FIRST_TEAM_ID, new List<TeamMember>());
+            teams.Add(firstTeam);
+            IsolatedStorageSettings.ApplicationSettings.Add(TEAMS_KEY, teams);
         }
     }
 }

@@ -20,7 +20,7 @@ namespace PuzzleRpg.Models
 
         public TeamToSaveToDatabase(int id, List<TeamMember> teamMembers)
         {
-            var TeamId = id;
+            TeamId = id;
 
             var membersForDatabase = TeamMemberMapper.Map(teamMembers);
             TeamMembers = membersForDatabase;

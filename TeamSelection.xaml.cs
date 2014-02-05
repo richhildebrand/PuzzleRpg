@@ -22,7 +22,9 @@ namespace PuzzleRpg
         {
             _heroRepository = new HeroRepository();
             _teamRepository = new TeamRepository();
-            _activeTeam = new Team();
+
+            var teamFromDatabase = _teamRepository.GetTeam();
+            _activeTeam = new Team(teamFromDatabase);
 
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
