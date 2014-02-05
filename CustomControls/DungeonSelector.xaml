@@ -7,9 +7,12 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
+    d:DesignHeight="200" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <TextBlock Text="{Binding DisplayName}"/>
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Backdrops/LevelSelection.png" Stretch="Fill" />
+        </Grid.Background>
+        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" FontSize="40" Padding="30"/>
     </Grid>
 </UserControl>
