@@ -8,9 +8,11 @@ namespace PuzzleRpg.Models
     {
         public List<DungeonFloor> Floors { get; set; }
         public String DisplayName { get; set; }
+        public int Id { get; set; }
 
-        public Dungeon(string displayName)
+        public Dungeon(int id, string displayName)
         {
+            Id = id;
             DisplayName = displayName;
             Floors = new List<DungeonFloor>();
         }
