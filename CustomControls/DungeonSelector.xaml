@@ -7,12 +7,12 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="200" d:DesignWidth="480">
+    d:DesignHeight="150" d:DesignWidth="480">
     
-    <Grid>
+    <Grid Margin="0 10">
         <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Backdrops/LevelSelection.png" Stretch="Fill" />
+            <ImageBrush ImageSource="/Assets/Backdrops/City.png" Stretch="Fill" />
         </Grid.Background>
-        <TextBlock Text="{Binding DisplayName}" VerticalAlignment="Center" FontSize="40" Padding="30"/>
+        <TextBlock Text="{Binding DisplayName}" FontSize="40" FontWeight="Bold" Padding="30 30 0 10"/>
     </Grid>
 </UserControl>
