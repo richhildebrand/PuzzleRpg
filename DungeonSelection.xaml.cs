@@ -3,6 +3,7 @@ using System.Linq;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Utils;
+using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
@@ -13,6 +14,8 @@ namespace PuzzleRpg
         public DungeonSelection()
         {
             _dungeonDatabase = new DungeonDatabase();
+            MessageBus.Default.Register("EnterDungeon", OnEnterDungeon);
+
 
             InitializeComponent();
             PopupUtils.UncoverScreen(); //just to be safe
@@ -24,6 +27,13 @@ namespace PuzzleRpg
             var unlockedDungeons = _dungeonDatabase.AllDungeons;
             //TODO: filter unlocked dungeons
             UnlockedDungeons.ItemsSource = unlockedDungeons;
+        }
+
+        private void OnEnterDungeon(object sender, NotificationEventArgs e)
+        {
+            var dungeonToEnter = e.Message;
+            this.NavigationService.Navigate(new Uri("/MainPage.xaml?duneonToEnter=" + dungeonToEnter,
+                                            UriKind.RelativeOrAbsolute));
         }
     }
 }
