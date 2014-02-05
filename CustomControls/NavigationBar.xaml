@@ -19,12 +19,15 @@
         </Grid.ColumnDefinitions>
 
         <Border x:Name="FirstNavBorder" Background="Transparent" BorderThickness="3">
-            <Image x:Name="FirstNavigationItem" Source="/Assets/Screenshots/Heroes.png" Height="100" Width="100" Tap="FirstNavigationItem_Tap" Margin="0,0,-4,0" Grid.ColumnSpan="2" />
+            <Image x:Name="FirstNavigationItem" Source="/Assets/Screenshots/TeamSelection.png" Height="100" Width="100" Tap="FirstNavigationItem_Tap" Margin="0,0,-4,0" Grid.ColumnSpan="2" />
         </Border>
-        
-        <Image x:Name="SecondNavigationItem" Source="/Assets/Screenshots/HeroDetails.png" Height="100" Width="100" Tap="SecondNavigationItem_Tap" Margin="1,0,91,0" Grid.ColumnSpan="2" Grid.Column="1" />
+
+        <Border x:Name="SecondNavBorder" Background="Transparent" BorderThickness="3" Grid.Column="1">
+            <Image x:Name="SecondNavigationItem" Source="/Assets/Screenshots/Heroes.png" Height="100" Width="100" Tap="SecondNavigationItem_Tap" Margin="-7,-3,-3,-3" Grid.ColumnSpan="2" Grid.Column="1" />
+        </Border>
+
         <Image x:Name="ThirdNavigationItem" Source="/Assets/Screenshots/GameScreen.png" Height="100" Width="100" Tap="ThirdNavigationItem_Tap" Margin="0,0,92,0" Grid.ColumnSpan="2" Grid.Column="2" />
         <Image x:Name="FourthNavigationItem" Source="/Assets/Screenshots/Summary.png" Height="100" Width="100" Tap="FourthNavigationItem_Tap" Margin="0,0,92,0" Grid.Column="3" Grid.ColumnSpan="2" />
-        <Image x:Name="FifthNavigationItem" Source="/Assets/Screenshots/TeamSelection.png" Height="100" Width="100" Tap="FifthNavigationItem_Tap" Margin="92,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" />
+        <Image x:Name="FifthNavigationItem" Source="/Assets/Screenshots/HeroDetails.png" Height="100" Width="100" Tap="FifthNavigationItem_Tap" Margin="92,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" />
     </Grid>
 </UserControl>

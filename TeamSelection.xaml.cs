@@ -118,13 +118,13 @@ namespace PuzzleRpg
 
         private void FirstNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroBox.xaml",
+            this.NavigationService.Navigate(new Uri("/TeamSelection.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
-
+        
         private void SecondNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml",
+            this.NavigationService.Navigate(new Uri("/HeroBox.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
@@ -142,7 +142,7 @@ namespace PuzzleRpg
 
         private void FifthNavItem(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamSelection.xaml",
+            this.NavigationService.Navigate(new Uri("/HeroDetails.xaml",
                                             UriKind.RelativeOrAbsolute));
         }
 
@@ -153,7 +153,5 @@ namespace PuzzleRpg
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
         }
-
-
     }
 }

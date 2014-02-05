@@ -68,5 +68,13 @@ namespace PuzzleRpg
             //Before I start implementing anything I want to get your input
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
         }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
+
+        }
     }
 }

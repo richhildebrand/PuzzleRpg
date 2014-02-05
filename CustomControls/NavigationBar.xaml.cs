@@ -30,6 +30,10 @@ namespace PuzzleRpg.CustomControls
             {
                 FirstNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             }
+            if (currentPageToHighlight == "/HeroBox.xaml")
+            {
+                SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 0, 0));
+            }
             
         }
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
