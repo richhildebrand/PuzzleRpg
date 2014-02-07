@@ -60,5 +60,11 @@ namespace PuzzleRpg
                 _activeDungeon = _dungeonDatabase.AllDungeons.Single(d => d.Id == idOfDungeon);
             }
         }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            NavigationService.RemoveBackEntry();
+        }
     }
 }
