@@ -27,6 +27,11 @@ namespace PuzzleRpg.Logic
             MessageBus.Default.Register("EndTurn", OnEndTurn);
         }
 
+        public void Unregister()
+        {
+            MessageBus.Default.Unregister("EndTurn", OnEndTurn);
+        }
+
         public async void StartGame()
         {
             await _puzzleGrid.MatchAndReplacePuzzlePieces();

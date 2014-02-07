@@ -35,5 +35,11 @@ namespace PuzzleRpg
             this.NavigationService.Navigate(new Uri("/PlayDungeon.xaml?dungeonToEnter=" + dungeonToEnter,
                                             UriKind.RelativeOrAbsolute));
         }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            MessageBus.Default.Unregister("EnterDungeon", OnEnterDungeon);
+        }
     }
 }

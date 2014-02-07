@@ -23,7 +23,7 @@ namespace PuzzleRpg
 
         public void OnScreenTap(object sender, GestureEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+            this.NavigationService.GoBack();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

@@ -53,28 +53,18 @@ namespace PuzzleRpg
             return heroProfiles.Concat(emptyHeroSlots).ToList();
         }
 
-        protected override void OnBackKeyPress(System.ComponentModel.CancelEventArgs e)
-        {
-            base.OnBackKeyPress(e);
-
-            if (MessageBox.Show("You cannot navigate back into the game. However, you can navigate to the summary screen. Is this where you would like to go? ", "Navigate to Summary Screen?", MessageBoxButton.OKCancel) != MessageBoxResult.OK)
-            {
-                e.Cancel = true;
-            }
-
-            //Rich - Read Below:
-            //This will handle the back button for now, until we decide which screen it should actually take you too.
-            //I don't think ANY screen should send you back into an "active" game but rather send you to another page. Maybe have a modal that gives them options?
-            //Before I start implementing anything I want to get your input
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
-        }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
+        }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
         }
     }
 }

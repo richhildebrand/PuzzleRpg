@@ -32,6 +32,11 @@ namespace PuzzleRpg.Logic
             AppGlobals.PuzzleGridActualHeight = _grid.ActualHeight;
         }
 
+        public void Unregister()
+        {
+            MessageBus.Default.Unregister("SwapOrbs", SwapPuzzlePieces);
+        }
+
         public void SwapPuzzlePieces(object sender, NotificationEventArgs e)
         {
             var orbMove = sender as OrbMove;
