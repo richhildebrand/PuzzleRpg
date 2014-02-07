@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Utils
@@ -54,15 +55,10 @@ namespace PuzzleRpg.Utils
 
             _textModal = new Popup();
 
-            var textModalContent = new TextBlock();
+            var textModalContent = new OrbMatchText();
             textModalContent.Height = orbImage.ActualHeight;
             textModalContent.Width = orbImage.ActualWidth;
-            textModalContent.Text = "" + _matchCount;
-            textModalContent.HorizontalAlignment = HorizontalAlignment.Center;
-            textModalContent.VerticalAlignment = VerticalAlignment.Center;
-            textModalContent.FontSize = 50;
-            textModalContent.FontWeight = FontWeights.Bold;
-            textModalContent.Foreground = new SolidColorBrush(Colors.White);
+            textModalContent.TextContent.Text = "" + _matchCount;
 
             _textModal.Child = textModalContent;
             _textModal.RenderTransform = modalPosition;
