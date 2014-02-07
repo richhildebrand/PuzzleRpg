@@ -25,6 +25,13 @@ namespace PuzzleRpg.Utils
 
         public Task AnimateHorizontalMatch(List<PuzzlePiece> puzzlePieces)
         {
+            if (!AppGlobals.InGame)
+            {
+                var task = new TaskCompletionSource<bool>();
+                task.SetResult(true);
+                return task.Task;
+            }
+
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Column).ToList();
             int middle = puzzlePieces.Count / 2;
             AddMatchText(puzzlePieces[middle]);
@@ -33,6 +40,13 @@ namespace PuzzleRpg.Utils
 
         public Task AnimateVerticalMatch(List<PuzzlePiece> puzzlePieces)
         {
+            if (!AppGlobals.InGame)
+            {
+                var task = new TaskCompletionSource<bool>();
+                task.SetResult(true);
+                return task.Task;
+            }
+
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
             int middle = puzzlePieces.Count / 2;
             AddMatchText(puzzlePieces[middle]);

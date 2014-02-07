@@ -35,6 +35,7 @@ namespace PuzzleRpg.Logic
         public async void StartGame()
         {
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
+            AppGlobals.InGame = true;
             StartNewTurn();
         }
 

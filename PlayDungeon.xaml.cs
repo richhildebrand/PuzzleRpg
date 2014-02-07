@@ -53,7 +53,7 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
+            AppGlobals.InGame = false;
             string queryStringParam = "";
             if (NavigationContext.QueryString.TryGetValue("dungeonToEnter", out queryStringParam))
             {
