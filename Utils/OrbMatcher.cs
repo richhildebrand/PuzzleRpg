@@ -31,7 +31,7 @@ namespace PuzzleRpg.Utils
                     MarkAllOrbs(matchingNeighbors);
                     OrbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, false));
                     var matchAnimator = new OrbMatchAnimator(OrbMatches.Count);
-                    await matchAnimator.FadeOrbs(matchingNeighbors);
+                    await matchAnimator.AnimateVerticalMatch(matchingNeighbors);
                 }
             }
         }
@@ -49,7 +49,7 @@ namespace PuzzleRpg.Utils
                     MarkAllOrbs(matchingNeighbors);
                     OrbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, true));
                     var matchAnimator = new OrbMatchAnimator(OrbMatches.Count);
-                    await matchAnimator.FadeOrbs(matchingNeighbors);
+                    await matchAnimator.AnimateHorizontalMatch(matchingNeighbors);
                 }
             }
         }

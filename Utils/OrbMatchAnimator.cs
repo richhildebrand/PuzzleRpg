@@ -23,13 +23,23 @@ namespace PuzzleRpg.Utils
             _matchCount = matchCount;
         }
 
-        public Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
+        public Task AnimateHorizontalMatch(List<PuzzlePiece> puzzlePieces)
+        {
+            AddMatchText(puzzlePieces[0]);
+            return FadeOrbs(puzzlePieces);
+        }
+
+        public Task AnimateVerticalMatch(List<PuzzlePiece> puzzlePieces)
+        {
+            AddMatchText(puzzlePieces[0]);
+            return FadeOrbs(puzzlePieces);
+        }
+
+        private Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
         {
             _taskSource = new TaskCompletionSource<bool>();
 
             var storyboard = new Storyboard();
-
-            AddMatchText(puzzlePieces[0]);
 
             foreach (var puzzlePiece in puzzlePieces)
             {
@@ -42,7 +52,7 @@ namespace PuzzleRpg.Utils
 
             return _taskSource.Task;
         }
-  
+
         private void AddMatchText(PuzzlePiece puzzlePiece)
         {
             var orbImage  = puzzlePiece.Element;
