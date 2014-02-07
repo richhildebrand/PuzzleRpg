@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using System.Windows.Media.Animation;
 using PuzzleRpg.Models;
 
@@ -25,6 +26,8 @@ namespace PuzzleRpg.Utils
 
             var storyboard = new Storyboard();
 
+            AddMatchText(puzzlePieces[0]);
+
             foreach (var puzzlePiece in puzzlePieces)
             {
                 var animation = GetAnimation(puzzlePiece);
@@ -35,6 +38,17 @@ namespace PuzzleRpg.Utils
             storyboard.Begin();
 
             return _taskSource.Task;
+        }
+  
+        private void AddMatchText(PuzzlePiece puzzlePiece)
+        {
+            var textModalPosition = new TranslateTransform();
+            textModalPosition.X = puzzlePiece._dragTranslation.X;
+            textModalPosition.Y = puzzlePiece._dragTranslation.Y;
+
+            var textModal = new TextBlock();
+            textModal.Text = "Match #" + _matchCount;
+            textModal.RenderTransform = textModalPosition; 
         }
 
         private DoubleAnimation GetAnimation(PuzzlePiece puzzlePiece)

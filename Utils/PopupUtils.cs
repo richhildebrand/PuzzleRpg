@@ -15,7 +15,6 @@ namespace PuzzleRpg.Utils
         static PopupUtils()
         {
             _screenCover = new Popup();
-
             _screenCoverContent = new Grid();
             _screenCoverContent.Width = Application.Current.Host.Content.ActualWidth;
             _screenCoverContent.Height = Application.Current.Host.Content.ActualHeight;
