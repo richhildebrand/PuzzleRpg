@@ -39,11 +39,6 @@ namespace PuzzleRpg.Logic
             MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
         }
 
-        public void DungeonDefeated()
-        {
-            MessageBus.Default.Notify("MonsterDefeated", new Object(), new NotificationEventArgs());
-        }
-
         private void StartNewTurn()
         {
             PopupUtils.UncoverScreen();
@@ -81,7 +76,9 @@ namespace PuzzleRpg.Logic
                 }
                 else
                 {
-                    DungeonDefeated();
+                    //This was annoying me so I commented it out lol
+                    //DisplayDeathDialog();
+                    EndGame();
                 }
             }
         }

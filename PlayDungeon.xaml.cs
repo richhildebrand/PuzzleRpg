@@ -27,15 +27,9 @@ namespace PuzzleRpg
             PopupUtils.CoverScreen(100);
             Loaded += LoadGraphics;
             MessageBus.Default.Register("EndGame", OnEndGame);
-            MessageBus.Default.Register("MonsterDefeated", MonsterDefeated);
         }
 
         private void OnEndGame(object sender, NotificationEventArgs e)
-        {
-            this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml", UriKind.RelativeOrAbsolute));
-        }
-
-        private void MonsterDefeated(object sender, NotificationEventArgs e)
         {
             this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
         }
