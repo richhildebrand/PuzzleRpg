@@ -102,5 +102,11 @@ namespace PuzzleRpg
             int myNmumber = randoNumb.Next(0, 20);
             return myNmumber;
         }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            NavigationService.RemoveBackEntry();
+        }
     }
 }
