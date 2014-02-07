@@ -27,7 +27,7 @@ namespace PuzzleRpg.Utils
 
             foreach (var puzzlePiece in puzzlePieces)
             {
-                var animation = DoAnimation(puzzlePiece);
+                var animation = GetAnimation(puzzlePiece);
                 storyboard.Children.Add(animation);
             }
 
@@ -37,7 +37,7 @@ namespace PuzzleRpg.Utils
             return _taskSource.Task;
         }
 
-        private DoubleAnimation DoAnimation(PuzzlePiece puzzlePiece)
+        private DoubleAnimation GetAnimation(PuzzlePiece puzzlePiece)
         {
              var opacityAnimation = new DoubleAnimation
             {
