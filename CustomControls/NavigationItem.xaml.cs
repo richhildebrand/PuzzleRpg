@@ -15,9 +15,9 @@ namespace PuzzleRpg.CustomControls
             InitializeComponent();
         }
 
-        public void NavItemTapped(object sender, GestureEventArgs e)
+        public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
-            MessageBus.Default.Notify("NavigationItemTapped", new Object(), new NotificationEventArgs());
+            MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());
         }
 
         public void GenerateNavItem(NavigationItem item)

@@ -37,6 +37,7 @@ namespace PuzzleRpg.CustomControls
             {
                 item.NavItemText.Text = item.navigationItemText;
                 item.NavItemText.Width = 500 / listOfNavItems.Count;
+                //item.NavItemText.Tap += FirstNavigationItem_Tap;
                 NavItemStackPanel.Children.Add(item);
             }
         }
