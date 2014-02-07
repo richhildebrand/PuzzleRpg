@@ -7,9 +7,9 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="95" d:DesignWidth="95">
+    d:DesignHeight="100" d:DesignWidth="100">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <TextBlock x:Name="NavItemText" />
+        <TextBlock x:Name="NavItemText" VerticalAlignment="Center" HorizontalAlignment="Center" Tap="NavItemTapped"/>
     </Grid>
 </UserControl>

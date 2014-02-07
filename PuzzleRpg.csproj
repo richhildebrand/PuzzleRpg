@@ -117,6 +117,7 @@
     </Compile>
     <Compile Include="CustomControls\NavigationItem.xaml.cs">
       <DependentUpon>NavigationItem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\OrbMatchText.xaml.cs">
       <DependentUpon>OrbMatchText.xaml</DependentUpon>
     </Compile>
@@ -228,6 +229,9 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\NavigationItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CustomControls\OrbMatchText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

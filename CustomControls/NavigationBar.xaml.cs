@@ -28,15 +28,16 @@ namespace PuzzleRpg.CustomControls
         private void CreateNavigationItems()
         {
             var listOfNavItems = new List<NavigationItem>();
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 1" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 2" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 3" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 4" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 5" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 1" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 2" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 3" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 4" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 5" });
 
             foreach (var item in listOfNavItems)
             {
                 item.NavItemText.Text = item.navigationItemText;
+                item.NavItemText.Width = 500 / listOfNavItems.Count;
                 NavItemStackPanel.Children.Add(item);
             }
         }
