@@ -27,8 +27,6 @@ namespace PuzzleRpg
             _activeTeam = new Team(teamFromDatabase);
 
             InitializeComponent();
-            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
-            MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
 
             ShowTeam();
             LoadTeamStats();
@@ -121,7 +119,8 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
+            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+            MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
         }

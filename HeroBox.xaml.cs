@@ -18,7 +18,6 @@ namespace PuzzleRpg
         public HeroBox()
         {
             InitializeComponent();
-            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             PopupUtils.UncoverScreen(); //just to be safe
             _heroRepository = new HeroRepository();
             LoadPlayerHeroes(HeroGrid);
@@ -62,6 +61,7 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
@@ -70,6 +70,7 @@ namespace PuzzleRpg
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            MessageBus.Default.Unregister("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
         }
     }
