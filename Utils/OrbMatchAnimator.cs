@@ -9,9 +9,15 @@ using PuzzleRpg.Models;
 
 namespace PuzzleRpg.Utils
 {
-    public class AnimateMatch
+    public class OrbMatchAnimator
     {
         private TaskCompletionSource<bool> _taskSource;
+        private int _matchCount;
+
+        public OrbMatchAnimator(int matchCount)
+        {
+            _matchCount = matchCount;
+        }
 
         public Task FadeOrbs(List<PuzzlePiece> puzzlePieces)
         {

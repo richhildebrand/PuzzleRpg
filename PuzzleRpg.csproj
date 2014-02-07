@@ -175,7 +175,7 @@
     </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\AnimateHealthBar.cs" />
-    <Compile Include="Utils\AnimateMatch.cs" />
+    <Compile Include="Utils\OrbMatchAnimator.cs" />
     <Compile Include="Utils\EmptyHeroViewModelGetter.cs" />
     <Compile Include="Utils\HeroToViewModelMapper.cs" />
     <Compile Include="Utils\TeamMemberMapper.cs" />
