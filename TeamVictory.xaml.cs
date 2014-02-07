@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Utils;
@@ -18,7 +17,7 @@ namespace PuzzleRpg
 
         public void OnScreenTap(object sender, GestureEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/HeroBox.xaml", UriKind.RelativeOrAbsolute));
+            this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml", UriKind.RelativeOrAbsolute));
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
