@@ -76,5 +76,11 @@ namespace PuzzleRpg
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
         }
+
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+        }
     }
 }
