@@ -10,6 +10,8 @@
     d:DesignHeight="100" d:DesignWidth="100">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+        <Border x:Name="NavItemBorder">
         <TextBlock x:Name="NavItemText" VerticalAlignment="Center" HorizontalAlignment="Center" Tap="FirstNavigationItem_Tap"/>
+        </Border>
     </Grid>
 </UserControl>
