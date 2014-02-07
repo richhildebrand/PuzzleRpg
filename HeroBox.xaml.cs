@@ -80,7 +80,7 @@ namespace PuzzleRpg
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
-            MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
+            MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
         }
     }
 }
