@@ -117,6 +117,8 @@
     </Compile>
     <Compile Include="CustomControls\NavigationItem.xaml.cs">
       <DependentUpon>NavigationItem.xaml</DependentUpon>
+    <Compile Include="CustomControls\OrbMatchText.xaml.cs">
+      <DependentUpon>OrbMatchText.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\PlayerStats.xaml.cs">
       <DependentUpon>PlayerStats.xaml</DependentUpon>
@@ -178,7 +180,7 @@
     </Compile>
     <Compile Include="Utils\AnimatedMoves.cs" />
     <Compile Include="Utils\AnimateHealthBar.cs" />
-    <Compile Include="Utils\AnimateMatch.cs" />
+    <Compile Include="Utils\OrbMatchAnimator.cs" />
     <Compile Include="Utils\EmptyHeroViewModelGetter.cs" />
     <Compile Include="Utils\HeroToViewModelMapper.cs" />
     <Compile Include="Utils\TeamMemberMapper.cs" />
@@ -226,6 +228,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\NavigationItem.xaml">
+    <Page Include="CustomControls\OrbMatchText.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

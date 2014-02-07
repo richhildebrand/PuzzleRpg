@@ -11,6 +11,7 @@ namespace PuzzleRpg
         public static double PuzzleGridActualHeight { get; set; }
         public static Storyboard PuzzleStoryBoard = new Storyboard();
         public static readonly int MaxHeroesOnATeam = 5;
+        public static bool InGame = false;
 
         public static readonly string HeroImagePathPrefix = "Assets/Monsters/";
 
