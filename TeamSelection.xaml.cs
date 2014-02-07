@@ -28,12 +28,7 @@ namespace PuzzleRpg
 
             InitializeComponent();
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
-            //MessageBus.Default.Register("NavigationItemTapped", OnNavItemTapped);
-            MessageBus.Default.Register("FirstNavigationItem", FirstNavItem);
-            //MessageBus.Default.Register("SecondNavigationItem_Tap", SecondNavItem);
-            //MessageBus.Default.Register("ThirdNavigationItem", ThirdNavItem);
-            //MessageBus.Default.Register("FourthNavigationItem", FourthNavItem);
-            //MessageBus.Default.Register("FifthNavigationItem", FifthNavItem);
+            MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
 
             ShowTeam();
             LoadTeamStats();
@@ -117,39 +112,10 @@ namespace PuzzleRpg
                                             UriKind.RelativeOrAbsolute));
         }
 
-        private void FirstNavItem(object sender, NotificationEventArgs e)
+        private void OnNavItemTapped(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamSelection.xaml",
-                                            UriKind.RelativeOrAbsolute));
-        }
-        
-        //private void SecondNavItem(object sender, NotificationEventArgs e)
-        //{
-        //    this.NavigationService.Navigate(new Uri("/HeroBox.xaml",
-        //                                    UriKind.RelativeOrAbsolute));
-        //}
-
-        //private void ThirdNavItem(object sender, NotificationEventArgs e)
-        //{
-        //    this.NavigationService.Navigate(new Uri("/MainPage.xaml",
-        //                                    UriKind.RelativeOrAbsolute));
-        //}
-
-        //private void FourthNavItem(object sender, NotificationEventArgs e)
-        //{
-        //    this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml",
-        //                                    UriKind.RelativeOrAbsolute));
-        //}
-
-        //private void FifthNavItem(object sender, NotificationEventArgs e)
-        //{
-        //    this.NavigationService.Navigate(new Uri("/HeroDetails.xaml",
-        //                                    UriKind.RelativeOrAbsolute));
-        //}
-
-        private void OnNavItemTapped(object sender, NotificationEventArgs e, string pageToNavigateTo)
-        {
-            this.NavigationService.Navigate(new Uri(pageToNavigateTo, UriKind.RelativeOrAbsolute));
+            var url = e.Message;
+            NavigationService.Navigate(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

@@ -33,10 +33,19 @@ namespace PuzzleRpg.CustomControls
 
         private void CreateNavItem(string displayText, string url, int column)
         {
-            var navItem = new NavigationItem();
-            navItem.NavItemText.Text = displayText;
+           var navItem = new NavigationItem();
+           navItem.NavItemText.Text = displayText;
            navItem.SetValue(Grid.ColumnProperty, column);
+           navItem.Tap += NavigateToPage;
+           navItem.Tag += '/' + url;
            MainNavBar.Children.Add(navItem);
+        }
+
+        public void NavigateToPage(object sender, GestureEventArgs e)
+        {
+            var navItem = sender as NavigationItem;
+            var url = (string)navItem.Tag;
+            MessageBus.Default.Notify("NavigateToPage", new Object(), new NotificationEventArgs(url));
         }
 
         private void HighlightCurrentPage(string currentPageToHighlight)
@@ -51,11 +60,6 @@ namespace PuzzleRpg.CustomControls
             //    SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
             //}
             
-        }
-
-        public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
-        {
-            MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());    
         }
     }
 }

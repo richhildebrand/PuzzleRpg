@@ -53,10 +53,16 @@ namespace PuzzleRpg
             return heroProfiles.Concat(emptyHeroSlots).ToList();
         }
 
+        private void OnNavItemTapped(object sender, NotificationEventArgs e)
+        {
+            var url = e.Message;
+            NavigationService.Navigate(new Uri(url, UriKind.RelativeOrAbsolute));
+        }
+
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
+            MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
         }
