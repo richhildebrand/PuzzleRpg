@@ -18,7 +18,7 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />-->
         </Grid.ColumnDefinitions>
-        <local:NavigationItem />
+        <StackPanel x:Name="NavItemStackPanel" Orientation="Horizontal"></StackPanel>
         <!--<Border x:Name="FirstNavBorder" Background="Transparent" BorderThickness="5">
             <Image x:Name="FirstNavigationItem" HorizontalAlignment="Center" Source="/Assets/Screenshots/TeamSelectionIcon.png" Height="95" Width="95" Tap="FirstNavigationItem_Tap" Grid.ColumnSpan="2" />
         </Border>

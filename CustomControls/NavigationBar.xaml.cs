@@ -16,6 +16,7 @@ namespace PuzzleRpg.CustomControls
         {
             InitializeComponent();
             MessageBus.Default.Register("CurrentPage", GetCurrentPageAndCallHighlight);
+            CreateItem();
         }
 
         private void GetCurrentPageAndCallHighlight(object sender, NotificationEventArgs e)
@@ -24,19 +25,25 @@ namespace PuzzleRpg.CustomControls
             HighlightCurrentPage(currentPageUrl);
         }
 
-        public void GenerateNavItems()
+        private void CreateItem()
         {
             var navItem = new NavigationItem();
-            var navItemList = new List<NavigationItem> { };
+            navItem.NavItemText.Text = "Hello";
+            NavItemStackPanel.Children.Add(navItem);
+        }
+        //public void GenerateNavItems()
+        //{
+            //var navItem = new NavigationItem();
+            //var navItemList = new List<NavigationItem> { };
             //navItemList.Add()
 
-            foreach (var item in navItemList)
-            {
+            //foreach (var item in navItemList)
+            //{
                 //item = navItem.GenerateNavItem();
                 //MainNavBar.Children.Add(itemToAdd);
-            }
+            //}
             
-        }
+        //}
 
         private void HighlightCurrentPage(string currentPageToHighlight)
         {
