@@ -26,20 +26,17 @@ namespace PuzzleRpg.CustomControls
 
         private void CreateNavigationItems()
         {
-            var listOfNavItems = new List<NavigationItem>();
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 1" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 2" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 3" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 4" });
-            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hey 5" });
+            CreateNavItem("Heroes", "HeroBox.xaml", 0);
+            CreateNavItem("Team", "TeamSelection.xaml", 1);
+            CreateNavItem("Dungeons", "PlayDungeon.xaml", 2);
+        }
 
-            foreach (var item in listOfNavItems)
-            {
-                item.NavItemText.Text = item.navigationItemText;
-                item.NavItemText.Width = 500 / listOfNavItems.Count;
-                //item.NavItemText.Tap += FirstNavigationItem_Tap;
-                NavItemStackPanel.Children.Add(item);
-            }
+        private void CreateNavItem(string displayText, string url, int column)
+        {
+            var navItem = new NavigationItem();
+            navItem.NavItemText.Text = displayText;
+           navItem.SetValue(Grid.ColumnProperty, column);
+           MainNavBar.Children.Add(navItem);
         }
 
         private void HighlightCurrentPage(string currentPageToHighlight)
@@ -59,26 +56,6 @@ namespace PuzzleRpg.CustomControls
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
             MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());    
-        }
-
-        public void SecondNavigationItem_Tap(object sender, GestureEventArgs e)
-        {
-            MessageBus.Default.Notify("SecondNavigationItem_Tap", new Object(), new NotificationEventArgs());
-        }
-
-        public void ThirdNavigationItem_Tap(object sender, GestureEventArgs e)
-        {
-            MessageBus.Default.Notify("ThirdNavigationItem", new Object(), new NotificationEventArgs());
-        }
-
-        public void FourthNavigationItem_Tap(object sender, GestureEventArgs e)
-        {
-            MessageBus.Default.Notify("FourthNavigationItem", new Object(), new NotificationEventArgs());
-        }
-
-        public void FifthNavigationItem_Tap(object sender, GestureEventArgs e)
-        {
-            MessageBus.Default.Notify("FifthNavigationItem", new Object(), new NotificationEventArgs());
         }
     }
 }

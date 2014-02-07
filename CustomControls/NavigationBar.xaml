@@ -12,23 +12,11 @@
 
     <Grid x:Name="MainNavBar" Background="{StaticResource PhoneChromeBrush}">
         <Grid.ColumnDefinitions >
-            <!--<ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />-->
+            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        <StackPanel x:Name="NavItemStackPanel" Orientation="Horizontal"></StackPanel>
-        <!--<Border x:Name="FirstNavBorder" Background="Transparent" BorderThickness="5">
-            <Image x:Name="FirstNavigationItem" HorizontalAlignment="Center" Source="/Assets/Screenshots/TeamSelectionIcon.png" Height="95" Width="95" Tap="FirstNavigationItem_Tap" Grid.ColumnSpan="2" />
-        </Border>
-
-        <Border x:Name="SecondNavBorder" Background="Transparent" BorderThickness="5" Grid.Column="1">
-            <Image x:Name="SecondNavigationItem" HorizontalAlignment="Center" Source="/Assets/Screenshots/HeroBoxIcon.png" Tap="SecondNavigationItem_Tap" Grid.ColumnSpan="2" Grid.Column="1" />
-        </Border>
-
-        <Image x:Name="ThirdNavigationItem" Source="/Assets/Screenshots/GameScreen.png" Height="100" Width="100" Tap="ThirdNavigationItem_Tap" Margin="0,0,92,0" Grid.ColumnSpan="2" Grid.Column="2" />
-        <Image x:Name="FourthNavigationItem" Source="/Assets/Screenshots/Summary.png" Height="100" Width="100" Tap="FourthNavigationItem_Tap" Margin="0,0,92,0" Grid.Column="3" Grid.ColumnSpan="2" />
-        <Image x:Name="FifthNavigationItem" Source="/Assets/Screenshots/HeroDetails.png" Height="100" Width="100" Tap="FifthNavigationItem_Tap" Margin="92,0,0,0" Grid.Column="3" Grid.ColumnSpan="2" />-->
     </Grid>
 </UserControl>
