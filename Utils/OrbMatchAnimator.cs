@@ -25,13 +25,17 @@ namespace PuzzleRpg.Utils
 
         public Task AnimateHorizontalMatch(List<PuzzlePiece> puzzlePieces)
         {
-            AddMatchText(puzzlePieces[0]);
+            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Column).ToList();
+            int middle = puzzlePieces.Count / 2;
+            AddMatchText(puzzlePieces[middle]);
             return FadeOrbs(puzzlePieces);
         }
 
         public Task AnimateVerticalMatch(List<PuzzlePiece> puzzlePieces)
         {
-            AddMatchText(puzzlePieces[0]);
+            puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
+            int middle = puzzlePieces.Count / 2;
+            AddMatchText(puzzlePieces[middle]);
             return FadeOrbs(puzzlePieces);
         }
 
