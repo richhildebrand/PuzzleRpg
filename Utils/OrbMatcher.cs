@@ -37,8 +37,6 @@ namespace PuzzleRpg.Utils
 
         private static async Task MatchHorizontalOrbsAndTheirVerticalConnections(List<PuzzlePiece> puzzlePieces)
         {
-            var piecesToFade = new List<PuzzlePiece>();
-
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Column).ToList();
             for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
             {
