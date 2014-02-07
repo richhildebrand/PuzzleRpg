@@ -16,7 +16,7 @@ namespace PuzzleRpg.CustomControls
         {
             InitializeComponent();
             MessageBus.Default.Register("CurrentPage", GetCurrentPageAndCallHighlight);
-            CreateItem();
+            CreateNavigationItems();
         }
 
         private void GetCurrentPageAndCallHighlight(object sender, NotificationEventArgs e)
@@ -25,25 +25,21 @@ namespace PuzzleRpg.CustomControls
             HighlightCurrentPage(currentPageUrl);
         }
 
-        private void CreateItem()
+        private void CreateNavigationItems()
         {
-            var navItem = new NavigationItem();
-            navItem.NavItemText.Text = "Hello";
-            NavItemStackPanel.Children.Add(navItem);
-        }
-        //public void GenerateNavItems()
-        //{
-            //var navItem = new NavigationItem();
-            //var navItemList = new List<NavigationItem> { };
-            //navItemList.Add()
+            var listOfNavItems = new List<NavigationItem>();
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 1" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 2" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 3" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 4" });
+            listOfNavItems.Add(new NavigationItem { navigationItemText = "Hello 5" });
 
-            //foreach (var item in navItemList)
-            //{
-                //item = navItem.GenerateNavItem();
-                //MainNavBar.Children.Add(itemToAdd);
-            //}
-            
-        //}
+            foreach (var item in listOfNavItems)
+            {
+                item.NavItemText.Text = item.navigationItemText;
+                NavItemStackPanel.Children.Add(item);
+            }
+        }
 
         private void HighlightCurrentPage(string currentPageToHighlight)
         {
@@ -58,6 +54,7 @@ namespace PuzzleRpg.CustomControls
             //}
             
         }
+
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
         {
             MessageBus.Default.Notify("FirstNavigationItem", new Object(), new NotificationEventArgs());    

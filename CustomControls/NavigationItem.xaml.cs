@@ -6,15 +6,16 @@ namespace PuzzleRpg.CustomControls
 {
     public partial class NavigationItem : UserControl
     {
+        public string navigationItemText { get; set; }
+
         public NavigationItem()
         {
             InitializeComponent();
         }
 
-        //public NavigationItem GenerateNavItem(string navItemText)
-        //{
-        //    NavItemText.Text = navItemText;
-        //    return NavItemText;
-        //}
+        public void GenerateNavItem(NavigationItem item)
+        {
+            NavItemText.Text = navigationItemText;
+        }
     }
 }

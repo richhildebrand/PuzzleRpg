@@ -10,6 +10,6 @@
     d:DesignHeight="95" d:DesignWidth="95">
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
-        <TextBlock x:Name="NavItemText" Text="Hello" />
+        <TextBlock x:Name="NavItemText" />
     </Grid>
 </UserControl>
