@@ -25,6 +25,7 @@ namespace PuzzleRpg
 
             InitializeComponent();
             PopupUtils.CoverScreen(100);
+            Loaded -= LoadGraphics;
             Loaded += LoadGraphics;
             MessageBus.Default.Register("EndGame", OnEndGame);
         }
@@ -64,6 +65,9 @@ namespace PuzzleRpg
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
+            _puzzleGrid.Unregister();
+            _puzzleGame.Unregister();
+            MessageBus.Default.Unregister("EndGame", OnEndGame);
             NavigationService.RemoveBackEntry();
         }
     }
