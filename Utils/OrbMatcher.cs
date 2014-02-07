@@ -19,9 +19,8 @@ namespace PuzzleRpg.Utils
             return Task.WhenAll(matchVertial, matchHorizontal);
         }
   
-        private static Task MatchUnconnectedVerticalOrbs(List<PuzzlePiece> puzzlePieces)
+        private static async Task MatchUnconnectedVerticalOrbs(List<PuzzlePiece> puzzlePieces)
         {
-            var piecesToFade = new List<PuzzlePiece>();
             puzzlePieces = puzzlePieces.OrderBy(pp => pp.Location.Row).ToList();
 
             for (int pieceIndex = 0; pieceIndex < puzzlePieces.Count; pieceIndex++)
@@ -31,15 +30,12 @@ namespace PuzzleRpg.Utils
                 {
                     MarkAllOrbs(matchingNeighbors);
                     OrbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, false));
-
-                    piecesToFade = piecesToFade.Concat(matchingNeighbors).ToList();
+                    await new AnimateMatch().FadeOrbs(matchingNeighbors);
                 }
             }
-
-            return (new AnimateMatch().FadeOrbs(piecesToFade));
         }
 
-        private static Task MatchHorizontalOrbsAndTheirVerticalConnections(List<PuzzlePiece> puzzlePieces)
+        private static async Task MatchHorizontalOrbsAndTheirVerticalConnections(List<PuzzlePiece> puzzlePieces)
         {
             var piecesToFade = new List<PuzzlePiece>();
 
@@ -53,12 +49,9 @@ namespace PuzzleRpg.Utils
                     matchingNeighbors = matchingNeighbors.Distinct().ToList();
                     MarkAllOrbs(matchingNeighbors);
                     OrbMatches.Add(new OrbMatch(matchingNeighbors[0].Type, matchingNeighbors.Count, true));
-
-                    piecesToFade = piecesToFade.Concat(matchingNeighbors).ToList();
+                    await new AnimateMatch().FadeOrbs(matchingNeighbors);
                 }
             }
-
-            return (new AnimateMatch().FadeOrbs(piecesToFade));
         }
 
         private static List<PuzzlePiece> CheckNorthAndSouth(List<PuzzlePiece> currentlyMatchingPieces, List<PuzzlePiece> allPuzzlePieces)
