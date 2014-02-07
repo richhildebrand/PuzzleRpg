@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,17 +24,31 @@ namespace PuzzleRpg.CustomControls
             HighlightCurrentPage(currentPageUrl);
         }
 
+        public void GenerateNavItems()
+        {
+            var navItem = new NavigationItem();
+            var navItemList = new List<NavigationItem> { };
+            //navItemList.Add()
+
+            foreach (var item in navItemList)
+            {
+                //item = navItem.GenerateNavItem();
+                //MainNavBar.Children.Add(itemToAdd);
+            }
+            
+        }
+
         private void HighlightCurrentPage(string currentPageToHighlight)
         {
             
-            if (currentPageToHighlight == "/TeamSelection.xaml")
-            {
-                FirstNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-            }
-            if (currentPageToHighlight == "/HeroBox.xaml")
-            {
-                SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
-            }
+            //if (currentPageToHighlight == "/TeamSelection.xaml")
+            //{
+            //    FirstNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            //}
+            //if (currentPageToHighlight == "/HeroBox.xaml")
+            //{
+            //    SecondNavBorder.BorderBrush = new SolidColorBrush(Color.FromArgb(255, 255, 255, 255));
+            //}
             
         }
         public void FirstNavigationItem_Tap(object sender, GestureEventArgs e)
