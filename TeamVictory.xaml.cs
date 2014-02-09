@@ -20,12 +20,6 @@ namespace PuzzleRpg
             this.NavigationService.Navigate(new Uri("/DungeonSelection.xaml", UriKind.RelativeOrAbsolute));
         }
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            DrawScreen();
-        }
-  
         //Looking at the others, I think "DrawScreen" should be our "naming convention" for this type of thing. Well done.
         private void DrawScreen()
         {
@@ -100,6 +94,12 @@ namespace PuzzleRpg
             Random randoNumb = new Random();
             int myNmumber = randoNumb.Next(0, 20);
             return myNmumber;
+        }
+
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            DrawScreen();
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)

@@ -5,7 +5,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using Microsoft.Phone.Controls;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
@@ -15,7 +14,6 @@ namespace PuzzleRpg.CustomControls
         public NavigationBar()
         {
             InitializeComponent();
-            //MessageBus.Default.Register("CurrentPage", GetCurrentPageAndCallHighlight);
             CreateNavigationItems();
         }
 

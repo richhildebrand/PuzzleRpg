@@ -27,7 +27,6 @@ namespace PuzzleRpg
             PopupUtils.CoverScreen(100);
             Loaded -= LoadGraphics;
             Loaded += LoadGraphics;
-            MessageBus.Default.Register("EndGame", OnEndGame);
         }
 
         private void OnEndGame(object sender, NotificationEventArgs e)
@@ -53,6 +52,8 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            MessageBus.Default.Register("EndGame", OnEndGame);
+
             AppGlobals.InGame = false;
             string queryStringParam = "";
             if (NavigationContext.QueryString.TryGetValue("dungeonToEnter", out queryStringParam))

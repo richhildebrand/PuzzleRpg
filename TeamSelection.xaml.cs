@@ -116,21 +116,19 @@ namespace PuzzleRpg
             NavigationService.Navigate(new Uri(url, UriKind.RelativeOrAbsolute));
         }
 
-        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
-            base.OnNavigatedFrom(e);
-            MessageBus.Default.Unregister("NavigateToPage", OnNavItemTapped);
-            MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
-        }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             NavBar.HighlightPage("/TeamSelection.xaml");
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
-            MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
+        }
 
+        protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedFrom(e);
+            MessageBus.Default.Unregister("NavigateToPage", OnNavItemTapped);
+            MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
         }
     }
 }

@@ -14,11 +14,7 @@ namespace PuzzleRpg
         public DungeonSelection()
         {
             _dungeonDatabase = new DungeonDatabase();
-            MessageBus.Default.Register("EnterDungeon", OnEnterDungeon);
-
-
             InitializeComponent();
-            PopupUtils.UncoverScreen(); //just to be safe
             LoadUnlockedDungeons();
         }
 
@@ -36,6 +32,12 @@ namespace PuzzleRpg
                                             UriKind.RelativeOrAbsolute));
         }
 
+        private void OnNavItemTapped(object sender, NotificationEventArgs e)
+        {
+            var url = e.Message;
+            NavigationService.Navigate(new Uri(url, UriKind.RelativeOrAbsolute));
+        }
+
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedFrom(e);
@@ -43,19 +45,12 @@ namespace PuzzleRpg
             MessageBus.Default.Unregister("NavigateToPage", OnNavItemTapped);
         }
 
-        private void OnNavItemTapped(object sender, NotificationEventArgs e)
-        {
-            var url = e.Message;
-            NavigationService.Navigate(new Uri(url, UriKind.RelativeOrAbsolute));
-        }
-
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
             NavBar.HighlightPage("/DungeonSelection.xaml");
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
-            MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
-
+            MessageBus.Default.Register("EnterDungeon", OnEnterDungeon);
         }
     }
 }

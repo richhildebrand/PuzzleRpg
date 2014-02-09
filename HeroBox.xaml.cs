@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Windows;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Models;
@@ -18,7 +17,6 @@ namespace PuzzleRpg
         public HeroBox()
         {
             InitializeComponent();
-            PopupUtils.UncoverScreen(); //just to be safe
             _heroRepository = new HeroRepository();
             LoadPlayerHeroes(HeroGrid);
         }
@@ -64,7 +62,6 @@ namespace PuzzleRpg
             NavBar.HighlightPage("/HeroBox.xaml");
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
-            MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
 
         }
 
