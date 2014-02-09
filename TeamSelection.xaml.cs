@@ -126,6 +126,7 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
+            NavBar.HighlightPage("/TeamSelection.xaml");
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Notify("CurrentPage", new Object(), new NotificationEventArgs());
