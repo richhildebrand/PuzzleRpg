@@ -21,9 +21,9 @@ namespace PuzzleRpg.CustomControls
 
         private void CreateNavigationItems()
         {
-            CreateNavItem("Heroes", "/HeroBox.xaml", 0);
+            CreateNavItem("Dungeons", "/DungeonSelection.xaml", 0);
             CreateNavItem("Team", "/TeamSelection.xaml", 1);
-            CreateNavItem("Dungeons", "/DungeonSelection.xaml", 2);
+            CreateNavItem("Heroes", "/HeroBox.xaml", 2);
         }
 
         private void CreateNavItem(string displayText, string url, int column)
@@ -55,7 +55,8 @@ namespace PuzzleRpg.CustomControls
             }
 
             var activeItem = navItems.Single(ni => ni.Tag == currentPageToHighlight);
-            activeItem.NavItemBorder.Background = new SolidColorBrush(Colors.Yellow); 
+            activeItem.NavItemBorder.BorderThickness = new Thickness(5);
+            activeItem.NavItemBorder.BorderBrush = new SolidColorBrush(Colors.Yellow); 
         }
     }
 }
