@@ -16,5 +16,15 @@ namespace PuzzleRpg.CustomControls
         {
             ThisStatBar.Fill = fillColor;
         }
+
+        public void SetFillPercentage(int current, int total)
+        {
+            var fillPercentage = ((double)current / (double)total) * 100;
+            fillPercentage = (fillPercentage < 0) ? 0 : fillPercentage;
+            fillPercentage = (fillPercentage > 100) ? 100 : fillPercentage;
+
+            StatPercentage.ColumnDefinitions[0].Width = new System.Windows.GridLength(fillPercentage, System.Windows.GridUnitType.Star);
+            StatPercentage.ColumnDefinitions[1].Width = new System.Windows.GridLength(100 - fillPercentage, System.Windows.GridUnitType.Star);
+        }
     }
 }

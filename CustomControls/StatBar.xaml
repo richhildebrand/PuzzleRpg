@@ -18,7 +18,7 @@
 
             <Rectangle Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Transparent"/>
 
-            <Grid Grid.Row="1" x:Name="HealthPercentage" >
+            <Grid Grid.Row="1" x:Name="StatPercentage" >
                 <Grid.ColumnDefinitions >
                     <ColumnDefinition Width="10*" />
                     <ColumnDefinition Width="0*" />

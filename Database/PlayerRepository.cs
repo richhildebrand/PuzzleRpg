@@ -24,7 +24,11 @@ namespace PuzzleRpg.Database
             exp.Max = 100;
             exp.Current = 0;
 
-            IsolatedStorageSettings.ApplicationSettings.Add(PLAYER_KEY, stam);
+            var player = new Player();
+            player.Exp = exp;
+            player.Stam = stam;
+
+            IsolatedStorageSettings.ApplicationSettings.Add(PLAYER_KEY, player);
         }
 
         public void SavePlayer(Player updatedPlayer) 
