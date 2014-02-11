@@ -135,6 +135,7 @@
     <Compile Include="Database\MonsterDatabase.cs" />
     <Compile Include="Database\DungeonDatabase.cs" />
     <Compile Include="Database\Repository.cs" />
+    <Compile Include="Database\PlayerRepository.cs" />
     <Compile Include="Database\TeamRepository.cs" />
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
@@ -147,10 +148,13 @@
     </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Dungeon.cs" />
+    <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\HeroViewModel.cs" />
     <Compile Include="Models\DungeonFloor.cs" />
     <Compile Include="Models\Monster.cs" />
+    <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\Stamina.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="LocalizedStrings.cs" />
     <Compile Include="PlayDungeon.xaml.cs">
