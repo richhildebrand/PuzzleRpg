@@ -13,8 +13,8 @@ namespace PuzzleRpg.Database
         {
             AllDungeons = new List<Dungeon>();
 
-            AllDungeons.Add(GetRexsHouse(id: 1, stam: 1));
-            AllDungeons.Add(GetOrcVilla(id: 2, stam: 1));
+            AllDungeons.Add(GetRexsHouse(id: 1, stam: 1, isAvailable: true));
+            AllDungeons.Add(GetOrcVilla(id: 2, stam: 1, isAvailable: true));
             AllDungeons.Add(GetTurtleShore(id: 3, stam: 1));
             AllDungeons.Add(GetGreenDragonsDen(id: 4, stam: 1));
             AllDungeons.Add(GetBlueDragonsDen(id: 5, stam: 1));
@@ -28,9 +28,11 @@ namespace PuzzleRpg.Database
             return dungeon;
         }
 
-        private Dungeon GetRexsHouse(int id, int stam)
+        private Dungeon GetRexsHouse(int id, int stam, bool isAvailable)
         {
             var dungeon = new Dungeon(id, "Rex's House", stam);
+            dungeon.IsAvailable = isAvailable;
+            dungeon.HasBeenDefeated = true;
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("Rex"))); 
             return dungeon;
         }
@@ -44,7 +46,7 @@ namespace PuzzleRpg.Database
             return dungeon;
         }
 
-        private Dungeon GetOrcVilla(int id, int stam)
+        private Dungeon GetOrcVilla(int id, int stam, bool isAvailable)
         {
             var dungeon = new Dungeon(id, "Orc Villa", stam);
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("WoodOrc")));

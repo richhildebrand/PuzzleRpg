@@ -8,6 +8,7 @@
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:PuzzleRpg" x:Key="LocalizedStrings"/>
+        <converter:BooleanToVisibilityConverter xmlns:converter="clr-namespace:PuzzleRpg.Converters" x:Key="BooleanToVisibilityConverter" />
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>
@@ -16,5 +17,7 @@
             Launching="Application_Launching" Closing="Application_Closing"
             Activated="Application_Activated" Deactivated="Application_Deactivated"/>
     </Application.ApplicationLifetimeObjects>
+    
+    
 
 </Application>

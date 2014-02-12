@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="AppGlobals.cs" />
     <Compile Include="AppSettings.cs" />
+    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
     <Compile Include="CustomControls\DungeonSelector.xaml.cs">
       <DependentUpon>DungeonSelector.xaml</DependentUpon>
     </Compile>

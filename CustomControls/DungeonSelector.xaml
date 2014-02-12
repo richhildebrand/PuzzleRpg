@@ -25,10 +25,20 @@
             <ColumnDefinition Width="1*"/>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="Clear" FontSize="25" TextAlignment="Left" Padding="15 0 0 0" />
-        <TextBlock Grid.Row="0" Grid.Column="1" Text="Stam: " FontSize="25" TextAlignment="Right" />
-        <TextBlock Grid.Row="0" Grid.Column="2" Text="{Binding StaminaCost}" FontSize="25" TextAlignment="Left" Padding="0 0 15 0" />
+        <TextBlock Grid.Row="0" Grid.Column="0" 
+                   Text="Clear" 
+                   FontSize="25" TextAlignment="Left" Padding="15 0 0 0"
+                   Visibility="{Binding HasBeenDefeated, Converter={StaticResource BooleanToVisibilityConverter}}" />
+        
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="Stam: " FontSize="25" TextAlignment="Right" />
+        
+        <TextBlock Grid.Row="0" Grid.Column="2"
+                   Text="{Binding StaminaCost}"
+                   FontSize="25" TextAlignment="Left" Padding="0 0 15 0" />
 
-        <TextBlock TextAlignment="Left" Grid.Row="1" Grid.ColumnSpan="3" Text="{Binding DisplayName}" FontSize="40" FontWeight="Bold" Padding="30 0 0 10"/>
+        <TextBlock Grid.Row="1" Grid.ColumnSpan="3"
+                   Text="{Binding DisplayName}"
+                   TextAlignment="Left" FontSize="40" FontWeight="Bold" Padding="30 0 0 10"/>
     </Grid>
 </UserControl>

@@ -2,7 +2,6 @@
 using System.Linq;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
-using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
