@@ -94,6 +94,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="AppGlobals.cs" />
+    <Compile Include="AppSettings.cs" />
     <Compile Include="CustomControls\DungeonSelector.xaml.cs">
       <DependentUpon>DungeonSelector.xaml</DependentUpon>
     </Compile>

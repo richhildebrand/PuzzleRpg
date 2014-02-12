@@ -16,9 +16,7 @@ namespace PuzzleRpg.Database
 
         protected override void CreateKey(string key)
         {
-            var stam = new Stamina();
-            stam.Max = 10;
-            stam.Current = stam.Max;
+            var stam = new Stamina(max: 10);
 
             var exp = new Experience();
             exp.Max = 100;
