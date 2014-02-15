@@ -3,7 +3,6 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Collections.Generic;
 using PuzzleRpg.Models;
-using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
 {

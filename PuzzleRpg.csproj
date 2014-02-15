@@ -132,6 +132,7 @@
     <Compile Include="CustomControls\TeamStats.xaml.cs">
       <DependentUpon>TeamStats.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Database\DungeonRepository.cs" />
     <Compile Include="Database\HeroDatabase.cs" />
     <Compile Include="Database\HeroRepository.cs" />
     <Compile Include="Database\MonsterDatabase.cs" />

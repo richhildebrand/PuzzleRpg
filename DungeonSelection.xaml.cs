@@ -8,19 +8,18 @@ namespace PuzzleRpg
 {
     public partial class DungeonSelection : PhoneApplicationPage
     {
-        private DungeonDatabase _dungeonDatabase;
+        private DungeonRepository _dungeonRepository;
 
         public DungeonSelection()
         {
-            _dungeonDatabase = new DungeonDatabase();
+            _dungeonRepository = new DungeonRepository();
             InitializeComponent();
             LoadUnlockedDungeons();
         }
 
         private void LoadUnlockedDungeons()
         {
-            var unlockedDungeons = _dungeonDatabase.AllDungeons;
-            //TODO: filter unlocked dungeons
+            var unlockedDungeons = _dungeonRepository.GetUnlockedDungeons();
             UnlockedDungeons.ItemsSource = unlockedDungeons;
         }
 

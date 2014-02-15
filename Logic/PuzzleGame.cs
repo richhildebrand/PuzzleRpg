@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
-using PuzzleRpg.Monsters;
 using PuzzleRpg.Screens;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace PuzzleRpg.Monsters
+namespace PuzzleRpg.Models
 {
     public class Monster
     {
@@ -11,6 +11,8 @@ namespace PuzzleRpg.Monsters
         public int AttackDamage { get; private set; }
 
         public string FullImagePath { get; set; }
+
+        private Monster() { } // needed so it can be saved in local storage
 
         public Monster(string name, int hitPoints, int attackDamage)
         {
