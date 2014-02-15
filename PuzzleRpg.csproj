@@ -151,6 +151,7 @@
     </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Dungeon.cs" />
+    <Compile Include="Models\DungeonScore.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Hero.cs" />
     <Compile Include="Models\HeroViewModel.cs" />

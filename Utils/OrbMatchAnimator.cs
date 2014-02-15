@@ -25,7 +25,7 @@ namespace PuzzleRpg.Utils
 
         public Task AnimateHorizontalMatch(List<PuzzlePiece> puzzlePieces)
         {
-            if (!AppGlobals.InGame)
+            if (!AppGlobals.ActiveDungeonScore.DungeonInProgress)
             {
                 var task = new TaskCompletionSource<bool>();
                 task.SetResult(true);
@@ -40,7 +40,7 @@ namespace PuzzleRpg.Utils
 
         public Task AnimateVerticalMatch(List<PuzzlePiece> puzzlePieces)
         {
-            if (!AppGlobals.InGame)
+            if (!AppGlobals.ActiveDungeonScore.DungeonInProgress)
             {
                 var task = new TaskCompletionSource<bool>();
                 task.SetResult(true);

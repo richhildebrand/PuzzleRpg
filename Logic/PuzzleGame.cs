@@ -34,12 +34,11 @@ namespace PuzzleRpg.Logic
         public async void StartGame()
         {
             await _puzzleGrid.MatchAndReplacePuzzlePieces();
-            AppGlobals.InGame = true;
+            AppGlobals.ActiveDungeonScore.DungeonInProgress = true;
             StartNewTurn();
         }
 
         public void EndGame() {
-            //Clear loot / drops
             PopupUtils.UncoverScreen();
             MessageBus.Default.Notify("EndGame", new Object(), new NotificationEventArgs());
         }

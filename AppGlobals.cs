@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Windows.Media.Animation;
+using PuzzleRpg.Models;
 
 namespace PuzzleRpg
 {
@@ -11,7 +12,7 @@ namespace PuzzleRpg
         public static double PuzzleGridActualHeight { get; set; }
         public static Storyboard PuzzleStoryBoard = new Storyboard();
         public static readonly int MaxHeroesOnATeam = 5;
-        public static bool InGame = false;
+        public static DungeonScore ActiveDungeonScore = new DungeonScore();
 
         public static readonly string HeroImagePathPrefix = "Assets/Monsters/";
 

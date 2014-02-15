@@ -54,7 +54,7 @@ namespace PuzzleRpg
             base.OnNavigatedTo(e);
             MessageBus.Default.Register("EndGame", OnEndGame);
 
-            AppGlobals.InGame = false;
+            AppGlobals.ActiveDungeonScore = new DungeonScore();
             string queryStringParam = "";
             if (NavigationContext.QueryString.TryGetValue("dungeonToEnter", out queryStringParam))
             {
