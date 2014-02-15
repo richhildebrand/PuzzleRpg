@@ -10,13 +10,11 @@ namespace PuzzleRpg.Utils
     {
         public static List<OrbMatch> OrbMatches { get; set; }
 
-        public static Task MatchAllOrbs(List<PuzzlePiece> puzzlePieces, List<OrbMatch>  orbMatches)
+        public static async Task MatchAllOrbs(List<PuzzlePiece> puzzlePieces, List<OrbMatch>  orbMatches)
         {
             OrbMatches = orbMatches; //set by side effect
-            Task matchHorizontal = MatchHorizontalOrbsAndTheirVerticalConnections(puzzlePieces);
-            Task matchVertial = MatchUnconnectedVerticalOrbs(puzzlePieces);
-
-            return Task.WhenAll(matchVertial, matchHorizontal);
+            await MatchHorizontalOrbsAndTheirVerticalConnections(puzzlePieces);
+            await MatchUnconnectedVerticalOrbs(puzzlePieces);
         }
   
         private static async Task MatchUnconnectedVerticalOrbs(List<PuzzlePiece> puzzlePieces)
