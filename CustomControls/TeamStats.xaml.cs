@@ -29,7 +29,7 @@ namespace PuzzleRpg.CustomControls
 
         private string GetDamageMessage(List<Hero> team, AppGlobals.Types type) 
         {
-            return "Causes " + GetDamage(team, type) + "damage";
+            return "Will deal " + GetDamage(team, type) + " damage";
         }
 
         private int GetDamage(List<Hero> team, AppGlobals.Types type) 
