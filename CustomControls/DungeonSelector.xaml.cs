@@ -44,16 +44,37 @@ namespace PuzzleRpg.CustomControls
 
         private string GetErrorMessage()
         {
-            var message = "Sorry, you do not have enough stamina to enter the dungeon.";
-            message += "You will gain "  + AppSettings.AmountOfStaminaToAddInterval;
-            message += " stamina every " + AppSettings.GainStaminaIntervalLength;
-            message += " minutes";
-            return message;
+            if (!PlayerHasEnoughStamina())
+            {
+                var message = "Sorry, you do not have enough stamina to enter the dungeon.";
+                message += "You will gain " + AppSettings.AmountOfStaminaToAddInterval;
+                message += " stamina every " + AppSettings.GainStaminaIntervalLength;
+                message += " minutes";
+                return message;
+            }
+            else if (TeamIsEmpty())
+            {
+                return "Please add heroes to your team.";
+            }
+            else
+            {
+                var message = "You have more heroes than you have space for.";
+                message += "Please delete some heroes before proceding your next dungeon";
+                return message;
+            }
         }
 
         private bool PlayerCanEnterDungeon()
         {
-            return PlayerHasEnoughStamina();
+            return PlayerHasEnoughStamina()
+                && !TeamIsEmpty();
+        }
+
+        private bool TeamIsEmpty()
+        {
+            var teamRepository = new TeamRepository();
+            var team = teamRepository.GetTeam();
+            return team.TeamMembers.Count <= 0;
         }
 
         private bool PlayerHasEnoughStamina()
