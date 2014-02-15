@@ -123,7 +123,7 @@ namespace PuzzleRpg.Logic
 
         private void DisplayDeathDialog()
         {
-            var teamDeathDialog = new TeamDeathScreen();
+            var teamDeathDialog = new TeamDeathScreen("your dead");
             teamDeathDialog.Show();
         }
     }

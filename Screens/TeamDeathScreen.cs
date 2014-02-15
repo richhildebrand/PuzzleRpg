@@ -12,10 +12,12 @@ namespace PuzzleRpg.Screens
     {
         private Popup _modal;
         private Grid _modalContent;
+        private String _message;
 
-        public TeamDeathScreen()
+        public TeamDeathScreen(String message)
         {
             _modal = new Popup();
+            _message = message;
 
             var popupWidth = Application.Current.Host.Content.ActualWidth * .8;
             var popupHeight = Application.Current.Host.Content.ActualHeight * .75;
@@ -68,7 +70,7 @@ namespace PuzzleRpg.Screens
         private Grid PopulateTopRow(int row, Grid grid)
         {
             var textBlock = new TextBlock();
-            textBlock.Text = "YOU DIED, RICH! - I actually think this should be a completely separate screen that can show stats and stuff....SEE TRELLO COMMENTS! :D";
+            textBlock.Text = _message;
             textBlock.TextWrapping = TextWrapping.Wrap;
             textBlock.FontSize = 25;
             grid.Children.Add(textBlock);
