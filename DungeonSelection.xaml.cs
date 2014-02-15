@@ -14,7 +14,6 @@ namespace PuzzleRpg
         {
             _dungeonRepository = new DungeonRepository();
             InitializeComponent();
-            LoadUnlockedDungeons();
         }
 
         private void LoadUnlockedDungeons()
@@ -49,6 +48,7 @@ namespace PuzzleRpg
             NavBar.HighlightPage("/DungeonSelection.xaml");
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Register("EnterDungeon", OnEnterDungeon);
+            LoadUnlockedDungeons();
         }
     }
 }

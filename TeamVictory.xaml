@@ -13,10 +13,8 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Tap="OnScreenTap">
         <Grid.Background>
-            <!--Prly just a temporary image, but I wanted something!-->
             <ImageBrush ImageSource="/Assets/Backdrops/Parchment1.png" />
         </Grid.Background>
         <Grid.RowDefinitions>
@@ -24,16 +22,11 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--TitlePanel contains the name of the application and page title-->
-        <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock x:Name="LevelCompleteTextBlock" TextAlignment="Center" FontSize="50" />
-            <TextBlock x:Name="SummaryTextBlock" TextAlignment="Left" />
-            <TextBlock x:Name="CurrentLevelTextBlock" TextAlignment="Left" />
-            <TextBlock x:Name="ExperienceGainedTextBlock" TextAlignment="Left" />
-            <TextBlock x:Name="MonstersSlainTextBlock" TextAlignment="Left" />
-            <TextBlock x:Name="LootObtainedTextBlock" TextAlignment="Left" />
+        <TextBlock Grid.Row="0"
+                   Text="Victory!"
+                   TextAlignment="Center" FontSize="50"
+                   Visibility="{Binding PlayerWins, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
-         </StackPanel>
     </Grid>
 
 </phone:PhoneApplicationPage>
