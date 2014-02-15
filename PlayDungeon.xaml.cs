@@ -54,12 +54,12 @@ namespace PuzzleRpg
             base.OnNavigatedTo(e);
             MessageBus.Default.Register("EndGame", OnEndGame);
 
-            AppGlobals.ActiveDungeonScore = new DungeonScore();
             string queryStringParam = "";
             if (NavigationContext.QueryString.TryGetValue("dungeonToEnter", out queryStringParam))
             {
                 var idOfDungeon = Convert.ToInt32(queryStringParam);
                 _activeDungeon = _dungeonDatabase.AllDungeons.Single(d => d.Id == idOfDungeon);
+                AppGlobals.ActiveDungeonScore = new DungeonScore(_activeDungeon);
             }
         }
 

@@ -68,11 +68,13 @@ namespace PuzzleRpg.Logic
                 {
                     //This was annoying me so I commented it out lol
                     //DisplayDeathDialog();
+                    AppGlobals.ActiveDungeonScore.PlayerWins = false;
                     EndGame();
                 }
             }
             else
             {
+                AppGlobals.ActiveDungeonScore.MonstersSlain.Add(_monsterGrid.ActiveMonster);
                 var hasAnotherFloor = _monsterGrid.LoadNextFloor();
                 if (hasAnotherFloor)
                 {
@@ -82,6 +84,7 @@ namespace PuzzleRpg.Logic
                 {
                     //This was annoying me so I commented it out lol
                     //DisplayDeathDialog();
+                    AppGlobals.ActiveDungeonScore.PlayerWins = true;
                     EndGame();
                 }
             }
