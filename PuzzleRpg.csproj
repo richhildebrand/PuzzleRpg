@@ -90,6 +90,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Animations\MonsterDeathAnimator.cs" />
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
@@ -180,16 +181,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Screens\TeamDeathScreen.cs" />
+    <Compile Include="Utils\Screens\TeamDeathScreen.cs" />
     <Compile Include="TeamSelection.xaml.cs">
       <DependentUpon>TeamSelection.xaml</DependentUpon>
     </Compile>
     <Compile Include="TeamVictory.xaml.cs">
       <DependentUpon>TeamVictory.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Utils\AnimatedMoves.cs" />
-    <Compile Include="Utils\AnimateHealthBar.cs" />
-    <Compile Include="Utils\OrbMatchAnimator.cs" />
+    <Compile Include="Animations\AnimatedMoves.cs" />
+    <Compile Include="Animations\AnimateHealthBar.cs" />
+    <Compile Include="Animations\OrbMatchAnimator.cs" />
     <Compile Include="Utils\EmptyHeroViewModelGetter.cs" />
     <Compile Include="Utils\HeroToViewModelMapper.cs" />
     <Compile Include="Utils\TeamMemberMapper.cs" />

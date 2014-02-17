@@ -74,6 +74,7 @@ namespace PuzzleRpg.Logic
             }
             else
             {
+                await _monsterGrid.AnimateMonsterDeath();
                 AppGlobals.ActiveDungeonScore.MonstersSlain.Add(_monsterGrid.ActiveMonster);
                 var hasAnotherFloor = _monsterGrid.LoadNextFloor();
                 if (hasAnotherFloor)

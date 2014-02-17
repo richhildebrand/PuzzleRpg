@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
+using PuzzleRpg.Animations;
 using PuzzleRpg.CustomControls;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
@@ -40,6 +41,10 @@ namespace PuzzleRpg.Logic
             }
 
             return hasAnotherFloor;
+        }
+
+        public async Task AnimateMonsterDeath() {
+            await MonsterDeathAnimator.AnimateDeath(_monsterUI.MonsterImage);
         }
 
         private Task ActivateMonster(Monster monster)
