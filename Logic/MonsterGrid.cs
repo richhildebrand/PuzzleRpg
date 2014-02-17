@@ -45,6 +45,7 @@ namespace PuzzleRpg.Logic
 
         public async Task AnimateMonsterDeath() {
             await MonsterDeathAnimator.AnimateDeath(_monsterUI.MonsterImage);
+            _monsterUI.MonsterImage.Source = null;
         }
 
         private Task ActivateMonster(Monster monster)

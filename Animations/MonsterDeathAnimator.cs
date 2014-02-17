@@ -19,7 +19,7 @@ namespace PuzzleRpg.Animations
             _monsterImage = monsterImage;
             _taskSource = new TaskCompletionSource<bool>();
             _storyboard = new Storyboard();
-            //_storyboard.Duration = new Duration(TimeSpan.FromMilliseconds(1000));
+            _storyboard.Duration = new Duration(TimeSpan.FromMilliseconds(800));
             _storyboard.Completed += EndAllAnimation;
 
             AddImageRotation(monsterImage);

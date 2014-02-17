@@ -16,7 +16,7 @@ namespace PuzzleRpg.Database
             _allHeroes.Add(new Hero("BlueDragon", 1000, 90, AppGlobals.Types.Water, 200));
             _allHeroes.Add(new Hero("GreenDragon", 1000, 90, AppGlobals.Types.Wood, 200));
             _allHeroes.Add(new Hero("RedDragon", 1000, 90, AppGlobals.Types.Fire, 200));
-            _allHeroes.Add(new Hero("BigBlue", 300, 20, AppGlobals.Types.Water, 60));
+            _allHeroes.Add(new Hero("BigBlue", 300, 2000, AppGlobals.Types.Water, 60));
             _allHeroes.Add(new Hero("Turtle", 50, 1, AppGlobals.Types.Wood, 1000));
             _allHeroes.Add(new Hero("Rex", 1000, 10, AppGlobals.Types.Fire, 200));
             _allHeroes.Add(new Hero("StoneOrc", 500, 30, AppGlobals.Types.Earth, 100));
