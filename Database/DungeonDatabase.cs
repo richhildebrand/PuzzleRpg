@@ -32,7 +32,6 @@ namespace PuzzleRpg.Database
         {
             var dungeon = new Dungeon(id, "Rex's House", stam);
             dungeon.IsAvailable = isAvailable;
-            dungeon.HasBeenDefeated = true;
             dungeon.Floors.Add(new DungeonFloor(MonsterDatabase.GetMonster("Rex"))); 
             return dungeon;
         }

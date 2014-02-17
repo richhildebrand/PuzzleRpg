@@ -22,17 +22,9 @@ namespace PuzzleRpg.Database
             IsolatedStorageSettings.ApplicationSettings.Add(DUNGEONS_KEY, dungeons);
         }
 
-        public void UnlockDungon(int dungeonIdToUnlock)
+        public void Save(List<Dungeon> dungeonsToSave)
         {
-            var allDungeons = GetAllDungeons();
-            var dungeonToUnlock = allDungeons.SingleOrDefault(d => d.Id == dungeonIdToUnlock);
-
-            if (dungeonToUnlock != null)
-            {
-                dungeonToUnlock.IsAvailable = true;
-            }
-
-            IsolatedStorageSettings.ApplicationSettings[DUNGEONS_KEY] = allDungeons;
+            IsolatedStorageSettings.ApplicationSettings[DUNGEONS_KEY] = dungeonsToSave;
             IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
@@ -43,7 +35,7 @@ namespace PuzzleRpg.Database
             return unlockedDungeons.ToList();
         }
 
-        private List<Dungeon> GetAllDungeons()
+        public List<Dungeon> GetAllDungeons()
         {
             return IsolatedStorageSettings.ApplicationSettings[DUNGEONS_KEY] as List<Dungeon>;
         }

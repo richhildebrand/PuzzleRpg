@@ -16,8 +16,9 @@ namespace PuzzleRpg
             InitializeComponent();
         }
 
-        private void LoadUnlockedDungeons()
+        private void LoadUnlockedDungeons() 
         {
+            UnlockedDungeons.ItemsSource = null;
             var unlockedDungeons = _dungeonRepository.GetUnlockedDungeons();
             var sortedDungeons = unlockedDungeons.OrderByDescending(d => d.Id);
             UnlockedDungeons.ItemsSource = sortedDungeons.ToList();
