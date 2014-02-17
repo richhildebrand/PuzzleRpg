@@ -34,6 +34,7 @@
             </Grid.Background>
 
             <local:MonsterWithHealthBar Name="MonsterGrid" Grid.Row="0" />
+            <local:MoveTimer Name="MoveTimer" Grid.Row="0" Margin="432,0,0,0" />
             <local:HeroesOnPuzzleGameBoard x:Name="HeroGrid" Grid.Row="1" />
         </Grid>
         <local:HealthBar x:Name="PlayerHealth" Grid.Row="1" />

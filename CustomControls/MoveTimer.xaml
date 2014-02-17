@@ -7,9 +7,16 @@
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    d:DesignHeight="480" d:DesignWidth="480">
-    
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    d:DesignHeight="200" d:DesignWidth="40">
+
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="1" x:Name="Timer" >
+            <Rectangle Grid.Column="0" VerticalAlignment="Stretch" Fill="Yellow" />
+        </Grid>
 
     </Grid>
 </UserControl>
