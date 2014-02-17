@@ -19,22 +19,28 @@ namespace PuzzleRpg.Animations
             _monsterImage = monsterImage;
             _taskSource = new TaskCompletionSource<bool>();
             _storyboard = new Storyboard();
-            _storyboard.Duration = new Duration(TimeSpan.FromMilliseconds(800));
-            _storyboard.Completed += EndAllAnimation;
 
-            AddImageRotation(monsterImage);
+            SetStoryBoardDuration();
+
+            _storyboard.Completed += EndAllAnimation;
+            FadeImage(monsterImage);
 
             _storyboard.Begin();
             return _taskSource.Task;
         }
 
-        private static void AddImageRotation(Image monsterImage) 
+        private static void SetStoryBoardDuration() {
+            var totalAnimationTime = AppSettings.MonsterDeathFadeTimeInMilliseconds + AppSettings.MonsterDeathTimeInvisibleInMilliseconds;
+            _storyboard.Duration = new Duration(TimeSpan.FromMilliseconds(totalAnimationTime));
+        }
+
+        private static void FadeImage(Image monsterImage) 
         {
             var opacityAnimation = new DoubleAnimation
             {
                 To = 0,
                 From = 1,
-                Duration = TimeSpan.FromMilliseconds(600)
+                Duration = TimeSpan.FromMilliseconds(AppSettings.MonsterDeathFadeTimeInMilliseconds)
             };
 
             Storyboard.SetTarget(opacityAnimation, monsterImage);
