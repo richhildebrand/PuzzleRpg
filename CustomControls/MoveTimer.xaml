@@ -15,6 +15,13 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="1" x:Name="Timer" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40*" />
+            </Grid.RowDefinitions>
+            
             <Rectangle Grid.Column="0" VerticalAlignment="Stretch" Fill="Yellow" />
         </Grid>
 
