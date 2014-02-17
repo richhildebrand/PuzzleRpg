@@ -114,6 +114,9 @@
     <Compile Include="CustomControls\MonsterWithHealthBar.xaml.cs">
       <DependentUpon>MonsterWithHealthBar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\MoveTimer.xaml.cs">
+      <DependentUpon>MoveTimer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\NavigationBar.xaml.cs">
       <DependentUpon>NavigationBar.xaml</DependentUpon>
     </Compile>
@@ -229,6 +232,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\MonsterWithHealthBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\MoveTimer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
