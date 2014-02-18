@@ -33,25 +33,36 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
-            
-            <Image Grid.Row="1"
-                   Stretch="Fill"
-                   Source="Assets/Backgrounds/HeroProfile.png"/>
-            <TextBlock  Grid.Row="1"
-                        FontSize="50"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Text="View Heroes" 
-                        />
 
-            <Image Grid.Row="3"
-                   Stretch="Fill"
-                   Source="Assets/Backgrounds/HeroProfile.png"/>
-            <TextBlock  Grid.Row="3"
-                        FontSize="50"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Text="Delete Heroes" />
+            <Border Grid.Row="1"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Margin="0"
+                    Padding="5">
+                <Border.Background>
+                    <ImageBrush ImageSource="Assets/Backgrounds/HeroProfile.png"  Stretch="Fill" />
+                </Border.Background>
+                <TextBlock FontSize="50"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="View Heroes" />
+            </Border>
+
+
+            <Border Grid.Row="3"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Margin="0"
+                    Padding="5">
+                <Border.Background>
+                    <ImageBrush ImageSource="Assets/Backgrounds/HeroProfile.png"  Stretch="Fill" />
+                </Border.Background>
+
+                <TextBlock FontSize="50"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="Delete Heroes" />
+            </Border>
         </Grid>
 
         <Grid Grid.Row="2">
