@@ -1,0 +1,62 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PuzzleRpg.HeroOptions"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PuzzleRpg.CustomControls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <local:PlayerStats />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+            
+            <Image Grid.Row="1"
+                   Stretch="Fill"
+                   Source="Assets/Backdrops/VerticalParchment.png"/>
+            <TextBlock  Grid.Row="1"
+                        FontSize="50"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="View Heroes" 
+                        />
+
+            <Image Grid.Row="3"
+                   Stretch="Fill"
+                   Source="Assets/Backdrops/VerticalParchment.png"/>
+            <TextBlock  Grid.Row="3"
+                        FontSize="50"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Text="Delete Heroes" />
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <local:NavigationBar Height="100" x:Name="NavBar" VerticalAlignment="Bottom" Margin="4,-72,-4,10"></local:NavigationBar>
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

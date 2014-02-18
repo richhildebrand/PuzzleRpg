@@ -150,6 +150,9 @@
     <Compile Include="DungeonSelection.xaml.cs">
       <DependentUpon>DungeonSelection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeroOptions.xaml.cs">
+      <DependentUpon>HeroOptions.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Logic\CastSpellModal.cs" />
     <Compile Include="Models\Dungeon.cs" />
     <Compile Include="Models\DungeonScore.cs" />
@@ -269,6 +272,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="HeroOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PlayDungeon.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -297,7 +304,7 @@
     <Content Include="Assets\Backdrops\City.png" />
     <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
     <Content Include="Assets\Backdrops\Parchment.png" />
-    <Content Include="Assets\Backdrops\Parchment1.png" />
+    <Content Include="Assets\Backdrops\VerticalParchment.png" />
     <Content Include="Assets\Backgrounds\HeroProfile.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
