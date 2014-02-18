@@ -13,13 +13,10 @@
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
 
-    <Grid x:Name="LayoutRoot" Tap="OnScreenTap">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Backdrops/Parchment1.png" />
-        </Grid.Background>
+    <Grid Tap="OnScreenTap">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="9*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -27,6 +24,8 @@
                    TextAlignment="Center" FontSize="50"
                    Visibility="{Binding PlayerWins, Converter={StaticResource BooleanToVisibilityConverter}}" />
 
+        <!--Target for click-->
+        <TextBlock Grid.Row="1" />
     </Grid>
 
 </phone:PhoneApplicationPage>
