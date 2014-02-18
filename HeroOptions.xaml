@@ -36,7 +36,7 @@
             
             <Image Grid.Row="1"
                    Stretch="Fill"
-                   Source="Assets/Backdrops/VerticalParchment.png"/>
+                   Source="Assets/Backgrounds/HeroProfile.png"/>
             <TextBlock  Grid.Row="1"
                         FontSize="50"
                         VerticalAlignment="Center"
@@ -46,7 +46,7 @@
 
             <Image Grid.Row="3"
                    Stretch="Fill"
-                   Source="Assets/Backdrops/VerticalParchment.png"/>
+                   Source="Assets/Backgrounds/HeroProfile.png"/>
             <TextBlock  Grid.Row="3"
                         FontSize="50"
                         VerticalAlignment="Center"
