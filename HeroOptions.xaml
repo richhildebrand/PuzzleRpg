@@ -34,7 +34,9 @@
                 <RowDefinition Height="4*"/>
             </Grid.RowDefinitions>
 
-            <Border Grid.Row="1"
+            <Border Tag="/HeroBox.xaml"
+                    Tap="NavigateOnTap"
+                    Grid.Row="1"
                     BorderThickness="1"
                     CornerRadius="5"
                     Margin="0"
@@ -49,7 +51,9 @@
             </Border>
 
 
-            <Border Grid.Row="3"
+            <Border Tag="/DeleteHeroes.xaml"
+                    Tap="NavigateOnTap"
+                    Grid.Row="3"
                     BorderThickness="1"
                     CornerRadius="5"
                     Margin="0"

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Linq;
+using System.Windows;
+using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using SimpleMvvmToolkit;
 
@@ -10,6 +12,13 @@ namespace PuzzleRpg
         public HeroOptions()
         {
             InitializeComponent();
+        }
+
+        public void NavigateOnTap(object sender, GestureEventArgs e)
+        {
+            var target = sender as FrameworkElement;
+            var destination = (string)target.Tag;
+            NavigationService.Navigate(new Uri(destination, UriKind.RelativeOrAbsolute));
         }
 
         private void OnNavItemTapped(object sender, NotificationEventArgs e)

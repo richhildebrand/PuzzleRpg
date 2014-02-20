@@ -59,10 +59,9 @@ namespace PuzzleRpg
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-            NavBar.HighlightPage("/HeroBox.xaml");
+            NavBar.HighlightPage("/HeroOptions.xaml");
             MessageBus.Default.Register("ShowHeroDetails", OnShowHeroDetails);
             MessageBus.Default.Register("NavigateToPage", OnNavItemTapped);
-
         }
 
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
