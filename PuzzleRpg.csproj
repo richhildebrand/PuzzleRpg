@@ -141,6 +141,9 @@
     <Compile Include="Database\Repository.cs" />
     <Compile Include="Database\PlayerRepository.cs" />
     <Compile Include="Database\TeamRepository.cs" />
+    <Compile Include="DeleteHero.xaml.cs">
+      <DependentUpon>DeleteHero.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
@@ -257,6 +260,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CustomControls\TeamStats.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DeleteHero.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

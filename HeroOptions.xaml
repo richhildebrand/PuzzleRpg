@@ -51,7 +51,7 @@
             </Border>
 
 
-            <Border Tag="/DeleteHeroes.xaml"
+            <Border Tag="/DeleteHero.xaml"
                     Tap="NavigateOnTap"
                     Grid.Row="3"
                     BorderThickness="1"
