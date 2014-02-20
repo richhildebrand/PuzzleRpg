@@ -36,8 +36,8 @@
             ItemTemplate="{StaticResource UnlockedDungeonsTemplate}"
         />
 
-        <Grid Grid.Row="5">
-            <local:NavigationBar x:Name="NavBar" Height="100" VerticalAlignment="Bottom" Margin="4,-72,-4,10"></local:NavigationBar>
+        <Grid Grid.Row="2">
+            <local:NavigationBar x:Name="NavBar" />
         </Grid>
     </Grid>
 

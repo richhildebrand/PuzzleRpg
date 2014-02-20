@@ -27,8 +27,8 @@
             <RowDefinition Height="12*"/>
             <RowDefinition Height="5*"/>
             <RowDefinition Height="58*"/>
-            <RowDefinition Height="10*"/>
             <RowDefinition Height="5*"/>
+            <RowDefinition Height="10*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0" >
@@ -63,7 +63,7 @@
         />
 
         <Grid Grid.Row="5">
-            <local:NavigationBar Name="NavBar" Height="100" VerticalAlignment="Bottom" Margin="4,-72,-4,10"></local:NavigationBar>
+            <local:NavigationBar x:Name="NavBar" />
         </Grid>
     </Grid>
 
