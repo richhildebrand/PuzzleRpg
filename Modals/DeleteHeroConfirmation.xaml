@@ -20,7 +20,17 @@
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="1*" />
         </Grid.ColumnDefinitions>
-        
+
+        <Image  Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Source="/Assets/Backdrops/Parchment.png"
+                Stretch="Fill">
+        </Image>
+        <Image x:Name="HeroImage"
+               Grid.Row="0"
+               Grid.ColumnSpan="2">
+        </Image>
+
         <TextBlock  x:Name="HeroName"
                     Grid.Row="1"
                     Grid.ColumnSpan="2"
