@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
-using PuzzleRpg.CustomControls;
 
 namespace PuzzleRpg.Utils
 {
@@ -16,8 +15,20 @@ namespace PuzzleRpg.Utils
         public ModalContainer(UIElement modalContent)
         {
             _modal = new Popup();
-            _modalContent = AddModalContent(modalContent);
-            _modal.Child = _modalContent;
+            _modalContent = GetWrapperWith(modalContent);
+            var borderWithContent = AddBorderTo(_modalContent);
+            _modal.Child = borderWithContent;
+        }
+
+        private Border AddBorderTo(Grid contentWrapper)
+        {
+            var border = new Border();
+            border.Child = contentWrapper;
+            border.Background = new SolidColorBrush(Colors.LightGray);
+            border.BorderThickness = new Thickness(2);
+            border.Padding = new Thickness(5);
+            border.CornerRadius = new CornerRadius(5);
+            return border;
         }
 
         public void Show()
@@ -34,7 +45,7 @@ namespace PuzzleRpg.Utils
             PopupUtils.UncoverScreen();
         }
 
-        private Grid AddModalContent(UIElement modalContent)
+        private Grid GetWrapperWith(UIElement modalContent)
         {
             var grid = InitGrid();
             grid = AddUIElement(grid, modalContent);
