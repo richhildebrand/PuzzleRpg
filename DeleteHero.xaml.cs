@@ -1,15 +1,40 @@
 ﻿using System;
 using System.Linq;
+using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.CustomControls;
+using PuzzleRpg.Database;
+using PuzzleRpg.Screens;
+using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg
 {
     public partial class DeleteHero : PhoneApplicationPage
     {
+        private readonly int HEROES_PER_ROW = 5;
+        private HeroRepository _heroRepository;
+
         public DeleteHero()
         {
             InitializeComponent();
+            _heroRepository = new HeroRepository();
+            LoadPlayerHeroes(HeroGrid);
+        }
+
+        public void LaunchDeleteHeroModal(object sender, GestureEventArgs e)
+        {
+            var heroProfile = sender as HeroProfileInHeroBox;
+            var heroId = heroProfile.HeroId.Tag;
+            var teamDeathDialog = new TeamDeathScreen("Delete " + heroId + "?");
+            teamDeathDialog.Show();
+        }
+
+        private void LoadPlayerHeroes(LongListSelector heroGrid)
+        {
+            heroGrid.GridCellSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(HEROES_PER_ROW);
+            var heroesOwnedByPlayer = _heroRepository.GetHeroesOwnedByPlayer();
+            heroGrid.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
         }
 
         private void OnShowHeroDetails(object sender, NotificationEventArgs e)

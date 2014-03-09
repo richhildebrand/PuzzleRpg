@@ -16,7 +16,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="HeroGridTemplate">
-            <local:HeroProfileInHeroBox Margin="3"/>
+            <local:HeroProfileInHeroBox Margin="3" Tap="LaunchDeleteHeroModal"/>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
 
