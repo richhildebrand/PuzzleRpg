@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using PuzzleRpg.CustomControls;
 using PuzzleRpg.Utils;
 
 namespace PuzzleRpg.Screens
@@ -35,22 +36,19 @@ namespace PuzzleRpg.Screens
 
         private Grid CreateContent(double width, double height)
         {
-            var grid = InitGrid(2);
+            var grid = InitGrid(1);
             grid = StyleGrid(grid);
-            grid = PopulateTopRow(0, grid);
-            grid = PopulateBottomRow(1, grid);
+            grid = AddControl(0, grid);
             grid = SizeGrid(width, height, grid); //must come last
             return grid;
         }
-  
-        private Grid PopulateBottomRow(int row, Grid grid)
-        {
-            var cancelButton = new Button();
-            cancelButton.Content = "Cancel";
-            cancelButton.Click += CloseWindow;
 
-            grid.Children.Add(cancelButton);
-            cancelButton.SetValue(Grid.RowProperty, row);
+        private Grid AddControl(int row, Grid grid)
+        {
+            var navBar = new HeroProfileInHeroBox();
+
+            grid.Children.Add(navBar);
+            navBar.SetValue(Grid.RowProperty, row);
             return grid;
         }
   
@@ -64,16 +62,6 @@ namespace PuzzleRpg.Screens
         {
             grid.Width = width;
             grid.Height = height;
-            return grid;
-        }
-  
-        private Grid PopulateTopRow(int row, Grid grid)
-        {
-            var textBlock = new TextBlock();
-            textBlock.Text = _message;
-            textBlock.TextWrapping = TextWrapping.Wrap;
-            textBlock.FontSize = 25;
-            grid.Children.Add(textBlock);
             return grid;
         }
 
