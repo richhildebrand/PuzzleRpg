@@ -39,12 +39,6 @@ namespace PuzzleRpg.Utils
             _modal.IsOpen = true;
         }
 
-        private void CloseWindow(object sender, RoutedEventArgs e)
-        {
-            _modal.IsOpen = false;
-            PopupUtils.UncoverScreen();
-        }
-
         private Grid GetWrapperWith(UIElement modalContent)
         {
             var grid = InitGrid();
