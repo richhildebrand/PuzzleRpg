@@ -27,12 +27,12 @@ namespace PuzzleRpg
             var heroToDelete = GetHeroToDelete(sender);
 
             var deleteHeroConfirmationModal = new Modals.DeleteHeroConfirmation(heroToDelete);
-            deleteHeroConfirmationModal.CloseModal += LoadPlayerHeroes;
+            deleteHeroConfirmationModal.CloseModal += RemoveDeletedHeroFromScreen;
             var deleteHeroModal = new ModalContainer(deleteHeroConfirmationModal);
             deleteHeroModal.Show();
         }
-  
-        private void LoadPlayerHeroes(object sender, EventArgs e)
+
+        private void RemoveDeletedHeroFromScreen(object sender, EventArgs e)
         {
             LoadPlayerHeroes(HeroGrid);
         }
