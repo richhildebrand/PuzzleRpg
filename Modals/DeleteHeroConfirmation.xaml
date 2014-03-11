@@ -47,11 +47,13 @@
         </TextBlock>
         
         <Button Grid.Row="3"
-                Grid.Column="0">
+                Grid.Column="0"
+                Tap="DeleteHero">
                 Delete Hero
         </Button>
         <Button Grid.Row="3"
-                Grid.Column="1">
+                Grid.Column="1"
+                Tap="Cancel">
                 Cancel
         </Button>
     </Grid>

@@ -4,6 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
+using PuzzleRpg.Interface;
 
 namespace PuzzleRpg.Utils
 {
@@ -12,12 +13,21 @@ namespace PuzzleRpg.Utils
         private readonly Popup _modal;
         private readonly Grid _modalContent;
 
-        public ModalContainer(UIElement modalContent)
+        public ModalContainer(IModalControl modalContent)
         {
             _modal = new Popup();
-            _modalContent = GetWrapperWith(modalContent);
+            _modal.Name = "Modal";
+
+            modalContent.CloseModal += Close;
+            _modalContent = GetWrapperWith(modalContent as UserControl);
             var borderWithContent = AddBorderTo(_modalContent);
             _modal.Child = borderWithContent;
+        }
+
+        private void Close(object sender, EventArgs e)
+        {
+            _modal.IsOpen = false;
+            PopupUtils.UncoverScreen();
         }
 
         private Border AddBorderTo(Grid contentWrapper)
