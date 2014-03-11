@@ -21,7 +21,7 @@ namespace PuzzleRpg.CustomControls
         {
             CreateNavItem("Dungeons", "/DungeonSelection.xaml", 0);
             CreateNavItem("Team", "/TeamSelection.xaml", 1);
-            CreateNavItem("Heroes", "/HeroBox.xaml", 2);
+            CreateNavItem("Heroes", "/HeroOptions.xaml", 2);
         }
 
         private void CreateNavItem(string displayText, string url, int column)

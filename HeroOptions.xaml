@@ -1,0 +1,77 @@
+﻿<phone:PhoneApplicationPage
+    x:Class="PuzzleRpg.HeroOptions"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:PuzzleRpg.CustomControls"
+    FontFamily="{StaticResource PhoneFontFamilyNormal}"
+    FontSize="{StaticResource PhoneFontSizeNormal}"
+    Foreground="{StaticResource PhoneForegroundBrush}"
+    SupportedOrientations="Portrait" Orientation="Portrait"
+    mc:Ignorable="d"
+    shell:SystemTray.IsVisible="True">
+
+    <Grid x:Name="LayoutRoot" Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" >
+            <local:PlayerStats />
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height=".5*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="4*"/>
+            </Grid.RowDefinitions>
+
+            <Border Tag="/HeroBox.xaml"
+                    Tap="NavigateOnTap"
+                    Grid.Row="1"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Margin="0"
+                    Padding="5">
+                <Border.Background>
+                    <ImageBrush ImageSource="Assets/Backgrounds/HeroProfile.png"  Stretch="Fill" />
+                </Border.Background>
+                <TextBlock FontSize="50"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="View Heroes" />
+            </Border>
+
+
+            <Border Tag="/DeleteHero.xaml"
+                    Tap="NavigateOnTap"
+                    Grid.Row="3"
+                    BorderThickness="1"
+                    CornerRadius="5"
+                    Margin="0"
+                    Padding="5">
+                <Border.Background>
+                    <ImageBrush ImageSource="Assets/Backgrounds/HeroProfile.png"  Stretch="Fill" />
+                </Border.Background>
+
+                <TextBlock FontSize="50"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           Text="Delete Heroes" />
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <local:NavigationBar x:Name="NavBar" />
+        </Grid>
+    </Grid>
+
+</phone:PhoneApplicationPage>

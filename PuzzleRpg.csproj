@@ -141,6 +141,9 @@
     <Compile Include="Database\Repository.cs" />
     <Compile Include="Database\PlayerRepository.cs" />
     <Compile Include="Database\TeamRepository.cs" />
+    <Compile Include="DeleteHero.xaml.cs">
+      <DependentUpon>DeleteHero.xaml</DependentUpon>
+    </Compile>
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
@@ -150,7 +153,14 @@
     <Compile Include="DungeonSelection.xaml.cs">
       <DependentUpon>DungeonSelection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="HeroOptions.xaml.cs">
+      <DependentUpon>HeroOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Interface\IModalControl.cs" />
     <Compile Include="Logic\CastSpellModal.cs" />
+    <Compile Include="Modals\DeleteHeroConfirmation.xaml.cs">
+      <DependentUpon>DeleteHeroConfirmation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dungeon.cs" />
     <Compile Include="Models\DungeonScore.cs" />
     <Compile Include="Models\Experience.cs" />
@@ -181,6 +191,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Utils\ModalContainer.cs" />
     <Compile Include="Utils\Screens\TeamDeathScreen.cs" />
     <Compile Include="TeamSelection.xaml.cs">
       <DependentUpon>TeamSelection.xaml</DependentUpon>
@@ -257,6 +268,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DeleteHero.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="HeroBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -266,6 +281,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DungeonSelection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HeroOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\DeleteHeroConfirmation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -297,7 +320,7 @@
     <Content Include="Assets\Backdrops\City.png" />
     <Content Include="Assets\Backdrops\multipleColorBackdrops.png" />
     <Content Include="Assets\Backdrops\Parchment.png" />
-    <Content Include="Assets\Backdrops\Parchment1.png" />
+    <Content Include="Assets\Backdrops\VerticalParchment.png" />
     <Content Include="Assets\Backgrounds\HeroProfile.png" />
     <Content Include="Assets\Backgrounds\PrimaryTile.png" />
     <Content Include="Assets\Backgrounds\SecondaryTile.png" />
