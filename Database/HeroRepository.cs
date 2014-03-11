@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -27,10 +28,18 @@ namespace PuzzleRpg.Database
             return IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] as List<Hero>;
         }
 
-        public void AddHeroToPlayerCollection(Hero newHero)
+        public void AddHeroToPlayerCollection(Hero heroToAdd)
         {
             var heroes = GetHeroesOwnedByPlayer();
-            heroes.Add(newHero);
+            heroes.Add(heroToAdd);
+            IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] = heroes;
+            IsolatedStorageSettings.ApplicationSettings.Save();
+        }
+
+        public void RemoveHeroFromPlayerCollection(Hero heroToRemove)
+        {
+            var heroes = GetHeroesOwnedByPlayer();
+            heroes = heroes.Where(h => h.Id != heroToRemove.Id).ToList();
             IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] = heroes;
             IsolatedStorageSettings.ApplicationSettings.Save();
         }

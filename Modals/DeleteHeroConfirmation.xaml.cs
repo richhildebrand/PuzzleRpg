@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
+using PuzzleRpg.Database;
 using PuzzleRpg.Interface;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
@@ -31,8 +32,9 @@ namespace PuzzleRpg.Modals
 
         public void DeleteHero(object sender, GestureEventArgs e)
         {
-            // TODO: Implement this method
-            throw new NotImplementedException();
+            var heroRepository = new HeroRepository();
+            heroRepository.RemoveHeroFromPlayerCollection(_heroToDelete);
+            CloseModal(this, new EventArgs());
         }
     }
 }

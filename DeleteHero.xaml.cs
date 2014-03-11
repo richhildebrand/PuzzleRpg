@@ -27,8 +27,21 @@ namespace PuzzleRpg
             var heroToDelete = GetHeroToDelete(sender);
 
             var deleteHeroConfirmationModal = new Modals.DeleteHeroConfirmation(heroToDelete);
+            deleteHeroConfirmationModal.CloseModal += LoadPlayerHeroes;
             var deleteHeroModal = new ModalContainer(deleteHeroConfirmationModal);
             deleteHeroModal.Show();
+        }
+  
+        private void LoadPlayerHeroes(object sender, EventArgs e)
+        {
+            LoadPlayerHeroes(HeroGrid);
+        }
+
+        private void LoadPlayerHeroes(LongListSelector heroGrid)
+        {
+            heroGrid.GridCellSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(HEROES_PER_ROW);
+            var heroesOwnedByPlayer = _heroRepository.GetHeroesOwnedByPlayer();
+            heroGrid.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
         }
 
         private Hero GetHeroToDelete(object sender)
@@ -37,13 +50,6 @@ namespace PuzzleRpg
             var heroIdAsString = (string)heroProfile.HeroId.Tag;
             var heroId = new Guid(heroIdAsString);
             return _heroRepository.GetHeroesOwnedByPlayer().Single(h => h.Id == heroId);
-        }
-
-        private void LoadPlayerHeroes(LongListSelector heroGrid)
-        {
-            heroGrid.GridCellSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(HEROES_PER_ROW);
-            var heroesOwnedByPlayer = _heroRepository.GetHeroesOwnedByPlayer();
-            heroGrid.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
         }
 
         private void OnShowHeroDetails(object sender, NotificationEventArgs e)
