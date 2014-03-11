@@ -38,8 +38,11 @@ namespace PuzzleRpg
         private void UnlockNextDungeon(List<Dungeon> dungeons)
         {
             var dungeonToUnlockId = AppGlobals.ActiveDungeonScore.ActiveDungeon.Unlocks;
-            var dungeonToUnlock = dungeons.Single(d => d.Id == dungeonToUnlockId);
-            dungeonToUnlock.IsAvailable = true;
+            var dungeonToUnlock = dungeons.SingleOrDefault(d => d.Id == dungeonToUnlockId);
+            if (dungeonToUnlock != null)
+            {
+                dungeonToUnlock.IsAvailable = true;
+            }
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)
