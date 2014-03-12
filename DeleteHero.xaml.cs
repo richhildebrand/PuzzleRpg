@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
@@ -14,11 +15,13 @@ namespace PuzzleRpg
     {
         private readonly int HEROES_PER_ROW = 5;
         private HeroRepository _heroRepository;
+        private TeamRepository _teamRepository;
 
         public DeleteHero()
         {
             InitializeComponent();
             _heroRepository = new HeroRepository();
+            _teamRepository = new TeamRepository();
             LoadPlayerHeroes(HeroGrid);
         }
 
@@ -40,8 +43,16 @@ namespace PuzzleRpg
         private void LoadPlayerHeroes(LongListSelector heroGrid)
         {
             heroGrid.GridCellSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(HEROES_PER_ROW);
+            var deleteableHeroes = GetHeroesOwnedByPlayerThatAreNotOnATeam();
+            heroGrid.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(deleteableHeroes);
+        }
+
+        private List<Hero> GetHeroesOwnedByPlayerThatAreNotOnATeam()
+        {
             var heroesOwnedByPlayer = _heroRepository.GetHeroesOwnedByPlayer();
-            heroGrid.ItemsSource = HeroToViewModelMapper.GetHeroViewModels(heroesOwnedByPlayer);
+            var team = _teamRepository.GetTeam();
+            var teamMemberIds = team.TeamMembers.Select(tm => tm.HeroId);
+            return heroesOwnedByPlayer.Where(h => !teamMemberIds.Contains(h.Id)).ToList();
         }
 
         private Hero GetHeroToDelete(object sender)
