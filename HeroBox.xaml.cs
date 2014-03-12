@@ -69,6 +69,7 @@ namespace PuzzleRpg
             base.OnNavigatedFrom(e);
             MessageBus.Default.Unregister("NavigateToPage", OnNavItemTapped);
             MessageBus.Default.Unregister("ShowHeroDetails", OnShowHeroDetails);
+            NavigationService.RemoveBackEntry();
         }
     }
 }
