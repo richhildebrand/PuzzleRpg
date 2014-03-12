@@ -3,6 +3,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PuzzleRpg.Database;
+using PuzzleRpg.Interface;
 using PuzzleRpg.Modals.EnterDungeonErrors;
 using PuzzleRpg.Models;
 using PuzzleRpg.Screens;
@@ -38,32 +39,27 @@ namespace PuzzleRpg.CustomControls
             }
             else
             {
-                var errorMessage = GetErrorMessage();
-                var errorModalControl = new EmptyTeamError();
+                var errorModalControl = GetErrorMessage();
                 var errorModal = new ModalContainer(errorModalControl);
                 errorModal.Show();
             }
         }
 
-        private string GetErrorMessage()
+        private IModalControl GetErrorMessage()
         {
             if (!PlayerHasEnoughStamina())
             {
-                var message = "Sorry, you do not have enough stamina to enter the dungeon.";
-                message += "You will gain " + AppSettings.AmountOfStaminaToAddInterval;
-                message += " stamina every " + AppSettings.GainStaminaIntervalLength;
-                message += " minutes";
-                return message;
+                return new NotEnoughStaminaError();
             }
             else if (TeamIsEmpty())
             {
-                return "Please add heroes to your team.";
+                return new EmptyTeamError();
             }
             else
             {
                 var message = "You have more heroes than you have space for.";
                 message += "Please delete some heroes before proceding your next dungeon";
-                return message;
+                return null;
             }
         }
 
