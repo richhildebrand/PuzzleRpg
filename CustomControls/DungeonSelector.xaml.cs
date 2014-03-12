@@ -3,8 +3,10 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using PuzzleRpg.Database;
+using PuzzleRpg.Modals.EnterDungeonErrors;
 using PuzzleRpg.Models;
 using PuzzleRpg.Screens;
+using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
 namespace PuzzleRpg.CustomControls
@@ -37,8 +39,9 @@ namespace PuzzleRpg.CustomControls
             else
             {
                 var errorMessage = GetErrorMessage();
-                var teamDeathDialog = new TeamDeathScreen(errorMessage);
-                teamDeathDialog.Show();
+                var errorModalControl = new EmptyTeamError();
+                var errorModal = new ModalContainer(errorModalControl);
+                errorModal.Show();
             }
         }
 
