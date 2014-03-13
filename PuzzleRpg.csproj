@@ -167,6 +167,9 @@
     <Compile Include="Modals\EnterDungeonErrors\NotEnoughStaminaError.xaml.cs">
       <DependentUpon>NotEnoughStaminaError.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Modals\EnterDungeonErrors\PlayerOwnsTooManyHeroesError.xaml.cs">
+      <DependentUpon>PlayerOwnsTooManyHeroesError.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Models\Dungeon.cs" />
     <Compile Include="Models\DungeonScore.cs" />
     <Compile Include="Models\Experience.cs" />
@@ -303,6 +306,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Modals\EnterDungeonErrors\NotEnoughStaminaError.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Modals\EnterDungeonErrors\PlayerOwnsTooManyHeroesError.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -6,7 +6,6 @@ using PuzzleRpg.Database;
 using PuzzleRpg.Interface;
 using PuzzleRpg.Modals.EnterDungeonErrors;
 using PuzzleRpg.Models;
-using PuzzleRpg.Screens;
 using PuzzleRpg.Utils;
 using SimpleMvvmToolkit;
 
@@ -16,6 +15,7 @@ namespace PuzzleRpg.CustomControls
     {
         private Dungeon _selectedDungeon;
         private Player _player;
+        private int _heroesOwnedByPlayer;
 
         public DungeonSelector()
         {
@@ -27,6 +27,9 @@ namespace PuzzleRpg.CustomControls
             var selectedGrid = sender as Grid;
             var dungeonId = (int)selectedGrid.Tag;
             _selectedDungeon = GetDungeon(dungeonId);
+
+            var heroRepository = new HeroRepository();
+            _heroesOwnedByPlayer = heroRepository.GetHeroesOwnedByPlayer().Count;
 
             var playerRepository = new PlayerRepository();
             _player = playerRepository.GetPlayer();
@@ -55,18 +58,23 @@ namespace PuzzleRpg.CustomControls
             {
                 return new EmptyTeamError();
             }
-            else
+            else if (PlayerOwnsTooManyHeroes())
             {
-                var message = "You have more heroes than you have space for.";
-                message += "Please delete some heroes before proceding your next dungeon";
-                return null;
+                return new PlayerOwnsTooManyHeroesError(_heroesOwnedByPlayer);
             }
+            throw new NotImplementedException("Unable to enter dungeon");
         }
 
         private bool PlayerCanEnterDungeon()
         {
             return PlayerHasEnoughStamina()
-                && !TeamIsEmpty();
+                && !TeamIsEmpty()
+                && !PlayerOwnsTooManyHeroes();
+        }
+
+        private bool PlayerHasEnoughStamina()
+        {
+            return _player.Stam.Current >= _selectedDungeon.StaminaCost;
         }
 
         private bool TeamIsEmpty()
@@ -76,9 +84,9 @@ namespace PuzzleRpg.CustomControls
             return team.TeamMembers.Count <= 0;
         }
 
-        private bool PlayerHasEnoughStamina()
+        private bool PlayerOwnsTooManyHeroes()
         {
-            return _player.Stam.Current >= _selectedDungeon.StaminaCost;
+            return _heroesOwnedByPlayer > AppSettings.MaxNumberOfHeroesPlayerCanOwn;
         }
 
         private Dungeon GetDungeon(int dungeonId)

@@ -19,7 +19,7 @@ namespace PuzzleRpg.Modals.EnterDungeonErrors
         private string GetErrorText()
         {
             var errorMessage = "Sorry, you do not have enough stamina to enter the dungeon.";
-            errorMessage += "You will gain " + AppSettings.AmountOfStaminaToAddInterval;
+            errorMessage += " You will gain " + AppSettings.AmountOfStaminaToAddInterval;
             errorMessage += " stamina every " + AppSettings.GainStaminaIntervalLength.TotalMinutes;
             errorMessage += " minutes";
             return errorMessage;
