@@ -44,8 +44,7 @@ namespace PuzzleRpg
 
         private List<HeroViewModel> AddEmptyProfiles(List<HeroViewModel> heroProfiles)
         {
-            var numberOfHeroSlotsPlayerHasPurchased = 20; //TODO: save in local storage
-            var emptySlotsToAdd = numberOfHeroSlotsPlayerHasPurchased - heroProfiles.Count;
+            var emptySlotsToAdd = AppSettings.MaxNumberOfHeroesPlayerCanOwn - heroProfiles.Count;
             var emptyHeroSlots = EmptyHeroViewModelGetter.GetEmptyHeroViewModel(emptySlotsToAdd);
             return heroProfiles.Concat(emptyHeroSlots).ToList();
         }
