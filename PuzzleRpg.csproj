@@ -174,6 +174,7 @@
     <Compile Include="Models\DungeonScore.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Hero.cs" />
+    <Compile Include="Logic\HeroLevelCalculator.cs" />
     <Compile Include="Models\HeroViewModel.cs" />
     <Compile Include="Models\DungeonFloor.cs" />
     <Compile Include="Models\Monster.cs" />
