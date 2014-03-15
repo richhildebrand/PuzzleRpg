@@ -26,6 +26,8 @@ namespace PuzzleRpg
                 UnlockNextDungeon(dungeons);
                 dungeonRepository.Save(dungeons);
             }
+
+            var totalExpGained = dungeonResults.MonstersSlain.Sum(m => m.ExpGivenOnDeath);
         }
 
         private void SetDungeonAsCleared(List<Dungeon> dungeons)
