@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpg", "PuzzleRpg.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpgTests", "..\PuzzleRpgTests\PuzzleRpgTests.csproj", "{FB429A84-3A77-4243-A62B-56C3DA3B4D8A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PuzzleRpgPrinter", "..\PuzzleRpgPrinter\PuzzleRpgPrinter\PuzzleRpgPrinter.csproj", "{3C40372B-DD2C-4183-B326-0615009E9B7A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -61,6 +63,18 @@ Global
 		{FB429A84-3A77-4243-A62B-56C3DA3B4D8A}.Release|x86.ActiveCfg = Release|x86
 		{FB429A84-3A77-4243-A62B-56C3DA3B4D8A}.Release|x86.Build.0 = Release|x86
 		{FB429A84-3A77-4243-A62B-56C3DA3B4D8A}.Release|x86.Deploy.0 = Release|x86
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|ARM.ActiveCfg = Release|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{3C40372B-DD2C-4183-B326-0615009E9B7A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
