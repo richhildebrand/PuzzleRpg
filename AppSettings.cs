@@ -13,6 +13,6 @@ namespace PuzzleRpg
         public static int MonsterDeathFadeTimeInMilliseconds = 800;
         public static int MonsterDeathTimeInvisibleInMilliseconds = 200;
 
-        public static double ExpericencePerLevelMultiplier = 2;
+        public static double ExpericencePerLevelMultiplier = 1.115;
     }
 }

@@ -5,11 +5,11 @@ namespace PuzzleRpg.Logic
 {
     public class HeroLevelCalculator
     {
-        public double GetLevelFrom(double baseExpPerLevel, double currentExp)
+        public int GetLevelFrom(double baseExpPerLevel, double currentExp)
         {
             var levelComparedToBaseExp = currentExp / baseExpPerLevel + 1;
             var heroLevel = Math.Log(levelComparedToBaseExp, AppSettings.ExpericencePerLevelMultiplier);
-            return Math.Floor(heroLevel) + 1;
+            return (int)Math.Floor(heroLevel) + 1;
         }
 
         public double GetExpNeededForLevel(int level, double baseExpPerLevel)
