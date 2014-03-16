@@ -158,6 +158,7 @@
     </Compile>
     <Compile Include="Interface\IModalControl.cs" />
     <Compile Include="Logic\CastSpellModal.cs" />
+    <Compile Include="Logic\DungeonDefeater.cs" />
     <Compile Include="Modals\DeleteHeroConfirmation.xaml.cs">
       <DependentUpon>DeleteHeroConfirmation.xaml</DependentUpon>
     </Compile>

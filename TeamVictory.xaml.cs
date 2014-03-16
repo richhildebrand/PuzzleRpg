@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
+using PuzzleRpg.Logic;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 
@@ -20,31 +21,11 @@ namespace PuzzleRpg
 
             if (dungeonResults.PlayerWins)
             {
-                var dungeonRepository = new DungeonRepository();
-                var dungeons = dungeonRepository.GetAllDungeons();
-                SetDungeonAsCleared(dungeons);
-                UnlockNextDungeon(dungeons);
-                dungeonRepository.Save(dungeons);
+                var dungeonDefeater = new DungeonDefeater(dungeonResults.ActiveDungeon);
+                dungeonDefeater.Defeat();
             }
 
             var totalExpGained = dungeonResults.MonstersSlain.Sum(m => m.ExpGivenOnDeath);
-        }
-
-        private void SetDungeonAsCleared(List<Dungeon> dungeons)
-        {
-            var defeatedDungeonId = AppGlobals.ActiveDungeonScore.ActiveDungeon.Id;
-            var defeatedDungeon = dungeons.Single(d => d.Id == defeatedDungeonId);
-            defeatedDungeon.HasBeenDefeated = true;
-        }
-
-        private void UnlockNextDungeon(List<Dungeon> dungeons)
-        {
-            var dungeonToUnlockId = AppGlobals.ActiveDungeonScore.ActiveDungeon.Unlocks;
-            var dungeonToUnlock = dungeons.SingleOrDefault(d => d.Id == dungeonToUnlockId);
-            if (dungeonToUnlock != null)
-            {
-                dungeonToUnlock.IsAvailable = true;
-            }
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)
