@@ -144,6 +144,7 @@
     <Compile Include="DeleteHero.xaml.cs">
       <DependentUpon>DeleteHero.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Getters\HeroesOnActiveTeamGetter.cs" />
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
