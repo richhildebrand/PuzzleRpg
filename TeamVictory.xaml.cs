@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
 using PuzzleRpg.Database;
+using PuzzleRpg.Getters;
+using PuzzleRpg.Logic;
 using PuzzleRpg.Models;
 using PuzzleRpg.Utils;
 
@@ -20,29 +21,26 @@ namespace PuzzleRpg
 
             if (dungeonResults.PlayerWins)
             {
-                var dungeonRepository = new DungeonRepository();
-                var dungeons = dungeonRepository.GetAllDungeons();
-                SetDungeonAsCleared(dungeons);
-                UnlockNextDungeon(dungeons);
-                dungeonRepository.Save(dungeons);
+                var dungeonDefeater = new DungeonDefeater(dungeonResults.ActiveDungeon);
+                dungeonDefeater.Defeat();
             }
+
+            GiveEarnedExpToActiveTeam(dungeonResults);
         }
 
-        private void SetDungeonAsCleared(List<Dungeon> dungeons)
+        public void GiveEarnedExpToActiveTeam(DungeonScore dungeonResults)
         {
-            var defeatedDungeonId = AppGlobals.ActiveDungeonScore.ActiveDungeon.Id;
-            var defeatedDungeon = dungeons.Single(d => d.Id == defeatedDungeonId);
-            defeatedDungeon.HasBeenDefeated = true;
-        }
+            var totalExpGained = dungeonResults.MonstersSlain.Sum(m => m.ExpGivenOnDeath);
+            var heroesOnTeam = new HeroesOnActiveTeamGetter().Get();
+            var expPerHero = totalExpGained / heroesOnTeam.Count();
 
-        private void UnlockNextDungeon(List<Dungeon> dungeons)
-        {
-            var dungeonToUnlockId = AppGlobals.ActiveDungeonScore.ActiveDungeon.Unlocks;
-            var dungeonToUnlock = dungeons.SingleOrDefault(d => d.Id == dungeonToUnlockId);
-            if (dungeonToUnlock != null)
+            foreach (var hero in heroesOnTeam)
             {
-                dungeonToUnlock.IsAvailable = true;
+                hero.CurrentExp += expPerHero;
             }
+
+            var heroRepository = new HeroRepository();
+            heroRepository.UpdateHeroes(heroesOnTeam);
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)

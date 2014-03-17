@@ -12,17 +12,15 @@ namespace PuzzleRpg.Database
         static MonsterDatabase()
         {
             _allMonsters = new List<Monster>();
-                                         //Name   HP   Attack
-            //I made the BlueDragon have a more powerful attack since TotalHealth is now a large number.
-            //It was hard to actually see if the HealthBar was working or not
-            _allMonsters.Add(new Monster("BlueDragon", 1000, 1000));
-            _allMonsters.Add(new Monster("GreenDragon", 1000, 90));
-            _allMonsters.Add(new Monster("RedDragon", 1000, 90));
-            _allMonsters.Add(new Monster("BigBlue", 300, 20));
-            _allMonsters.Add(new Monster("Turtle", 5000, 1));
-            _allMonsters.Add(new Monster("Rex", 1000, 10));
-            _allMonsters.Add(new Monster("StoneOrc", 500, 30));
-            _allMonsters.Add(new Monster("WoodOrc", 500, 30));
+
+            _allMonsters.Add(new Monster("BlueDragon", 1000, 1000, 100));
+            _allMonsters.Add(new Monster("GreenDragon", 1000, 90, 100));
+            _allMonsters.Add(new Monster("RedDragon", 1000, 90, 100));
+            _allMonsters.Add(new Monster("BigBlue", 300, 20, 30));
+            _allMonsters.Add(new Monster("Turtle", 5000, 1, 30));
+            _allMonsters.Add(new Monster("Rex", 1000, 10, 10));
+            _allMonsters.Add(new Monster("StoneOrc", 500, 30, 10));
+            _allMonsters.Add(new Monster("WoodOrc", 500, 30, 10));
         }
 
         public static int MonsterCount()
@@ -46,7 +44,8 @@ namespace PuzzleRpg.Database
         {
             return new Monster(monsterToCopy.Name,
                                monsterToCopy.TotalHealth,
-                               monsterToCopy.AttackDamage);
+                               monsterToCopy.AttackDamage,
+                               monsterToCopy.ExpGivenOnDeath);
         }
     }
 }

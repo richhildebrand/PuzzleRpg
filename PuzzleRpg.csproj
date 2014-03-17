@@ -144,6 +144,7 @@
     <Compile Include="DeleteHero.xaml.cs">
       <DependentUpon>DeleteHero.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Getters\HeroesOnActiveTeamGetter.cs" />
     <Compile Include="HeroBox.xaml.cs">
       <DependentUpon>HeroBox.xaml</DependentUpon>
     </Compile>
@@ -158,6 +159,7 @@
     </Compile>
     <Compile Include="Interface\IModalControl.cs" />
     <Compile Include="Logic\CastSpellModal.cs" />
+    <Compile Include="Logic\DungeonDefeater.cs" />
     <Compile Include="Modals\DeleteHeroConfirmation.xaml.cs">
       <DependentUpon>DeleteHeroConfirmation.xaml</DependentUpon>
     </Compile>
@@ -174,6 +176,7 @@
     <Compile Include="Models\DungeonScore.cs" />
     <Compile Include="Models\Experience.cs" />
     <Compile Include="Models\Hero.cs" />
+    <Compile Include="Logic\HeroLevelCalculator.cs" />
     <Compile Include="Models\HeroViewModel.cs" />
     <Compile Include="Models\DungeonFloor.cs" />
     <Compile Include="Models\Monster.cs" />

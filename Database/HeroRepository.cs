@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;
 using System.Linq;
@@ -14,6 +13,16 @@ namespace PuzzleRpg.Database
         public HeroRepository()
         {
             CreateKeyIfMissing(HEROES_KEY);
+        }
+
+        public void UpdateHeroes(List<Hero> modifiedHeroes)
+        {
+            var heroIdsToUpdate = modifiedHeroes.Select(h => h.Id);
+            var heroesOwned = GetHeroesOwnedByPlayer();
+            var unmodifiedHeroes = heroesOwned.Where(h => !heroIdsToUpdate.Contains(h.Id)).ToList();
+            var heroesToSave = unmodifiedHeroes.Concat(modifiedHeroes).ToList();
+            IsolatedStorageSettings.ApplicationSettings[HEROES_KEY] = heroesToSave;
+            IsolatedStorageSettings.ApplicationSettings.Save();
         }
 
         protected override void CreateKey(string key)
