@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.Database;
 using PuzzleRpg.Getters;
 using PuzzleRpg.Logic;
 using PuzzleRpg.Models;
@@ -38,8 +39,8 @@ namespace PuzzleRpg
                 hero.CurrentExp += expPerHero;
             }
 
-            //TODO: Save updated heroes / team in database
-            //Possibly this whole method should move to team?
+            var heroRepository = new HeroRepository();
+            heroRepository.UpdateHeroes(heroesOnTeam);
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)
