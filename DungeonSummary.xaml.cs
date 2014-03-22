@@ -10,9 +10,9 @@ using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
-    public partial class TeamVictory : PhoneApplicationPage
+    public partial class DungeonSummary : PhoneApplicationPage
     {
-        public TeamVictory()
+        public DungeonSummary()
         {
             InitializeComponent();
 
