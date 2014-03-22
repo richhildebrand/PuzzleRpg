@@ -16,7 +16,8 @@
     <Grid Tap="OnScreenTap">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
@@ -29,8 +30,22 @@
                    TextAlignment="Center" FontSize="50"
                    Visibility="{Binding PlayerWins, Converter={StaticResource IsInvisible}}" />
 
-        <!--Target for click-->
+        <!--Target for click event-->
         <TextBlock Grid.Row="1" />
+        <Grid x:Name="ActiveTeamList"
+                    Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>
