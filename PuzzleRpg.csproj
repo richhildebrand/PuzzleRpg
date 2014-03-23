@@ -101,6 +101,9 @@
     <Compile Include="CustomControls\DungeonSelector.xaml.cs">
       <DependentUpon>DungeonSelector.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControls\ExperienceToNextHeroLevel.xaml.cs">
+      <DependentUpon>ExperienceToNextHeroLevel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CustomControls\HealthBar.xaml.cs">
       <DependentUpon>HealthBar.xaml</DependentUpon>
     </Compile>
@@ -234,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="CustomControls\DungeonSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\ExperienceToNextHeroLevel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -9,24 +9,47 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="480" d:DesignWidth="480">
 
-        <Grid x:Name="LayoutRoot" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="3*" />
-                <RowDefinition Height="1.4*" />
-                <RowDefinition Height="3*" />
-            </Grid.RowDefinitions>
+    <Grid x:Name="LayoutRoot" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="1.4*" />
+            <RowDefinition Height="3*" />
+        </Grid.RowDefinitions>
 
-            <Rectangle Grid.Row="0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Transparent"/>
+        <Rectangle 
+            Grid.Row="0"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            Fill="Transparent">
+        </Rectangle>
 
-            <Grid Grid.Row="1" x:Name="StatPercentage" >
-                <Grid.ColumnDefinitions >
-                    <ColumnDefinition Width="10*" />
-                    <ColumnDefinition Width="0*" />
-                </Grid.ColumnDefinitions>
+        <Grid Grid.Row="1" x:Name="StatPercentage" >
+            <Grid.ColumnDefinitions >
+                <ColumnDefinition Width="10*" />
+                <ColumnDefinition Width="0*" />
+            </Grid.ColumnDefinitions>
 
-                <Rectangle x:Name="ThisStatBar" Grid.Column="0"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="{Binding Color}" />
-            </Grid>
+            <Rectangle 
+                x:Name="ThisStatBar"
+                Grid.Column="0"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Fill="{Binding Color}" >
+            </Rectangle>
 
-            <Rectangle Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Fill="Transparent"/>
+            <Rectangle 
+                Grid.Column="1"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Fill="LightGray" >
+            </Rectangle>
         </Grid>
+
+        <Rectangle 
+            Grid.Row="2" 
+            VerticalAlignment="Stretch" 
+            HorizontalAlignment="Stretch" 
+            Fill="Transparent">
+        </Rectangle>
+    </Grid>
 </UserControl>

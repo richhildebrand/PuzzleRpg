@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Getters;
 using PuzzleRpg.Logic;
@@ -52,20 +53,13 @@ namespace PuzzleRpg
         }
 
         public void DrawHeroes(List<Hero> heroesOnTeam, double expPerHero) {
-            var heroViewModels = HeroToViewModelMapper.GetHeroViewModels(heroesOnTeam);
-
-            //TODO: we always use 5 so it can be internal to this method.
-            var profileSize = ViewCalculations.GetHeroProfileSizeGiveNColumns(5);
             var row = 0;
-            foreach (var hero in heroViewModels)
+            foreach (var hero in heroesOnTeam)
             {
-                var heroProfile = new CustomControls.HeroProfileInHeroBox();
-                heroProfile.Draw(hero);
-                heroProfile.SetValue(Grid.RowProperty, row);
-                heroProfile.SetValue(Grid.ColumnProperty, 0);
-                heroProfile.Height = profileSize.Height;
-                heroProfile.Width = profileSize.Width;
-                ActiveTeamList.Children.Add(heroProfile);
+                var expControl = new ExperienceToNextHeroLevel(hero, expPerHero);
+                expControl.SetValue(Grid.RowProperty, row);
+                expControl.SetValue(Grid.ColumnProperty, 0);
+                ActiveTeamList.Children.Add(expControl);
                 row += 1;
             }
         }
