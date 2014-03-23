@@ -96,9 +96,13 @@
     </Compile>
     <Compile Include="AppGlobals.cs" />
     <Compile Include="AppSettings.cs" />
-    <Compile Include="Converters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Converters\IsInvisible.cs" />
+    <Compile Include="Converters\IsVisible.cs" />
     <Compile Include="CustomControls\DungeonSelector.xaml.cs">
       <DependentUpon>DungeonSelector.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControls\ExperienceToNextHeroLevel.xaml.cs">
+      <DependentUpon>ExperienceToNextHeroLevel.xaml</DependentUpon>
     </Compile>
     <Compile Include="CustomControls\HealthBar.xaml.cs">
       <DependentUpon>HealthBar.xaml</DependentUpon>
@@ -208,8 +212,8 @@
     <Compile Include="TeamSelection.xaml.cs">
       <DependentUpon>TeamSelection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TeamVictory.xaml.cs">
-      <DependentUpon>TeamVictory.xaml</DependentUpon>
+    <Compile Include="DungeonSummary.xaml.cs">
+      <DependentUpon>DungeonSummary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Animations\AnimatedMoves.cs" />
     <Compile Include="Animations\AnimateHealthBar.cs" />
@@ -233,6 +237,10 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="CustomControls\DungeonSelector.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControls\ExperienceToNextHeroLevel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -324,7 +332,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TeamVictory.xaml">
+    <Page Include="DungeonSummary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

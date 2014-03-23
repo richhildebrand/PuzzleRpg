@@ -1,5 +1,5 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PuzzleRpg.TeamVictory"
+    x:Class="PuzzleRpg.DungeonSummary"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
@@ -16,16 +16,30 @@
     <Grid Tap="OnScreenTap">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="9*"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
                    Text="Victory!"
                    TextAlignment="Center" FontSize="50"
-                   Visibility="{Binding PlayerWins, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Visibility="{Binding PlayerWins, Converter={StaticResource IsVisible}}" />
 
-        <!--Target for click-->
-        <TextBlock Grid.Row="1" />
+        <TextBlock Grid.Row="0"
+                   Text="Defeated"
+                   TextAlignment="Center" FontSize="50"
+                   Visibility="{Binding PlayerWins, Converter={StaticResource IsInvisible}}" />
+
+        <Grid x:Name="ActiveTeamList"
+              Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+        </Grid>
     </Grid>
 
 </phone:PhoneApplicationPage>

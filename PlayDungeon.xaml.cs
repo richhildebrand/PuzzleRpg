@@ -31,7 +31,7 @@ namespace PuzzleRpg
 
         private void OnEndGame(object sender, NotificationEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("/TeamVictory.xaml", UriKind.RelativeOrAbsolute));
+            this.NavigationService.Navigate(new Uri("/DungeonSummary.xaml", UriKind.RelativeOrAbsolute));
         }
 
         public async void LoadGraphics(object sender, RoutedEventArgs e)

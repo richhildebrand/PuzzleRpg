@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Input;
 using Microsoft.Phone.Controls;
+using PuzzleRpg.CustomControls;
 using PuzzleRpg.Database;
 using PuzzleRpg.Getters;
 using PuzzleRpg.Logic;
@@ -10,9 +13,9 @@ using PuzzleRpg.Utils;
 
 namespace PuzzleRpg
 {
-    public partial class TeamVictory : PhoneApplicationPage
+    public partial class DungeonSummary : PhoneApplicationPage
     {
-        public TeamVictory()
+        public DungeonSummary()
         {
             InitializeComponent();
 
@@ -25,15 +28,21 @@ namespace PuzzleRpg
                 dungeonDefeater.Defeat();
             }
 
-            GiveEarnedExpToActiveTeam(dungeonResults);
+            SaveAndShowExpericeEarnedByActiveTeam(dungeonResults);
         }
 
-        public void GiveEarnedExpToActiveTeam(DungeonScore dungeonResults)
+        public void SaveAndShowExpericeEarnedByActiveTeam(DungeonScore dungeonResults)
         {
             var totalExpGained = dungeonResults.MonstersSlain.Sum(m => m.ExpGivenOnDeath);
             var heroesOnTeam = new HeroesOnActiveTeamGetter().Get();
             var expPerHero = totalExpGained / heroesOnTeam.Count();
 
+            SaveEarnedExpForActiveTeam(heroesOnTeam, expPerHero);
+            DrawHeroes(heroesOnTeam, expPerHero);
+        }
+
+        public void SaveEarnedExpForActiveTeam(List<Hero> heroesOnTeam, double expPerHero)
+        {
             foreach (var hero in heroesOnTeam)
             {
                 hero.CurrentExp += expPerHero;
@@ -41,6 +50,18 @@ namespace PuzzleRpg
 
             var heroRepository = new HeroRepository();
             heroRepository.UpdateHeroes(heroesOnTeam);
+        }
+
+        public void DrawHeroes(List<Hero> heroesOnTeam, double expPerHero) {
+            var row = 0;
+            foreach (var hero in heroesOnTeam)
+            {
+                var expControl = new ExperienceToNextHeroLevel(hero, expPerHero);
+                expControl.SetValue(Grid.RowProperty, row);
+                expControl.SetValue(Grid.ColumnProperty, 0);
+                ActiveTeamList.Children.Add(expControl);
+                row += 1;
+            }
         }
 
         public void OnScreenTap(object sender, GestureEventArgs e)

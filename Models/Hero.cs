@@ -7,7 +7,7 @@ namespace PuzzleRpg.Models
     public class Hero
     {
         private readonly HeroLevelCalculator _levelCalculator;
-        private readonly int _baseExpPerLevel;
+        public readonly int BaseExpPerLevel;
 
         private readonly int _healingPerLevel;
         public int HealsFor { get { return _healingPerLevel * Level; } }
@@ -39,7 +39,7 @@ namespace PuzzleRpg.Models
             Name = heroName;
             Type = type;
 
-            _baseExpPerLevel = 250;
+            BaseExpPerLevel = 250;
             _levelCalculator = new HeroLevelCalculator();
             _hitPointsPerLevel = hitPointsPerLevel;
             _attackDamagePerLevel = attackDamagePerLevel;
@@ -51,7 +51,7 @@ namespace PuzzleRpg.Models
 
         public int Level
         {
-            get { return _levelCalculator.GetLevelFrom(_baseExpPerLevel, CurrentExp); }
+            get { return _levelCalculator.GetLevelFrom(BaseExpPerLevel, CurrentExp); }
         }
     }
 }

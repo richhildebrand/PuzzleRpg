@@ -28,7 +28,7 @@
         <TextBlock Grid.Row="0" Grid.Column="0" 
                    Text="Clear" 
                    FontSize="25" TextAlignment="Left" Padding="15 0 0 0"
-                   Visibility="{Binding HasBeenDefeated, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                   Visibility="{Binding HasBeenDefeated, Converter={StaticResource IsVisible}}" />
         
         <TextBlock Grid.Row="0" Grid.Column="1"
                    Text="Stam: " FontSize="25" TextAlignment="Right" />
