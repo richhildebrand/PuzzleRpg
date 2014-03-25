@@ -12,7 +12,7 @@ namespace PuzzleRpg.Database
         static HeroDatabase()
         {
             _allHeroes = new List<Hero>();
-            _allHeroes.Add(new Hero("BlueDragon", 1000, 90, 200, AppGlobals.Types.Water, 250, 10));
+            _allHeroes.Add(new Hero("BlueDragon", 1000, 90, 200, AppGlobals.Types.Water, 250, 1));
             _allHeroes.Add(new Hero("GreenDragon", 1000, 90, 200, AppGlobals.Types.Wood, 250, 10));
             _allHeroes.Add(new Hero("RedDragon", 1000, 90, 200, AppGlobals.Types.Fire, 250, 10));
             _allHeroes.Add(new Hero("BigBlue", 1000, 90, 200, AppGlobals.Types.Water, 250, 10));
