@@ -10,7 +10,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     d:DesignHeight="100" d:DesignWidth="480">
     
-    <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
+    <Grid Background="{StaticResource PhoneChromeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
@@ -27,19 +27,32 @@
         </local:HeroProfileInHeroBox>
         
         <TextBlock
+            x:Name="MaxLevelReached"
+            Grid.Column="1"
+            Grid.RowSpan="2"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            FontSize="30"
+            Visibility="Collapsed">
+            Max Level Reached
+        </TextBlock>
+        
+        <TextBlock
+            x:Name="ExpToNextLevel"
             Grid.Column="1"
             Grid.Row="0"
             FontSize="30"
             TextAlignment="Center"
-            VerticalAlignment="Bottom">
+            VerticalAlignment="Bottom"
+            Visibility="Collapsed">
             Experience to next level
         </TextBlock>
         <local:StatBar 
             x:Name="ExpBar"
             Grid.Column="1"
             Grid.Row="1"
-            Margin="15, 0, 15, 30">
+            Margin="15, 0, 15, 30"
+            Visibility="Collapsed">
         </local:StatBar>
-        
     </Grid>
 </UserControl>
