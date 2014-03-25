@@ -40,7 +40,7 @@ namespace PuzzleRpg
         private void DrawScreen(Hero hero)
         {
             FullHeroImage.Source = ImageUtils.GetImageSourceFromPath("/" + hero.FullImagePath);
-            LevelCurrentAndMax.Text = "Level " + "???" + " of " + "???";
+            LevelCurrentAndMax.Text = "Level " + hero.Level + " of " + hero.MaxLevel;
             Heal.Text = "Heals for " + hero.HealsFor.ToString();
             HP.Text = "Hit points " + hero.HitPoints.ToString();
             Attack.Text = "Attacks for " + hero.AttackDamage.ToString();

@@ -22,7 +22,7 @@ namespace PuzzleRpg.Modals
 
             HeroImage.Source = ImageUtils.GetImageSourceFromPath("/" + _heroToDelete.FullImagePath);
             HeroName.Text = _heroToDelete.Name;
-            HeroLevel.Text = "Current Level " + "999";
+            HeroLevel.Text = "Current Level " + heroToDelete.Level;
         }
 
         public void Cancel(object sender, GestureEventArgs e)

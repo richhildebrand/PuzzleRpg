@@ -40,6 +40,5 @@
             Grid.Row="1"
             Margin="15, 0, 15, 30">
         </local:StatBar>
-        
     </Grid>
 </UserControl>
