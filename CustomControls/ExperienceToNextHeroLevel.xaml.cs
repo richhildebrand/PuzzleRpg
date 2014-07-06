@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,10 @@ namespace PuzzleRpg.CustomControls
 
             var expNeededForThisLevel = GetExpNeeded(hero.Level, hero.BaseExpPerLevel);
             var expNeededForNextLevel = GetExpNeeded(hero.Level + 1, hero.BaseExpPerLevel);
-            ExpBar.SetFillPercentage(expNeededForThisLevel, expNeededForNextLevel);
+            var expOverThisLevel = Convert.ToInt32(hero.CurrentExp - expNeededForThisLevel);
+            var expFormThisLevelToNext = expNeededForNextLevel - expNeededForThisLevel;
+            
+            ExpBar.SetFillPercentage(expOverThisLevel, expFormThisLevelToNext);
         }
 
         private int GetExpNeeded(int level, double baseExp)
