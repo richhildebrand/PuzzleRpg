@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -20,7 +19,7 @@ namespace PuzzleRpg
             InitializeComponent();
 
             var dungeonResults = AppGlobals.ActiveDungeonScore;
-            this.DataContext = dungeonResults;
+            DataContext = dungeonResults;
 
             if (dungeonResults.PlayerWins)
             {
@@ -66,7 +65,7 @@ namespace PuzzleRpg
 
         public void OnScreenTap(object sender, GestureEventArgs e)
         {
-            this.NavigationService.GoBack();
+            NavigationService.GoBack();
         }
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)

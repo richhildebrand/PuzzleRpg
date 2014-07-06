@@ -28,7 +28,20 @@ namespace PuzzleRpg.Logic
         {
             var defeatedDungeonId = _defeatedDungeon.Id;
             var defeatedDungeon = dungeons.Single(d => d.Id == defeatedDungeonId);
-            defeatedDungeon.HasBeenDefeated = true;
+
+            if (!defeatedDungeon.HasBeenDefeated)
+            {
+                ReturnPlayerStamina(defeatedDungeon.StaminaCost);
+                defeatedDungeon.HasBeenDefeated = true;
+            }
+        }
+
+        public void ReturnPlayerStamina(int stamToReturn)
+        {
+            var playerRepository = new PlayerRepository();
+            var player = playerRepository.GetPlayer();
+            player.Stam.Current += stamToReturn;
+            playerRepository.SavePlayer(player);
         }
 
         private void UnlockNextDungeon(List<Dungeon> dungeons)

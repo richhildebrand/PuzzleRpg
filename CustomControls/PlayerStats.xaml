@@ -12,7 +12,7 @@
     
     <Grid x:Name="LayoutRoot" Background="{StaticResource PhoneChromeBrush}">
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
 
@@ -24,7 +24,7 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Text="Exp" Margin="3" VerticalAlignment="Stretch" />
         <local:StatBar x:Name="ExpBar" Grid.Row="0" Grid.Column="1" Margin="3" />
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="Stam" Margin="3" VerticalAlignment="Stretch" />
+        <TextBlock Grid.Row="1" Grid.Column="0" Text="Stam" Margin="3" VerticalAlignment="Center" />
         <local:StatBar x:Name="StamBar" Grid.Row="1" Grid.Column="1" Margin="3" />
     </Grid>
 </UserControl>
