@@ -18,7 +18,7 @@ namespace PuzzleRpg.CustomControls
 
         public void AddHeroes(Team activeTeam)
         {
-            this._activeTeam = activeTeam;
+            _activeTeam = activeTeam;
             foreach (var teamMember in activeTeam.TeamMembers)
             {
                 AddTeamMember(teamMember, LayoutRoot);
@@ -32,7 +32,7 @@ namespace PuzzleRpg.CustomControls
                 grid.Children.Add(heroProfile);
                 heroProfile.SetValue(Grid.RowProperty, 0);
                 heroProfile.SetValue(Grid.ColumnProperty, teamMemeber.Slot*2);
-                heroProfile.Tap += OnSelectHero;
+                //heroProfile.Tap += OnSelectHero;
         }
 
         private void OnSelectHero(object sender, GestureEventArgs e)
