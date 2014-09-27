@@ -23,12 +23,12 @@
 
         <local:PlayerStats Grid.Row="0" />
 
-        <Grid x:Name="TopHalf" Grid.Row="1" >
+        <Grid x:Name="TopHalf" Grid.Row="1" Background="{StaticResource PhoneChromeBrush}">
             <Image Source="Assets/Backdrops/Parchment.png" Stretch="Fill" />
             <Image x:Name="FullHeroImage" ></Image>
         </Grid>
-        
-        <Grid Grid.Row="2">
+
+        <Grid Grid.Row="2" Background="{StaticResource PhoneChromeBrush}">
             <Border CornerRadius="30" Padding="10">
                 <Border.Background>
                     <ImageBrush x:Name="Border" ImageSource="/Assets/ProfileBorders/Water.png" Stretch="Fill" />
